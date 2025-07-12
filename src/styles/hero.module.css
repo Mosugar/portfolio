@@ -12,6 +12,15 @@
   z-index: 49;
 }
 
+/* Mobile background override */
+@media (max-width: 768px) {
+  .hero {
+    background-image: url('/img/DSC08719.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+}
+
 .backgroundDistortion {
   position: absolute;
   inset: 0;
@@ -59,6 +68,38 @@
   border-radius: 9999px;
   padding: 8px 16px;
   border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* Hide available status on mobile */
+@media (max-width: 768px) {
+  .availableStatus {
+    display: none;
+  }
+  
+  /* Fix mobile navigation contact button - global styles */
+  .fixed.bottom-4 button[class*="contact"] {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  /* Make mobile navigation buttons smaller */
+  .fixed.bottom-4 .flex.items-center.gap-1 button {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  /* Specific styling for mobile navigation contact floating button */
+  .fixed.bottom-4 .absolute.-top-12 {
+    width: 2rem !important;
+    height: 2rem !important;
+    top: -2.5rem !important;
+  }
+  
+  .fixed.bottom-4 .absolute.-top-12 svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
 }
 
 /* Status Badge Container (removed - keeping for compatibility) */
@@ -152,21 +193,6 @@
   gap: 0.75rem;
 }
 
-.statusDot {
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: #f97316;
-  border-radius: 50%;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  box-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
-}
-
-.statusText {
-  font-size: 0.875rem;
-  color: #9ca3af;
-  font-weight: 400;
-}
-
 .menuButton {
   display: flex;
   align-items: center;
@@ -199,7 +225,7 @@
   z-index: 20;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end; /* Changed from center to flex-end */
   align-items: center;
   text-align: center;
   min-height: 100vh;
@@ -207,8 +233,8 @@
 }
 
 .titleSection {
-  margin-bottom: 6rem;
-  margin-top: 11rem;
+  margin-bottom: 10rem; /* Bottom margin for spacing from bottom */
+  margin-top: 0; /* Removed top margin since we're positioning at bottom */
 }
 
 /* THREE COLUMN GRID - Optimized */
@@ -298,49 +324,10 @@
   pointer-events: none;
 }
 
-/* .lightingEffect1 {
-  position: absolute;
-  top: 20%;
-  right: 20%;
-  width: 28rem;
-  height: 28rem;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, rgba(147, 51, 234, 0.08) 50%, transparent 100%);
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: float1 8s ease-in-out infinite;
-} */
-
-/* .lightingEffect2 {
-  position: absolute;
-  bottom: 20%;
-  left: 20%;
-  width: 28rem;
-  height: 28rem;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 100%);
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: float2 10s ease-in-out infinite;
-} */
-
 /* RESPONSIVE DESIGN - Comprehensive */
 
 /* Mobile Portrait */
 @media (max-width: 480px) {
-  .availableStatus {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 6px 12px;
-  }
-  
-  .statusDot {
-    width: 8px;
-    height: 8px;
-  }
-  
-  .statusText {
-    font-size: 12px;
-  }
-  
   .navLogo {
     height: 20px;
   }
@@ -375,8 +362,8 @@
   }
   
   .titleSection {
-    margin-bottom: 6rem;
-    margin-top: 4rem;
+    margin-bottom: 4rem; /* Reduced for mobile */
+    margin-top: 0;
   }
   
   .navigation {
@@ -418,8 +405,8 @@
   }
   
   .titleSection {
-    margin-bottom: 6rem;
-    margin-top: 5rem;
+    margin-bottom: 4rem;
+    margin-top: 0;
   }
 }
 
@@ -461,8 +448,8 @@
   }
   
   .titleSection {
-    margin-bottom: 7rem;
-    margin-top: 5rem;
+    margin-bottom: 6rem;
+    margin-top: 0;
   }
 }
 
@@ -504,7 +491,7 @@
   
   .titleSection {
     margin-bottom: 8rem;
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 
@@ -540,8 +527,8 @@
   }
   
   .titleSection {
-    margin-bottom: 2rem;
-    margin-top: 12rem;
+    margin-bottom: 8rem;
+    margin-top: 0;
   }
 }
 
@@ -578,7 +565,7 @@
   
   .titleSection {
     margin-bottom: 8rem;
-    margin-top: 2rem;
+    margin-top: 0;
   }
 }
 
