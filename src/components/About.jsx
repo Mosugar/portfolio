@@ -106,7 +106,7 @@ const CyberpunkAbout = () => {
                 <div className="relative">
                   <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-orange-500 shadow-2xl group-hover:scale-105 transition-transform duration-300">
                     <img 
-                      src="/src/assets/img/sugar_bijzyz.jpg" 
+                      src="https://res.cloudinary.com/dylpck2et/image/upload/v1752367825/sugar_copy_2_tdpniz.jpg" 
                       alt="Mohamed Sekkar"
                       className="w-full h-full object-cover object-top"
                     />
