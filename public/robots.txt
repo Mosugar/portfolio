@@ -1,38 +1,56 @@
+# Robots.txt for Mohamed Sekkar Portfolio
+# https://mohamedsekkar.dev/robots.txt
+
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /public/
+Disallow: /*.json$
+Disallow: /*.map$
 
-# Sitemaps
-Sitemap: https://mohamedsekkar.com/sitemap.xml
-Sitemap: https://mohamedsekkar.com/sitemap-index.xml
+# Allow important files
+Allow: /sitemap.xml
+Allow: /favicon.ico
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
 
-# Crawl-delay for polite crawling
+# Sitemap location
+Sitemap: https://mohamedsekkar.dev/sitemap.xml
+
+# Crawl delay (optional - 1 second)
 Crawl-delay: 1
 
-# Disallow admin or private areas (if any)
-# Disallow: /admin/
-# Disallow: /private/
-
-# Allow all major search engines
+# Google-specific
 User-agent: Googlebot
 Allow: /
 
+# Bing-specific
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /
+# Prevent scraping of images by specific bots
+User-agent: ia_archiver
+Disallow: /
 
-User-agent: DuckDuckBot
-Allow: /
+User-agent: Wayback
+Disallow: /
 
-User-agent: Baiduspider
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
+# Block certain file types from all crawlers
+User-agent: *
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.tgz$
+Disallow: /*.gz$
+Disallow: /*.tar$
+Disallow: /*.bak$
