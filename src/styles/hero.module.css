@@ -1,7 +1,7 @@
 /* styles/hero.module.css */
 
 .hero {
-  min-height: 100vh;
+  min-height: 100svh;
   /* background-color: #000; */
   background-image: url('/img/quck.jpg');
   background-position: 10% 20%;
@@ -10,6 +10,7 @@
   position: relative;
   overflow: hidden;
   z-index: 49;
+
 }
 
 /* Mobile background override */

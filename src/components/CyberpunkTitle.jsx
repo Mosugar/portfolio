@@ -11,7 +11,7 @@ const CyberpunkTitle = ({
   leftIconColor = "text-orange-400",
   rightIconColor = "text-red-400",
   className = "",
-  textSize = "text-7xl md:text-9xl"
+  textSize = "text-5xl sm:text-4xl md:text-7xl lg:text-9xl" // Fixed responsive order
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const LeftIcon = leftIcon;
@@ -19,12 +19,12 @@ const CyberpunkTitle = ({
 
   return (
     <div 
-      className={`text-center mb-20 relative ${className}`}
+      className={`text-center mb-12 md:mb-20 relative ${className}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
       <div className="relative">
-        <h2 className={`${textSize} font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r ${gradient} tracking-tight relative`}>
+        <h2 className={`${textSize} font-black mb-4 md:mb-8 text-transparent bg-clip-text bg-gradient-to-r ${gradient} tracking-tight relative`}>
           {title}
           <div className={`absolute inset-0 ${textSize} font-black ${glowColor} opacity-20 blur-sm`}>
             {title}
@@ -43,12 +43,12 @@ const CyberpunkTitle = ({
         </div>
       </div>
 
-      {/* Floating Icons */}
-      <div className={`absolute -top-8 -right-8 ${leftIconColor} animate-bounce`}>
-        <LeftIcon size={32} className="animate-spin" />
+      {/* Floating Icons - Responsive sizes */}
+      <div className={`absolute -top-4 md:-top-8 -right-4 md:-right-8 ${leftIconColor} animate-bounce`}>
+        <LeftIcon size={24} className="md:w-8 md:h-8 animate-spin" />
       </div>
-      <div className={`absolute -bottom-8 -left-8 ${rightIconColor} animate-bounce`} style={{ animationDelay: '1s' }}>
-        <RightIcon size={28} className="animate-pulse" />
+      <div className={`absolute -bottom-4 md:-bottom-8 -left-4 md:-left-8 ${rightIconColor} animate-bounce`} style={{ animationDelay: '1s' }}>
+        <RightIcon size={20} className="md:w-7 md:h-7 animate-pulse" />
       </div>
 
       {/* Advanced CSS Animations */}
