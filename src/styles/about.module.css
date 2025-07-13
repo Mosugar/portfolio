@@ -1,0 +1,481 @@
+/* src/styles/about.module.css */
+
+.aboutSection {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+  
+  .backgroundEffects {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+  }
+  
+  .backgroundOrb1 {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    width: 16rem;
+    height: 16rem;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%);
+    border-radius: 50%;
+    filter: blur(3rem);
+  }
+  
+  .backgroundOrb2 {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(255, 102, 0, 0.15) 100%);
+    border-radius: 50%;
+    filter: blur(3rem);
+  }
+  
+  .gridPattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image: 
+      linear-gradient(rgba(255, 102, 0, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 102, 0, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .contentContainer {
+    position: relative;
+    z-index: 10;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .titleContainer {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .mainContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  @media (min-width: 1024px) {
+    .mainContent {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .leftSide {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .profileCard {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 102, 0, 0.3);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.5s ease;
+  }
+  
+  .profileCard:hover {
+    border-color: rgba(255, 102, 0, 0.5);
+  }
+  
+  .profileContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .profileContent {
+      flex-direction: row;
+    }
+  }
+  
+  .profileImageContainer {
+    position: relative;
+  }
+  
+  .profileImage {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ff6600;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+  }
+  
+  .profileImage:hover {
+    transform: scale(1.05);
+  }
+  
+  .profileImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  
+  .profileGlow {
+    position: absolute;
+    inset: 0;
+    width: 8rem;
+    height: 8rem;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%);
+    border-radius: 50%;
+    filter: blur(4px);
+    opacity: 0.5;
+  }
+  
+  /* CRITICAL: Green Status Indicator with High Specificity */
+  .statusIndicator {
+    position: absolute !important;
+    bottom: 0.5rem !important;
+    right: 0.5rem !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    border-radius: 50% !important;
+    border: 4px solid #000000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 50 !important;
+    background-color: #10b981 !important; /* Forced green background */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.8) !important;
+  }
+  
+  .statusIndicator::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: -4px !important;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%) !important;
+    border-radius: 50% !important;
+    z-index: -1 !important;
+    animation: statusPulse 2s ease-in-out infinite !important;
+  }
+  
+  .statusDot {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+    background-color: #ffffff !important;
+    border-radius: 50% !important;
+    position: relative !important;
+    z-index: 10 !important;
+    animation: dotPulse 2s ease-in-out infinite !important;
+  }
+  
+  @keyframes statusPulse {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+  }
+  
+  @keyframes dotPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.1);
+    }
+  }
+  
+  .profileInfo {
+    text-align: center;
+    flex: 1;
+  }
+  
+  @media (min-width: 768px) {
+    .profileInfo {
+      text-align: left;
+    }
+  }
+  
+  .profileName {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profileRole {
+    color: #ff9500;
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .profileDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #d1d5db;
+  }
+  
+  .profileDetail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .profileDetail {
+      justify-content: flex-start;
+    }
+  }
+  
+  .socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .socialLinks {
+      justify-content: flex-start;
+    }
+  }
+  
+  .socialLink {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .socialLink.github {
+    background-color: #374151;
+  }
+  
+  .socialLink.linkedin {
+    background-color: #2563eb;
+  }
+  
+  .socialLink.email {
+    background-color: #dc2626;
+  }
+  
+  .socialLink:hover {
+    background-color: #ff6600 !important;
+    transform: scale(1.1);
+  }
+  
+  .funFactCard {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 102, 0, 0.3);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.5s ease;
+  }
+  
+  .funFactCard:hover {
+    border-color: rgba(255, 102, 0, 0.5);
+  }
+  
+  .funFactHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .funFactTitle {
+    color: #ffffff;
+    font-weight: 700;
+  }
+  
+  .funFactText {
+    color: #d1d5db;
+    font-size: 1.125rem;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+  
+  .rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .bioCard,
+  .skillsCard {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 102, 0, 0.3);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.5s ease;
+  }
+  
+  .bioCard:hover,
+  .skillsCard:hover {
+    border-color: rgba(255, 102, 0, 0.5);
+  }
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  
+  .skillsCardTitle {
+    font-size: 1.25rem;
+  }
+  
+  .bioContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #d1d5db;
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+  
+  .highlight {
+    color: #ff9500;
+    font-weight: 600;
+  }
+  
+  .skillsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .skillItem {
+    cursor: pointer;
+  }
+  
+  .skillHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .skillName {
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  .skillPercentage {
+    color: #ff9500;
+    font-weight: 700;
+  }
+  
+  .skillBarContainer {
+    width: 100%;
+    background-color: #374151;
+    border-radius: 9999px;
+    height: 0.75rem;
+    overflow: hidden;
+  }
+  
+  .skillBar {
+    height: 100%;
+    border-radius: 9999px;
+    transition: all 1s ease-out;
+  }
+  
+  .skillBar.react {
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+  }
+  
+  .skillBar.laravel {
+    background: linear-gradient(to right, #10b981, #059669);
+  }
+  
+  .skillBar.uiux {
+    background: linear-gradient(to right, #8b5cf6, #ec4899);
+  }
+  
+  .skillBar.devops {
+    background: linear-gradient(to right, #f97316, #ef4444);
+  }
+  
+  .skillBar.hovered {
+    animation: skillPulse 0.6s ease-in-out infinite alternate;
+  }
+  
+  @keyframes skillPulse {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+  
+  /* Additional utility classes */
+  .textOrange {
+    color: #ff9500;
+  }
+  
+  .iconOrange {
+    color: #ff9500;
+  }
+  
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .aboutSection {
+      padding: 3rem 0;
+    }
+    
+    .contentContainer {
+      padding: 0 1rem;
+    }
+    
+    .profileCard,
+    .funFactCard,
+    .bioCard,
+    .skillsCard {
+      padding: 1.5rem;
+    }
+    
+    .profileImage {
+      width: 6rem;
+      height: 6rem;
+    }
+    
+    .profileGlow {
+      width: 6rem;
+      height: 6rem;
+    }
+    
+    .statusIndicator {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+    }
+  }

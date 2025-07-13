@@ -57,6 +57,32 @@ const CyberpunkAbout = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Inline styles for guaranteed green dot
+  const greenDotStyles = {
+    position: 'absolute',
+    bottom: '8px',
+    right: '8px',
+    width: '24px',
+    height: '24px',
+    backgroundColor: '#10b981', // Green-500
+    borderRadius: '50%',
+    border: '4px solid #000000',
+    zIndex: 1000,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 0 20px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.4)',
+    animation: 'greenPulse 2s ease-in-out infinite'
+  };
+
+  const whiteDotStyles = {
+    width: '8px',
+    height: '8px',
+    backgroundColor: '#ffffff',
+    borderRadius: '50%',
+    animation: 'whitePulse 2s ease-in-out infinite'
+  };
+
   return (
     <section ref={sectionRef} className="relative py-20 overflow-hidden">
       {/* Background Effects */}
@@ -113,9 +139,9 @@ const CyberpunkAbout = () => {
                   </div>
                   <div className="absolute inset-0 w-32 h-32 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-full blur opacity-50"></div>
                   
-                  {/* Status Indicator */}
-                  <div className="absolute bottom-2 right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-black flex items-center justify-center">
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                  {/* GUARANTEED GREEN STATUS INDICATOR WITH INLINE STYLES */}
+                  <div style={greenDotStyles}>
+                    <div style={whiteDotStyles}></div>
                   </div>
                 </div>
 
@@ -224,23 +250,34 @@ const CyberpunkAbout = () => {
             </div>
           </div>
         </div>
-
-        {/* Call to Action - Commented out for now 
-        <div className="text-center mt-16">
-          <button className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 overflow-hidden inline-flex items-center gap-3">
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-            <span className="relative flex items-center gap-3">
-              <Download className="w-5 h-5" />
-              Download Resume
-            </span>
-          </button>
-          <p className="text-gray-400 mt-4">Ready to build something amazing together?</p>
-        </div>
-        */}
       </div>
 
-      {/* Styles */}
+      {/* CSS Animations for Green Dot */}
       <style jsx>{`
+        @keyframes greenPulse {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.4);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 1), 0 0 60px rgba(16, 185, 129, 0.6);
+          }
+        }
+        
+        @keyframes whitePulse {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.7;
+            transform: scale(1.2);
+          }
+        }
+        
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(180deg); }

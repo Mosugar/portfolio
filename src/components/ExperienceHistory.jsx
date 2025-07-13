@@ -14,7 +14,7 @@ const ExperienceHistory = () => {
     {
         id: 1,
         title: "Computer Engineering and Digitalization",
-        company: "ENSA",
+        company: "The National School of Applied Sciences",
         location: "On-site",
         period: "Sep 2024 - Present",
         type: "current",
