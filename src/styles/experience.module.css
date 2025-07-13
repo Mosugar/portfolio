@@ -385,6 +385,10 @@
     margin-bottom: 40px;
   }
   
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
   .timelineContainer {
     padding: 0 10px;
   }

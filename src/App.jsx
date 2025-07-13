@@ -11,7 +11,7 @@ import ExperienceHistory from './components/ExperienceHistory.jsx';
 import CyberpunkNavigation from './components/CyberpunkNavigation.jsx';
 import CyberpunkLoader from './components/CyberpunkLoader.jsx';
 import About from './components/About.jsx';
-import UIUXPortfolio from './components/UIUXPortfolio.jsx';
+// import UIUXPortfolio from './components/UIUXPortfolio.jsx';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -71,9 +71,9 @@ function App() {
         <div id="experience">
           <ExperienceHistory/>
         </div>
-        <div id="ui-ux">
+        {/* <div id="ui-ux">
         <UIUXPortfolio />
-        </div>
+        </div> */}
         
         <div id="works">
           <Work />

@@ -1,9 +1,10 @@
+/* src/styles/services.module.css - Enhanced Mobile Version */
+
 .servicesSection {
   position: relative;
   min-height: 100vh;
   padding: 120px 0;
   overflow: hidden;
-  /* background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%); */
 }
 
 .container {
@@ -331,7 +332,7 @@
   transform: scale(1.1);
 }
 
-/* Responsive Design */
+/* Responsive Design - Enhanced Mobile */
 @media (max-width: 1200px) {
   .container {
     padding: 0 1.5rem;
@@ -348,6 +349,23 @@
   }
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .servicesSection {
+    padding: 100px 0;
+  }
+  
+  .serviceCard {
+    width: 300px;
+    height: 400px;
+  }
+  
+  .cardContent {
+    padding: 1.75rem;
+  }
+}
+
+/* Mobile Landscape and Large Mobile */
 @media (max-width: 768px) {
   .servicesSection {
     padding: 80px 0;
@@ -358,91 +376,53 @@
   }
   
   .cardsContainer {
-    height: 400px;
+    height: 580px; /* Much taller for mobile */
   }
   
   .serviceCard {
-    width: 280px;
-    height: 360px;
+    width: 360px; /* Much wider for mobile */
+    height: 540px; /* Much taller for mobile */
   }
   
   .cardContent {
-    padding: 1.5rem;
+    padding: 2.5rem; /* More padding for mobile */
+    gap: 1.75rem;
   }
   
+  /* Hide icons on mobile */
   .iconContainer {
-    width: 60px;
-    height: 60px;
+    display: none;
   }
   
   .cardIcon {
-    width: 30px;
-    height: 30px;
+    display: none;
   }
   
   .cardTitle {
-    font-size: 1.25rem;
+    font-size: 1.6rem; /* Larger title */
+    margin-bottom: 1rem;
   }
   
   .cardDescription {
-    font-size: 0.85rem;
+    font-size: 1rem; /* Larger description */
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
   }
   
-  .navButton {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .prevButton {
-    left: 1rem;
-  }
-  
-  .nextButton {
-    right: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .cardsContainer {
-    height: 350px;
-  }
-  
-  .serviceCard {
-    width: 260px;
-    height: 320px;
-  }
-  
-  .cardContent {
-    padding: 1.25rem;
-    gap: 1rem;
-  }
-  
-  .iconContainer {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .cardIcon {
-    width: 25px;
-    height: 25px;
-  }
-  
-  .cardTitle {
-    font-size: 1.1rem;
-  }
-  
-  .cardDescription {
-    font-size: 0.8rem;
+  .featuresList {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
   }
   
   .featureTag {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
+    padding: 0.5rem 1rem; /* Larger feature tags */
+    font-size: 0.85rem;
+    border-radius: 15px;
   }
   
   .navButton {
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
   }
   
   .prevButton {
@@ -451,6 +431,93 @@
   
   .nextButton {
     right: 0.5rem;
+  }
+  
+  /* Hide pagination on mobile */
+  .pagination {
+    display: none;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .servicesSection {
+    padding: 60px 0;
+  }
+  
+  .cardsContainer {
+    height: 520px;
+  }
+  
+  .serviceCard {
+    width: 340px; /* Still large for small mobile */
+    height: 480px;
+  }
+  
+  .cardContent {
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  /* Icons remain hidden on small mobile */
+  .iconContainer {
+    display: none;
+  }
+  
+  .cardIcon {
+    display: none;
+  }
+  
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .featureTag {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .navButton {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .prevButton {
+    left: 0.25rem;
+  }
+  
+  .nextButton {
+    right: 0.25rem;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .serviceCard {
+    width: 320px;
+    height: 460px;
+  }
+  
+  .cardContent {
+    padding: 1.75rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.9rem;
+  }
+  
+  .featureTag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
   }
 }
 
@@ -471,5 +538,9 @@
   .gridPattern {
     animation: none;
     transition: none;
+  }
+  
+  .serviceCard:hover .iconContainer {
+    transform: scale(1.05);
   }
 }
