@@ -24,7 +24,7 @@ const ExperienceHistory = () => {
       },
       {
         id: 3,
-        title: "Head of Development",
+        title: "Head of Development & Founder at Wardd Studios",
         company: "Wardd Studios",
         location: "on-site",
         period: "June 2024 - Present",
