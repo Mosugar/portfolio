@@ -3,7 +3,7 @@
 .hero {
   min-height: 100svh;
   /* background-color: #000; */
-  background-image: url('/img/quck.jpg');
+  background-image: url('/img/sekk.jpg');
   background-position: 10% 28%;
   background-size: cover;
   color: white;
@@ -16,9 +16,18 @@
 /* Mobile background override */
 @media (max-width: 768px) {
   .hero {
-    background-image: url('/img/DSC08719.jpg');
+    background-image: url('/img/phone sekk.jpg');
     background-position: center;
     background-size: cover;
+  }
+}
+@media (max-width: 768px) {
+  .mainLogo {
+    display: none;
+  }
+  
+  .mainLogoContainer {
+    display: none;
   }
 }
 
