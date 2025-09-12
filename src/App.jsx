@@ -152,9 +152,9 @@ function App() {
             <Skills />
           </section>
           
-          <section id="services" aria-label="Development Services">
+          {/* <section id="services" aria-label="Development Services">
             <Services />
-          </section>
+          </section> */}
           
           <section id="experience" aria-label="Professional Experience">
             <ExperienceHistory/>
