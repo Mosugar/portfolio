@@ -9,42 +9,41 @@ const ExperienceHistory = () => {
   const experienceRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
-  // Experience data
+  // Updated experience data with completed Wardd Studios
   const experiences = [
     {
-        id: 1,
-        title: "Computer Engineering and Digitalization",
-        company: "The National School of Applied Sciences",
-        location: "On-site",
-        period: "Sep 2024 - Present",
-        type: "current",
-        description: "Developing software solutions combining computer engineering and digital transformation. Handling system design and digital optimization.",
-        tech: ["Paython", "VirtualBox", "IoT platforms", "Docker"],
-        icon: Code
-      },
-      {
-        id: 3,
-        title: "Head of Development & Founder at Wardd Studios",
-        company: "Wardd Studios",
-        location: "on-site",
-        period: "June 2024 - Present",
-        type: "current",
-        description: "Built scalable web applications and collaborated with cross-functional teams to deliver high-quality solutions.",
-        tech: ["React", "Laravel", "MySQL"],
-        icon: Code
-      },
+      id: 1,
+      title: "Computer Engineering and Digitalization",
+      company: "The National School of Applied Sciences",
+      location: "On-site",
+      period: "Sep 2024 - october 2025",
+      type: "current",
+      description: "Developing software solutions combining computer engineering and digital transformation. Handling system design and digital optimization.",
+      tech: ["Python", "VirtualBox", "Django", "Docker"],
+      icon: Code
+    },
     {
       id: 2,
+      title: "Head of Development & Founder",
+      company: "Wardd Studios",
+      location: "On-site",
+      period: "June 2024 - January 2025",
+      type: "completed", // Changed from "current" to "completed"
+      description: "Successfully led development team and built scalable web applications. Collaborated with cross-functional teams to deliver high-quality solutions and established strong development processes.",
+      tech: ["React", "Laravel", "MySQL", "Team Leadership"],
+      icon: Code
+    },
+    {
+      id: 3,
       title: "IT Development and Network Specialist",
       company: "Miage",
-      location: "On-site",
+      location: "On-site", 
       period: "Sep 2023 - Feb 2025",
       type: "recent",
-      description: "Developing full-stack web applications using modern technologies. Working on both frontend and backend systems.",
+      description: "Developing full-stack web applications using modern technologies. Working on both frontend and backend systems with focus on network infrastructure.",
       tech: ["React", "Node.js", "MongoDB", "Express"],
       icon: Code
     },
-   
     {
       id: 4,
       title: "Frontend Developer",
@@ -55,18 +54,18 @@ const ExperienceHistory = () => {
       description: "Focused on creating responsive and interactive user interfaces with modern frontend technologies.",
       tech: ["React", "TypeScript", "Tailwind", "GSAP"],
       icon: Code
-    }, {
-        id: 4,
-        title: "Frontend Developer",
-        company: " Freelance",
-        location: "Remote",
-        period: "may 2023 - november 2023",
-        type: "previous",
-        description: "Focused on creating responsive and interactive user interfaces with modern frontend technologies.",
-        tech: ["React", "Laravel", "Tailwind", "mysql"],
-        icon: Code
-      },
-    
+    },
+    {
+      id: 5,
+      title: "Freelance Full-Stack Developer",
+      company: "Independent",
+      location: "Remote",
+      period: "May 2023 - November 2023",
+      type: "previous",
+      description: "Delivered end-to-end web solutions for various clients, specializing in modern web technologies and responsive design.",
+      tech: ["React", "Laravel", "Tailwind", "MySQL"],
+      icon: Code
+    }
   ];
 
   // Intersection Observer setup
