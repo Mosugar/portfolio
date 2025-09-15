@@ -88,7 +88,7 @@ const Footer = () => {
             Transforming bold visions into digital reality through code and creativity.
           </p>
           <a 
-            href="mailto:mohamedsekkar1110@gmail.com"
+            href="mailto:sekkkarmohamedd.com"
             className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 overflow-hidden inline-flex items-center gap-3"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />

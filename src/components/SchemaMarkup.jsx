@@ -101,7 +101,7 @@ const getPersonSchema = (data) => ({
   },
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Rabat",
+    "addressLocality": "Kenitra",
     "addressRegion": "Rabat-Salé-Kénitra",
     "addressCountry": "MA",
     "geo": {

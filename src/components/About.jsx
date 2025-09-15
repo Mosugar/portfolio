@@ -11,7 +11,7 @@ const CyberpunkAbout = () => {
   const profileData = {
     name: "Mohamed Sekkar",
     age: 23,
-    location: "Rabat, Morocco",
+    location: "Kenitra, Morocco",
     role: "Full-Stack Developer",
     email: "mohamedsekkar1110@gmail.com"
   };
@@ -203,7 +203,7 @@ const CyberpunkAbout = () => {
               <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                 <p>
                   I'm a <span className="text-orange-400 font-semibold">23-year-old Full-Stack Developer</span> from 
-                  Rabat, Morocco, passionate about transforming ideas into digital realities.
+                  Kenitra, Morocco, passionate about transforming ideas into digital realities.
                 </p>
                 <p>
                   With <span className="text-orange-400 font-semibold">5+ years of coding experience</span>, I specialize 

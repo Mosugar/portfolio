@@ -12,6 +12,8 @@ import CyberpunkNavigation from './components/CyberpunkNavigation.jsx';
 import CyberpunkLoader from './components/CyberpunkLoader.jsx';
 import About from './components/About.jsx';
 import SEO from './components/SEO.jsx';
+import AnimatedHeroTitle from './components/AnimatedHeroTitle';
+import CreativeResume from './components/CreativeResume.jsx';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -73,7 +75,7 @@ function App() {
       case 'about':
         return {
           title: "About Mohamed Sekkar - Full-Stack Developer from Morocco | Portfolio",
-          description: "Learn about Mohamed Sekkar, a 23-year-old Full-Stack Developer from Rabat, Morocco. Specializing in React, Laravel, and modern web technologies with 5+ years of experience.",
+          description: "Learn about Mohamed Sekkar, a 23-year-old Full-Stack Developer from Kenitra, Morocco. Specializing in React, Laravel, and modern web technologies with 5+ years of experience.",
           url: `${baseUrl}#about`,
           section: 'about'
         };
@@ -151,11 +153,16 @@ function App() {
           <section id="skills" aria-label="Technical Skills">
             <Skills />
           </section>
+          <section aria-label="Animated Title">
+            <AnimatedHeroTitle/>
+          </section>
           
           {/* <section id="services" aria-label="Development Services">
             <Services />
           </section> */}
-          
+          <section id="creativeresume" aria-label="Development Services">
+            <CreativeResume />
+          </section>
           <section id="experience" aria-label="Professional Experience">
             <ExperienceHistory/>
           </section>
