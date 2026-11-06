@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 const SEO = ({
   title = "Mohamed Sekkar - Full-Stack Developer | React, Laravel & Modern Web Development",
   description = "Experienced Full-Stack Developer specializing in React, Laravel, PHP, and modern web technologies. Creating scalable web applications and stunning UI/UX designs.",
-  keywords = "Mohamed Sekkar, Full Stack Developer, React Developer, Laravel Developer, PHP Developer, Web Developer Morocco",
+  keywords = "Mohamed Sekkar, Full Stack Developer, React Developer, Laravel Developer, PHP Developer, Web Developer Paris, Web Developer France",
   image = "https://res.cloudinary.com/dylpck2et/image/upload/v1752367825/sugar_copy_2_tdpniz.jpg",
   url = "https://mohamedsekkar.dev",
   type = "website",
@@ -91,7 +91,7 @@ const addSectionStructuredData = (section, title, description, url) => {
           "@type": "Person",
           "name": "Mohamed Sekkar",
           "jobTitle": "Full-Stack Developer",
-          "description": "23-year-old Full-Stack Developer from Kenitra, Morocco"
+          "description": "24-year-old Full-Stack Developer based in Paris, Île-de-France"
         }
       };
       break;

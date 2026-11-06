@@ -1,13 +1,11 @@
-import React from 'react';
-import { Heart, Github, Linkedin, Clock, ArrowRight, Mail } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
+import { useLanguage } from '../context/LanguageContext';
 
-// SVG Logo Component
-const MoSugarLogo = ({ className }) => (
-  <svg 
-    className={className}
-    viewBox="0 0 129.79 27.71" 
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const MoSugarLogo = ({ className, style }) => (
+  <svg className={className} style={{ height: '20px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
       <path d="M26.16,1.81v18.28h-3.41v-10.06l-4.66,10.06h-1.79l-4.65-10.11v10.12h-3.41V1.81h3.07l5.9,12.54L23.09,1.81h3.07Z"/>
       <path d="M32.05,19.58c-1-.57-1.77-1.38-2.33-2.42-.56-1.04-.83-2.24-.83-3.59s.28-2.53.85-3.58c.56-1.05,1.34-1.86,2.33-2.44.99-.58,2.12-.87,3.38-.87s2.4.29,3.39.86,1.78,1.38,2.34,2.43.85,2.25.85,3.6-.28,2.52-.85,3.56-1.34,1.85-2.34,2.43-2.13.87-3.39.87-2.4-.29-3.39-.86h-.01ZM37.64,16.31c.55-.68.82-1.59.82-2.73s-.27-2.06-.82-2.74-1.28-1.03-2.2-1.03-1.63.34-2.17,1.03-.82,1.6-.82,2.74.27,2.05.81,2.73c.54.68,1.26,1.01,2.18,1.01s1.65-.34,2.2-1.01Z"/>
@@ -20,138 +18,265 @@ const MoSugarLogo = ({ className }) => (
   </svg>
 );
 
-const Footer = () => {
-  const [currentTime, setCurrentTime] = React.useState(new Date());
+const inputStyle = {
+  width: '100%',
+  padding: '0.75rem 1rem',
+  borderRadius: '10px',
+  border: '1px solid var(--border)',
+  backgroundColor: 'var(--surface-2)',
+  color: 'var(--text)',
+  fontSize: '0.88rem',
+  outline: 'none',
+  transition: 'border-color 0.2s',
+  fontFamily: 'inherit',
+};
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const Footer = () => {
+  const { t } = useLanguage();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  const [state, handleSubmit] = useForm('xjyydkwn');
 
   return (
-    <footer className="relative py-20 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div 
-            className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-full blur-3xl"
-          />
-          <div 
-            className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-br from-red-500/15 to-orange-500/15 rounded-full blur-3xl"
-          />
-        </div>
-      </div>
+    <footer
+      id="contact"
+      ref={ref}
+      style={{
+        backgroundColor: 'var(--surface)',
+        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem) clamp(2rem, 4vw, 3rem)',
+      }}
+    >
+      <motion.div
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+        initial="hidden"
+        animate={inView ? 'show' : 'hidden'}
+        style={{ maxWidth: '1100px', margin: '0 auto' }}
+      >
+        {/* Top */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '4rem', marginBottom: '5rem' }}>
 
-      {/* Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 102, 0, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 102, 0, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
+          {/* Left — Contact form */}
+          <div>
+            <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '1rem' }}>
+              {t.footer.label}
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                color: 'var(--text)',
+                lineHeight: 1.1,
+                margin: '0 0 1rem 0',
+              }}
+            >
+              {t.footer.h2a}<br />
+              <span style={{ color: 'var(--accent-light)' }}>{t.footer.h2b}</span>
+            </motion.h2>
+            <motion.p variants={fadeUp} style={{ color: 'var(--text-2)', lineHeight: 1.7, fontSize: '0.9rem', marginBottom: '1.75rem' }}>
+              {t.footer.tagline}
+            </motion.p>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        {/* Logo */}
-        <div className="mb-12">
-          <a href="#" className="inline-block group">
-            <MoSugarLogo className="h-16 text-white transition-all duration-300 group-hover:text-orange-400 group-hover:scale-105" />
-          </a>
-        </div>
+            <AnimatePresence mode="wait">
+              {state.succeeded ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '1.25rem',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(34,197,94,0.3)',
+                    backgroundColor: 'rgba(34,197,94,0.07)',
+                    color: '#86efac',
+                    fontSize: '0.9rem',
+                  }}
+                >
+                  <CheckCircle size={18} style={{ flexShrink: 0 }} />
+                  {t.footer.form.success}
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  variants={fadeUp}
+                  onSubmit={handleSubmit}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+                >
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      placeholder={t.footer.form.name}
+                      style={inputStyle}
+                      onFocus={e => e.target.style.borderColor = 'var(--border-accent)'}
+                      onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                    />
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder={t.footer.form.email}
+                      style={inputStyle}
+                      onFocus={e => e.target.style.borderColor = 'var(--border-accent)'}
+                      onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                    />
+                    <ValidationError field="email" errors={state.errors} style={{ color: '#f87171', fontSize: '0.78rem', gridColumn: '1/-1' }} />
+                  </div>
+                  <textarea
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder={t.footer.form.message}
+                    style={{ ...inputStyle, resize: 'vertical', minHeight: '110px' }}
+                    onFocus={e => e.target.style.borderColor = 'var(--border-accent)'}
+                    onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                  />
+                  <ValidationError field="message" errors={state.errors} style={{ color: '#f87171', fontSize: '0.78rem' }} />
 
-        {/* Current Time */}
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-full backdrop-blur-sm">
-            <Clock className="w-5 h-5 text-orange-400 animate-pulse" />
-            <span className="text-white font-mono text-lg tracking-wider">
-              {currentTime.toLocaleTimeString('en-US', { 
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-              })}
-            </span>
-            <span className="text-orange-400 font-mono text-sm">GMT+1</span>
+                  <button
+                    type="submit"
+                    disabled={state.submitting}
+                    className="btn-electric"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                      padding: '0.8rem 1.75rem',
+                      borderRadius: '10px',
+                      fontWeight: 600,
+                      fontSize: '0.9rem',
+                      color: 'var(--text)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: state.submitting ? 'not-allowed' : 'pointer',
+                      opacity: state.submitting ? 0.7 : 1,
+                      width: 'fit-content',
+                      fontFamily: 'inherit',
+                    }}
+                  >
+                    <Send size={14} />
+                    {state.submitting ? t.footer.form.sending : t.footer.form.send}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Right — Links */}
+          <div>
+            <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '1.5rem' }}>
+              {t.footer.findMe}
+            </motion.p>
+            <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {[
+                { href: 'https://github.com/Mosugar', label: 'GitHub', sub: 'github.com/Mosugar', icon: Github },
+                { href: 'https://www.linkedin.com/in/mohamedsekkar/', label: 'LinkedIn', sub: 'in/mohamedsekkar', icon: Linkedin },
+                { href: 'mailto:mohamedsekkar1110@gmail.com', label: 'Email', sub: 'mohamedsekkar1110@gmail.com', icon: Mail },
+              ].map(({ href, label, sub, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1rem 1.25rem',
+                    borderRadius: '12px',
+                    border: '1px solid var(--border)',
+                    backgroundColor: 'var(--surface-2)',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-accent)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                >
+                  <div style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', backgroundColor: 'rgba(139,92,246,0.1)', border: '1px solid var(--border-accent)' }}>
+                    <Icon size={16} style={{ color: 'var(--accent-light)' }} />
+                  </div>
+                  <div>
+                    <div style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.9rem' }}>{label}</div>
+                    <div style={{ color: 'var(--text-3)', fontSize: '0.78rem' }}>{sub}</div>
+                  </div>
+                  <ArrowUpRight size={14} style={{ marginLeft: 'auto', color: 'var(--text-3)' }} />
+                </a>
+              ))}
+            </motion.div>
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="mb-12">
-          <h3 className="text-white text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            Transforming bold visions into digital reality through code and creativity.
-          </p>
-          <a 
-            href="mailto:sekkkarmohamedd.com"
-            className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 overflow-hidden inline-flex items-center gap-3"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-            <span className="relative flex items-center gap-3">
-              Let's Work Together
-              
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-            </span>
-          </a>
-        </div>
-
-        {/* Social Links */}
-        <div className="mb-12">
-          <div className="flex justify-center items-center gap-6">
-            <a 
-              href="https://github.com/Mosugar" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-6 py-3 bg-gray-800/50 border border-gray-700 rounded-full hover:border-orange-500/50 hover:bg-orange-500/10 transition-all duration-300"
-            >
-              <Github className="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" />
-              <span className="text-white group-hover:text-orange-400 font-medium">GitHub</span>
+        {/* Bottom bar */}
+        <motion.div
+          variants={fadeUp}
+          style={{
+            borderTop: '1px solid var(--border)',
+            paddingTop: '2rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.25rem',
+          }}
+        >
+          {/* Top row: logo + copyright */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+            <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+              <MoSugarLogo
+                style={{ color: 'var(--text-3)', transition: 'color 0.2s', cursor: 'pointer' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-3)'}
+              />
             </a>
-            <a 
-              href="https://www.linkedin.com/in/mohamedsekkar/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-6 py-3 bg-blue-600/20 border border-blue-500/30 rounded-full hover:border-blue-400/50 hover:bg-blue-500/10 transition-all duration-300"
-            >
-              <Linkedin className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
-              <span className="text-blue-400 group-hover:text-blue-300 font-medium">LinkedIn</span>
-            </a>
+            <p style={{ color: 'var(--text-3)', fontSize: '0.8rem', margin: 0 }}>
+              © {new Date().getFullYear()} Mohamed Sekkar · {t.footer.copyright}
+            </p>
           </div>
-        </div>
-       
 
-        {/* Copyright */}
-        <div className="mb-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent mb-8"></div>
-          <p className="text-white text-lg font-medium">
-            Copyright © {new Date().getFullYear()}, Designed & Developed with{' '}
-            <Heart className="inline w-5 h-5 text-red-500 mx-1 animate-pulse" />
-            by{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400 font-bold">
-              MoSugar
+          {/* Built with */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <span style={{ color: 'var(--text-3)', fontSize: '0.72rem' }}>
+              {t.footer.builtWith}
             </span>
-          </p>
-        </div>
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-orange-400 rounded-full opacity-60 animate-ping" />
-        <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-red-400 rounded-full opacity-40 animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-50 animate-bounce" />
-      </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-      `}</style>
+            {[
+              { name: 'React',         color: '#61dafb' },
+              { name: 'Vite',          color: '#a78bfa' },
+              { name: 'Framer Motion', color: '#ff4d9e' },
+              { name: 'Tailwind CSS',  color: '#38bdf8' },
+              { name: 'Formspree',     color: '#f97316' },
+            ].map(({ name, color }) => (
+              <span
+                key={name}
+                style={{
+                  padding: '0.18rem 0.55rem',
+                  borderRadius: '999px',
+                  fontSize: '0.68rem',
+                  fontWeight: 500,
+                  color,
+                  backgroundColor: `${color}12`,
+                  border: `1px solid ${color}28`,
+                  letterSpacing: '0.01em',
+                }}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 };

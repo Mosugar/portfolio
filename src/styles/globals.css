@@ -1,117 +1,101 @@
 @import "tailwindcss";
-html {
-  scroll-behavior: smooth;
-}
 
-* {
-  scroll-behavior: smooth;
-}
-
-/* Your existing styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #09090f;
+  --surface: #111118;
+  --surface-2: #18181f;
+  --accent: #8b5cf6;
+  --accent-light: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.25);
+  --text: #f4f4f8;
+  --text-2: #8888a8;
+  --text-3: #4a4a6a;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(139, 92, 246, 0.2);
 }
 
-/* Add custom styles here if needed */
-.hero-gradient {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-}
-
-.text-glow {
-  text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-}
-/* Add this to your src/styles/globals.css or create a new global.css file */
-
-/* Prevent white flash and ensure smooth transitions */
 html {
-  background-color: #0a0a0a !important;
-  margin: 0;
-  padding: 0;
+  scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 body {
-  background-color: #0a0a0a !important;
+  background-color: var(--bg);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
 }
 
-/* Root element should also have dark background */
 #root {
-  background-color: #0a0a0a;
+  background-color: var(--bg);
   min-height: 100vh;
 }
 
-/* Prevent any potential white flash during component mounting */
 * {
   box-sizing: border-box;
 }
 
-/* Smooth transitions for all components */
-.app-transition-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.app-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.app-transition-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.app-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.6s ease-in, transform 0.6s ease-in;
-}
-
-/* Ensure loader covers everything */
-.cyberpunk-loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10000;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
-}
-
-/* Portfolio content wrapper */
-.portfolio-content {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
-  min-height: 100vh;
-}
-
-/* Remove any potential white backgrounds from default styles */
-div, section, main, article {
+div, section, main, article, footer, header, nav {
   background-color: transparent;
 }
 
-/* Scrollbar styling for dark theme */
-::-webkit-scrollbar {
-  width: 8px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; opacity: 0.6; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+
+/* Section label utility */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
+/* Electric border button */
+.btn-electric {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #ff6600;
-  border-radius: 4px;
+.btn-electric::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8b5cf6, #c084fc, #06b6d4, #8b5cf6);
+  background-size: 300% 100%;
+  animation: shimmer 3s linear infinite;
+  z-index: -1;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #ff4500;
+.btn-electric::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--bg);
+  z-index: -1;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* Fade in for page load */
+.app-container {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.app-container.visible {
+  opacity: 1;
 }

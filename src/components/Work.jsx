@@ -1,359 +1,245 @@
-import React, { useState, useRef, useEffect, memo, useCallback } from "react";
-import { ExternalLink, Eye, Code, Palette } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
+import CircularCarousel from './CircularCarousel';
+import { useLanguage } from '../context/LanguageContext';
 
-// Updated cardDetails with TL Global project
-const cardDetails = [
+const projects = [
   {
     id: 1,
-    name: "TL Global",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/tl_global_screenshot.png",
-    url: "https://toufaiq.vercel.app/",
-    target: "_blank",
-    hex: "#10B981"
+    name: 'ScoreLift',
+    src: '/images/scorelift.png',
+    alt: 'ScoreLift sports community app',
+    title: 'ScoreLift',
+    subtitle: 'Mobile App · React Native',
+    url: 'https://scorelift.fr/',
   },
   {
     id: 2,
-    name: "ElJamai Couture",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/d-clubArtboard_1_cjqxkq.png",
-    url: "https://eljamaicouture.ae",
-    target: "_blank",
-    hex: "#8B5CF6"
+    name: 'TL Global',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/tl_global_screenshot.png',
+    alt: 'TL Global website',
+    title: 'TL Global',
+    subtitle: 'Web · React',
+    url: 'https://toufaiq.vercel.app/',
   },
   {
     id: 3,
-    name: "Wardd Studio",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/wardd_cover_two_u2j8hi_ahpexf.webp",
-    url: "https://warddstudio.com",
-    target: "_blank",
-    hex: "#F59E0B"
+    name: 'ElJamai Couture',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/d-clubArtboard_1_cjqxkq.png',
+    alt: 'ElJamai Couture fashion e-commerce',
+    title: 'ElJamai Couture',
+    subtitle: 'E-Commerce · Laravel',
+    url: 'https://eljamaicouture.ae',
   },
   {
     id: 4,
-    name: "Stretched Web",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/Stretched_1_hjoiei.jpg",
-    url: "https://stretched-web.vercel.app",
-    target: "_blank",
-    hex: "#3B82F6"
+    name: 'Wardd Studio',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/wardd_cover_two_u2j8hi_ahpexf.webp',
+    alt: 'Wardd Studio creative agency',
+    title: 'Wardd Studio',
+    subtitle: 'Agency · Full-Stack',
+    url: 'https://warddstudio.ma/',
   },
   {
     id: 5,
-    name: "Wardd Music",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/wardd_music_02__xgryox.jpg",
-    url: "https://www.warddmusic.com/",
-    target: "_blank",
-    hex: "#EF4444"
+    name: 'Stretched Web',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/Stretched_1_hjoiei.jpg',
+    alt: 'Stretched Web landing page',
+    title: 'Stretched Web',
+    subtitle: 'Landing · React',
+    url: 'https://stretched-web.vercel.app',
   },
   {
     id: 6,
-    name: "CSBA Law Firm",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/lawyer_eto36c.webp",
-    url: "https://lawyer-sulaiman.vercel.app/",
-    target: "_blank",
-    hex: "#059669"
+    name: 'Wardd Music',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/wardd_music_02__xgryox.jpg',
+    alt: 'Wardd Music platform',
+    title: 'Wardd Music',
+    subtitle: 'Music · Full-Stack',
+    url: 'https://warddstudio.ma/',
   },
   {
     id: 7,
-    name: "Pristine Dental Center",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_20,f_auto/pristine_dental_screenshot.png",
-    url: "https://pristinedentalcenter.vercel.app/",
-    target: "_blank",
-    hex: "#06B6D4"
+    name: 'CSBA Law Firm',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/lawyer_eto36c.webp',
+    alt: 'CSBA Law Firm website',
+    title: 'CSBA Law Firm',
+    subtitle: 'Legal · React',
+    url: 'https://lawyer-sulaiman.vercel.app/',
   },
   {
     id: 8,
-    name: "Gourmet & Grove",
-    img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/gg_u096hn.webp",
-    url: "https://gourmet-grove.vercel.app/",
-    target: "_blank",
-    hex: "#F97316"
-  }
+    name: 'Pristine Dental',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/pristine_dental_screenshot.png',
+    alt: 'Pristine Dental Center website',
+    title: 'Pristine Dental',
+    subtitle: 'Medical · React',
+    url: 'https://pristinedentalcenter.vercel.app/',
+  },
+  {
+    id: 9,
+    name: 'Gourmet & Grove',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/gg_u096hn.webp',
+    alt: 'Gourmet and Grove restaurant website',
+    title: 'Gourmet & Grove',
+    subtitle: 'Restaurant · React',
+    url: 'https://gourmet-grove.vercel.app/',
+  },
 ];
 
-const CyberpunkTitle = ({ title, gradient, glowColor, glitchColor, leftIcon, rightIcon, leftIconColor, rightIconColor }) => {
-  const [isHovering, setIsHovering] = useState(false);
-  const LeftIcon = leftIcon || Code;
-  const RightIcon = rightIcon || Palette;
-
-  return (
-    <div 
-      className="text-center mb-16 relative"
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
-      <div className="relative">
-        <h2 className={`text-5xl md:text-7xl lg:text-8xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r ${gradient} tracking-tight relative`}>
-          {title}
-          <div className={`absolute inset-0 text-5xl md:text-7xl lg:text-8xl font-black ${glowColor} opacity-20 blur-sm`}>
-            {title}
-          </div>
-        </h2>
-        
-        <div className={`absolute inset-0 text-5xl md:text-7xl lg:text-8xl font-black ${glitchColor} opacity-30 ${isHovering ? 'animate-pulse' : ''}`}>
-          <span style={{ transform: 'translate(-2px, -2px)' }}>{title}</span>
-        </div>
-      </div>
-
-      <div className={`absolute -top-4 md:-top-8 -right-4 md:-right-8 ${leftIconColor} animate-bounce`}>
-        <LeftIcon size={32} className="animate-spin" />
-      </div>
-      <div className={`absolute -bottom-4 md:-bottom-8 -left-4 md:-left-8 ${rightIconColor} animate-bounce`} style={{ animationDelay: '1s' }}>
-        <RightIcon size={28} className="animate-pulse" />
-      </div>
-    </div>
-  );
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 
-// Helper function to determine if a color is light or dark
-const isLightColor = (hex) => {
-  const color = hex.replace('#', '');
-  const namedColors = {
-    'white': '#ffffff',
-    'black': '#000000',
-    'red': '#ff0000',
-    'green': '#008000',
-    'blue': '#0000ff',
-    'yellow': '#ffff00',
-    'cyan': '#00ffff',
-    'magenta': '#ff00ff',
-    'gray': '#808080',
-    'grey': '#808080'
-  };
-  
-  const actualColor = namedColors[color.toLowerCase()] || `#${color}`;
-  const cleanColor = actualColor.replace('#', '');
-  
-  const r = parseInt(cleanColor.substring(0, 2), 16);
-  const g = parseInt(cleanColor.substring(2, 4), 16);
-  const b = parseInt(cleanColor.substring(4, 6), 16);
-  
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.5;
-};
-
-// Enhanced Project Card with modern design
-const ProjectCard = memo(({ card, index, activeItem, handleMouseEnter }) => {
-  const isActive = activeItem === index;
-  const isSmallScreen = window.innerWidth <= 1150;
-  const [isHovered, setIsHovered] = useState(false);
-  
-  const backgroundColor = (isActive || isSmallScreen) ? card.hex : 'rgba(20, 20, 20, 0.8)';
-  const isLight = isLightColor(backgroundColor);
-  
-  const textColor = isLight ? '#1a1a1a' : '#ffffff';
-
-  return (
-    <div
-      className={`relative cursor-pointer transition-all duration-500 ease-out group ${
-        isActive ? 'active-card' : ''
-      }`}
-      onClick={() => handleMouseEnter(index)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        backgroundColor: backgroundColor,
-        height: isSmallScreen ? '70vh' : '80vh',
-        padding: isSmallScreen ? '20px' : '30px',
-        borderRadius: isSmallScreen ? '20px' : '0px',
-        border: isSmallScreen ? '1px solid rgba(255, 102, 0, 0.3)' : 'none',
-        borderRight: !isSmallScreen ? '2px solid rgba(255, 102, 0, 0.2)' : 'none',
-        backdropFilter: 'blur(20px)',
-        boxShadow: isActive ? `0 20px 60px ${card.hex}40` : 'none'
-      }}
-    >
-      {/* Holographic border effect */}
-      <div 
-        className={`absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`}
-        style={{
-          background: `linear-gradient(45deg, ${card.hex}40, transparent, ${card.hex}40)`,
-          filter: 'blur(1px)'
-        }}
-      />
-
-      {/* Scan line effect */}
-      <div 
-        className={`absolute inset-0 opacity-0 transition-opacity duration-300 ${isHovered ? 'opacity-20' : ''}`}
-        style={{
-          background: `repeating-linear-gradient(90deg, transparent, transparent 2px, ${card.hex} 2px, ${card.hex} 4px)`
-        }}
-      />
-
-      {/* Content shown on mobile OR when card is active on desktop */}
-      <div className={`${isSmallScreen || isActive ? 'block' : 'hidden'} h-full relative z-10`}>
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h3 className="text-2xl font-bold" style={{ color: textColor }}>
-              {card.name}
-            </h3>
-            <span className="text-sm opacity-70 font-mono" style={{ color: textColor }}>
-              Project #{String(card.id).padStart(2, '0')}
-            </span>
-          </div>
-          
-          <a 
-            href={card.url} 
-            target={card.target}
-            className="group/btn relative overflow-hidden px-6 py-3 rounded-full transition-all duration-300 hover:scale-110 font-medium"
-            style={{ 
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              border: `2px solid ${card.hex}`,
-              color: card.hex,
-              backdropFilter: 'blur(10px)'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-            <div className="relative flex items-center gap-2">
-              <Eye className="w-4 h-4" />
-              Visit
-              <ExternalLink className="w-3 h-3" />
-            </div>
-          </a>
+const MobileGrid = ({ items }) => (
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+    {items.map(item => (
+      <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"
+        style={{ position: 'relative', display: 'block', borderRadius: '12px', overflow: 'hidden', aspectRatio: '4/3', textDecoration: 'none', backgroundColor: '#0a0a14' }}
+      >
+        <img src={item.src} alt={item.alt} style={{ width: '100%', height: '100%', objectFit: 'contain' }} loading="lazy" />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(9,9,15,0.9) 0%, transparent 55%)',
+          display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0.6rem',
+        }}>
+          <span style={{ color: '#fff', fontSize: '0.75rem', fontWeight: 600, lineHeight: 1.2 }}>{item.title}</span>
+          <span style={{ color: 'rgba(167,139,250,0.9)', fontSize: '0.62rem', marginTop: '2px' }}>{item.subtitle}</span>
         </div>
-
-        {/* Project number indicator */}
-        <div className="absolute bottom-6 right-6">
-          <div 
-            className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-mono font-bold"
-            style={{ 
-              borderColor: card.hex,
-              backgroundColor: `${card.hex}20`,
-              color: card.hex
-            }}
-          >
-            {String(card.id).padStart(2, '0')}
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop sidebar name */}
-      <div className={`${isSmallScreen ? 'hidden' : 'flex'} h-full items-center justify-center transform rotate-180`}>
-        <div className="flex flex-col items-center justify-between h-full py-4 writing-mode-vertical">
-          <span 
-            className="transform rotate-90 font-mono font-bold text-sm tracking-wider"
-            style={{ 
-              WebkitTextStroke: `1px ${isActive ? card.hex : '#777676'}`,
-              color: isActive ? card.hex : 'transparent'
-            }}
-          >
-            {String(card.id).padStart(2, '0')}
-          </span>
-          
-          <h1 
-            className="font-black text-2xl tracking-wider" 
-            style={{ 
-              fontFamily: 'Roboto, sans-serif',
-              WebkitTextStroke: `1px ${isActive ? card.hex : '#777676'}`,
-              color: isActive ? card.hex : 'transparent',
-              writingMode: 'vertical-lr',
-              letterSpacing: '4px'
-            }}
-          >
-            {card.name}
-          </h1>
-        </div>
-      </div>
-
-      {/* Active state glow */}
-      <div 
-        className={`absolute inset-0 rounded-2xl transition-opacity duration-500 pointer-events-none ${isActive ? 'opacity-20' : 'opacity-0'}`}
-        style={{
-          background: `radial-gradient(circle at center, ${card.hex} 0%, transparent 70%)`,
-          filter: 'blur(30px)'
-        }}
-      />
-    </div>
-  );
-});
-
-const ProjectList = memo(({ activeItem, handleMouseEnter }) => {
-  return (
-    <div className="flex flex-col lg:flex-row gap-6 lg:gap-0 lg:h-[80vh] rounded-3xl overflow-hidden bg-black/20 backdrop-blur-sm border border-white/10">
-      {cardDetails.map((card, index) => (
-        <ProjectCard
-          key={card.id}
-          card={card}
-          index={index}
-          activeItem={activeItem}
-          handleMouseEnter={handleMouseEnter}
-        />
-      ))}
-    </div>
-  );
-});
+      </a>
+    ))}
+  </div>
+);
 
 const Works = () => {
-  const [activeItem, setActiveItem] = useState(0);
+  const { t } = useLanguage();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const [isMobile, setIsMobile] = useState(false);
 
-  const handleMouseEnter = useCallback((index) => {
-    setActiveItem(index);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
   }, []);
 
+  const handleItemClick = (item) => {
+    if (item.url) window.open(item.url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <section className="relative py-20 overflow-hidden min-h-screen">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0">
-        {/* Animated gradient orbs */}
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-purple-500/15 to-pink-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        
-        {/* Grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-10"
+    <section
+      id="works"
+      ref={ref}
+      style={{
+        backgroundColor: 'var(--bg)',
+        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Giant background word */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontFamily: "'Space Grotesk', sans-serif",
+        fontSize: 'clamp(6rem, 18vw, 18rem)',
+        fontWeight: 700,
+        letterSpacing: '-0.04em',
+        color: 'transparent',
+        WebkitTextStroke: '1px rgba(139,92,246,0.05)',
+        userSelect: 'none',
+        pointerEvents: 'none',
+        whiteSpace: 'nowrap',
+        zIndex: 0,
+      }}>
+        WORKS
+      </div>
+
+      <motion.div
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+        initial="hidden"
+        animate={inView ? 'show' : 'hidden'}
+        style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}
+      >
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div>
+            <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '0.75rem' }}>
+              {t.works.label}
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                color: 'var(--text)',
+                lineHeight: 1.1,
+                margin: 0,
+              }}
+            >
+              {t.works.h2a}<br />
+              <span style={{ color: 'var(--accent-light)' }}>{t.works.h2b}</span>
+            </motion.h2>
+          </div>
+
+          <motion.p
+            variants={fadeUp}
+            style={{ color: 'var(--text-2)', fontSize: '0.85rem', maxWidth: '260px', lineHeight: 1.6, margin: 0 }}
+          >
+            {t.works.hint}
+          </motion.p>
+        </div>
+
+        {/* Carousel / Mobile Grid */}
+        <motion.div variants={fadeUp} style={{ borderRadius: '20px', overflow: 'hidden', height: isMobile ? 'auto' : '580px' }}>
+          {isMobile ? (
+            <MobileGrid items={projects} />
+          ) : (
+            <CircularCarousel
+              items={projects}
+              preset="cylinder"
+              cardWidth={260}
+              aspectRatio={1.45}
+              gap={20}
+              speed={10}
+              autoplay="drift"
+              direction="left"
+              captions={true}
+              depthFade={0.6}
+              fadeColor="#09090f"
+              innerShade={0.5}
+              cornerRadius={14}
+              parallax={0.25}
+              stretch={0.4}
+              onItemClick={handleItemClick}
+            />
+          )}
+        </motion.div>
+
+        {/* Count */}
+        <motion.p
+          variants={fadeUp}
           style={{
-            backgroundImage: `
-              linear-gradient(rgba(255, 102, 0, 0.4) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 102, 0, 0.4) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px',
-            animation: 'gridMove 20s linear infinite'
+            textAlign: 'center',
+            color: 'var(--text-3)',
+            fontSize: '0.78rem',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            marginTop: '1.5rem',
           }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <CyberpunkTitle 
-          title="WORKS"
-          gradient="from-orange-400 via-red-400 to-orange-500"
-          glowColor="text-orange-500"
-          glitchColor="text-red-500"
-          leftIcon={Code}
-          rightIcon={Palette}
-          leftIconColor="text-orange-400"
-          rightIconColor="text-red-400"
-        />
-
-        <ProjectList 
-          activeItem={activeItem} 
-          handleMouseEnter={handleMouseEnter} 
-        />
-      </div>
-
-      <style jsx>{`
-        @keyframes gridMove {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(50px, 50px); }
-        }
-        
-        .active-card {
-          flex: 2;
-        }
-        
-        .active-card:not(.active-card) {
-          flex: 1;
-        }
-        
-        @media (min-width: 1024px) {
-          .active-card {
-            width: 50%;
-          }
-          
-          .active-card ~ div {
-            width: calc(50% / 7);
-          }
-        }
-      `}</style>
+        >
+          {t.works.count.replace('{n}', projects.length)}
+        </motion.p>
+      </motion.div>
     </section>
   );
 };
 
-export default memo(Works);
+export default Works;

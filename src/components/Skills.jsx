@@ -1,13 +1,10 @@
 import React, { useRef, useEffect, useState, memo } from "react";
-import { Code, Zap, Sparkles, Star, Cpu } from 'lucide-react';
 import styles from "../styles/skills.module.css";
 import Images from "../assets/images/index";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CyberpunkTitle from "./CyberpunkTitle"; // Import the new CyberpunkTitle component
-
-// CyberpunkTitle Component
-
+import { useLanguage } from "../context/LanguageContext";
+import { useBubbleSound } from "../hooks/useSound";
 
 // Memoized Tilt component for better performance
 const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, className = "" }) => {
@@ -84,16 +81,17 @@ const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, classNa
 TiltComponent.displayName = "TiltComponent";
 
 // Skill bubble component - memoized for performance
-const SkillBubble = memo(({ skill, onMouseEnter }) => {
-  const skillKey = Object.keys(skill)[0]; // Get the first key
+const SkillBubble = memo(({ skill }) => {
+  const skillKey = Object.keys(skill)[0];
   const { icon, name } = skill[skillKey];
   const isStyledComponents = name === "Styled-components";
+  const playPop = useBubbleSound();
 
   return (
     <TiltComponent>
       <div
         className={styles.skillBubble}
-        onMouseEnter={onMouseEnter}
+        onMouseEnter={playPop}
       >
         <div className={styles.bubbleContent}>
           <img
@@ -113,6 +111,7 @@ SkillBubble.displayName = "SkillBubble";
 
 // Main Skills component
 const Skills = () => {
+  const { t } = useLanguage();
   const skillRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -156,15 +155,16 @@ const Skills = () => {
         },
       });
 
-      // Animate all bubbles at once with stagger, more efficient than fromTo
-      tl.to(`.${styles.skillBubble}`, {
-        y: 0,
-        opacity: 1,
+      // Animate bubbles in from invisible
+      tl.from(`.${styles.skillBubble}`, {
+        y: 20,
+        opacity: 0,
         stagger: {
-          each: 0.05,
+          each: 0.04,
           from: "random",
         },
         duration: 0.5,
+        ease: "power2.out",
       });
     }
   }, [isInView]);
@@ -205,28 +205,25 @@ const Skills = () => {
   ];
 
   return (
-    <section className={styles.skillsSection}>
-      {/* Using CyberpunkTitle instead of the old heading */}
-      <div className="px-18" id="Skills">
-        <CyberpunkTitle 
-        title="MY SKILLS"
-        gradient="from-orange-400 via-red-400 to-orange-500"
-        glowColor="text-orange-500"
-        glitchColor="text-red-500"
-        leftIcon={Sparkles}
-        rightIcon={Zap}
-        leftIconColor="text-orange-400"
-        rightIconColor="text-red-400"
-        />
+    <section id="skills" className={styles.skillsSection}>
+      <div style={{ textAlign: 'center', marginBottom: '1rem', padding: '0 2rem' }}>
+        <p className="section-label" style={{ marginBottom: '1rem' }}>{t.skills.label}</p>
+        <h2 style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          color: 'var(--text)',
+          margin: 0,
+        }}>
+          {t.skills.h2a}<span style={{ color: 'var(--accent-light)' }}>{t.skills.h2b}</span>
+        </h2>
       </div>
 
       <div className={styles.skillsContent} ref={skillRef}>
         <div className={styles.bubblesContainer}>
           {skillsList.map((skill, index) => (
-            <SkillBubble
-              key={index}
-              skill={skill}
-            />
+            <SkillBubble key={index} skill={skill} />
           ))}
         </div>
       </div>

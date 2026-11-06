@@ -1,13 +1,10 @@
-import React from 'react';
-import styles from '../styles/hero.module.css';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, MapPin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
-// SVG Logo Component (without ® symbol)
-const MoSugarLogo = ({ className }) => (
-  <svg 
-    className={className}
-    viewBox="0 0 129.79 27.71" 
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const MoSugarLogo = ({ className, style }) => (
+  <svg className={className} style={{ height: '24px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
       <path d="M26.16,1.81v18.28h-3.41v-10.06l-4.66,10.06h-1.79l-4.65-10.11v10.12h-3.41V1.81h3.07l5.9,12.54L23.09,1.81h3.07Z"/>
       <path d="M32.05,19.58c-1-.57-1.77-1.38-2.33-2.42-.56-1.04-.83-2.24-.83-3.59s.28-2.53.85-3.58c.56-1.05,1.34-1.86,2.33-2.44.99-.58,2.12-.87,3.38-.87s2.4.29,3.39.86,1.78,1.38,2.34,2.43.85,2.25.85,3.6-.28,2.52-.85,3.56-1.34,1.85-2.34,2.43-2.13.87-3.39.87-2.4-.29-3.39-.86h-.01ZM37.64,16.31c.55-.68.82-1.59.82-2.73s-.27-2.06-.82-2.74-1.28-1.03-2.2-1.03-1.63.34-2.17,1.03-.82,1.6-.82,2.74.27,2.05.81,2.73c.54.68,1.26,1.01,2.18,1.01s1.65-.34,2.2-1.01Z"/>
@@ -20,58 +17,219 @@ const MoSugarLogo = ({ className }) => (
   </svg>
 );
 
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
 const Hero = () => {
+  const { t } = useLanguage();
   return (
-    <div className={styles.hero}>
-      {/* Available Status - Bottom Right */}
-      <div className={styles.availableStatus}>
-        <div className={styles.statusDot}></div>
-        <span className={styles.statusText}>Available for work</span>
+    <section
+      id="home"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        backgroundColor: 'var(--bg)',
+        padding: '0 clamp(1.5rem, 6vw, 6rem)',
+      }}
+    >
+      {/* Violet ambient glow */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '30%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '70vw',
+          height: '50vh',
+          background: 'radial-gradient(ellipse at center, rgba(139,92,246,0.12) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Top bar: logo left + status right */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '1.5rem clamp(1.5rem, 6vw, 6rem)',
+          zIndex: 50,
+        }}
+      >
+        <MoSugarLogo
+          className="h-6"
+          style={{ color: 'var(--text)', opacity: 0.9 }}
+        />
+        <motion.div
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.4rem 0.9rem',
+            borderRadius: '999px',
+            border: '1px solid rgba(34,197,94,0.3)',
+            backgroundColor: 'rgba(34,197,94,0.07)',
+          }}
+        >
+          <span
+            style={{
+              width: '7px',
+              height: '7px',
+              borderRadius: '50%',
+              backgroundColor: '#22c55e',
+              boxShadow: '0 0 8px #22c55e',
+              animation: 'pulse 2s ease-in-out infinite',
+              display: 'inline-block',
+            }}
+          />
+          <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#86efac', letterSpacing: '0.03em' }}>
+            {t.hero.available}
+          </span>
+        </motion.div>
       </div>
 
-      {/* Main Hero Content */}
-      <div className={styles.mainContent}>
-        {/* Main heading */}
-        <div className={styles.titleSection}>
-          <div className={styles.mainLogoContainer}>
-            <MoSugarLogo className={styles.mainLogo} />
-          </div>
-        </div>
-        
-        {/* Three column grid: Copyright/Tagline, Brand, UI/UX */}
-        {/* <div className={styles.sectionsGrid}>
-          <div className={styles.copyrightSection}>
-            <div className={styles.orangeEdge}></div>
-            <div className={styles.copyright}>©2025</div>
-            <div className={styles.tagline}>
-            Full-Stack Developer creating sleek, modern web apps with top-tier tech.
-            </div>
-          </div>
-          
-          <div className={styles.section}>
-            <div className={styles.orangeEdge}></div>
-            <h2 className={styles.sectionTitle}>Development</h2>
-            <p className={styles.sectionDescription}>
-            Building fast, scalable apps with React, Laravel, Python & more.
-            </p>
-          </div>
-          
-          <div className={styles.section}>
-            <div className={styles.orangeEdge}></div>
-            <h2 className={styles.sectionTitle}>UI/UX</h2>
-            <p className={styles.sectionDescription}>
-            Designing intuitive, user-first interfaces with smooth interactions.
-            </p>
-          </div>
-        </div> */}
-      </div>
+      {/* Main content */}
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate="show"
+        style={{ position: 'relative', zIndex: 1, maxWidth: '900px', paddingTop: '4rem' }}
+      >
+        {/* Label */}
+        <motion.p variants={item} className="section-label" style={{ marginBottom: '1.5rem' }}>
+          {t.hero.label}
+        </motion.p>
 
-      {/* Ambient lighting effects */}
-      <div className={styles.ambientLighting}>
-        <div className={styles.lightingEffect1}></div>
-        <div className={styles.lightingEffect2}></div>
-      </div>
-    </div>
+        {/* Name */}
+        <motion.h1
+          variants={item}
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: 'clamp(3.5rem, 10vw, 9rem)',
+            fontWeight: 700,
+            lineHeight: 0.95,
+            letterSpacing: '-0.03em',
+            color: 'var(--text)',
+            margin: '0 0 2rem 0',
+          }}
+        >
+          Mohamed<br />
+          <span style={{ color: 'var(--accent-light)' }}>Sekkar.</span>
+        </motion.h1>
+
+        {/* Tagline */}
+        <motion.p
+          variants={item}
+          style={{
+            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+            color: 'var(--text-2)',
+            maxWidth: '520px',
+            lineHeight: 1.65,
+            marginBottom: '2.5rem',
+          }}
+        >
+          {t.hero.tagline}
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div variants={item} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <a
+            href="#works"
+            onClick={e => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="btn-electric"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.75rem 1.75rem',
+              borderRadius: '10px',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+              color: 'var(--text)',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s',
+            }}
+          >
+            {t.hero.cta1}
+            <ArrowRight size={16} />
+          </a>
+
+          <a
+            href="#contact"
+            onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.75rem 1.75rem',
+              borderRadius: '10px',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+              color: 'var(--text-2)',
+              textDecoration: 'none',
+              border: '1px solid var(--border)',
+              transition: 'all 0.2s',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-accent)'; e.currentTarget.style.color = 'var(--text)'; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-2)'; }}
+          >
+            {t.hero.cta2}
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        style={{
+          position: 'absolute',
+          bottom: '2.5rem',
+          left: 'clamp(1.5rem, 6vw, 6rem)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          color: 'var(--text-3)',
+          fontSize: '0.75rem',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+        }}
+      >
+        <span>{t.hero.scroll}</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+      </motion.div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.3); }
+        }
+      `}</style>
+    </section>
   );
 };
 
