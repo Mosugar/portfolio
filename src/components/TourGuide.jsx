@@ -98,7 +98,6 @@ const TourGuide = () => {
   const [reaction, setReaction]       = useState(null);
   const [easterEggText, setEasterEggText] = useState(null);
 
-  // Typewriter
   const [typedTitle, setTypedTitle] = useState('');
   const [typedText,  setTypedText]  = useState('');
 
@@ -110,13 +109,11 @@ const TourGuide = () => {
   const reactedSections  = useRef(new Set());
   const overrideTimerRef = useRef(null);
 
-  // ── Appear after 3.5s ──────────────────────────────────────────────────────
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 3500);
     return () => clearTimeout(t);
   }, []);
 
-  // ── Random blink ───────────────────────────────────────────────────────────
   useEffect(() => {
     if (!visible || dismissed || sleeping) return;
     const schedule = () => {
@@ -129,7 +126,6 @@ const TourGuide = () => {
     return () => clearTimeout(blinkTimerRef.current);
   }, [visible, dismissed, sleeping]);
 
-  // ── Idle timer → sleep after 20 s ─────────────────────────────────────────
   const resetIdleTimer = () => {
     clearTimeout(idleTimerRef.current);
     setSleeping(false);
@@ -142,7 +138,6 @@ const TourGuide = () => {
     return () => clearTimeout(idleTimerRef.current);
   }, [visible, dismissed]);
 
-  // ── Section reactions (IntersectionObserver) ──────────────────────────────
   useEffect(() => {
     if (!visible || dismissed) return;
     const ids = ['about', 'skills', 'experience', 'resume', 'works', 'contact'];
@@ -173,7 +168,6 @@ const TourGuide = () => {
     return () => observers.forEach(o => o.disconnect());
   }, [visible, dismissed, tourStarted, t]);
 
-  // ── Typewriter ─────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!visible || dismissed) return;
     if (easterEggText || reaction) return; // override is showing
@@ -233,17 +227,14 @@ const TourGuide = () => {
     setVisible(false);
   };
 
-  // ── Bot click: wake / easter egg / toggle ──────────────────────────────────
   const handleBotClick = () => {
     if (dismissed) return;
 
-    // Wake up from sleep
     if (sleeping) {
       resetIdleTimer();
       return;
     }
 
-    // Easter egg: 5 rapid clicks
     clickCountRef.current += 1;
     clearTimeout(clickTimerRef.current);
     clickTimerRef.current = setTimeout(() => { clickCountRef.current = 0; }, 2000);

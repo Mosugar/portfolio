@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-// import '../styles/gridDistortion.css';
 
 const vertexShader = `
 uniform float time;

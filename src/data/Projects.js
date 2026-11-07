@@ -5,7 +5,7 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/d-clubArtboard_1_cjqxkq.png",
     id: 1,
     target: "_blank",
-    hex: "#FFFFFF" // Light blue (matches your original item_1)
+    hex: "#FFFFFF"
   },
   {
     name: "Wardd Studio",
@@ -13,7 +13,7 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/wardd_cover_two_u2j8hi_ahpexf.webp",
     id: 2,
     target: "_blank",
-    hex: "#6f90fc" // Orange (matches your original item_2)
+    hex: "#6f90fc"
   },
   {
     name: "Stretchedweb",
@@ -21,7 +21,7 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/Stretched_1_hjoiei.jpg",
     id: 3,
     target: "_blank",
-    hex: "#f15a24" // White (matches your original item_3)
+    hex: "#f15a24"
   },
   {
     name: "Wardd Music",
@@ -29,7 +29,7 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/wardd_music_02__xgryox.jpg",
     id: 4,
     target: "_blank",
-    hex: "#ffffff" // Gold (matches your original item_4)
+    hex: "#ffffff"
   },
   {
     name: "CSBA",
@@ -37,7 +37,7 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/lawyer_eto36c.webp",
     id: 5,
     target: "_blank",
-    hex: "#c6993b" // Blue (matches your original item_5)
+    hex: "#c6993b"
   },
   {
     name: "Smiley",
@@ -45,7 +45,7 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_20,f_auto/post_gyz5fk.png",
     id: 6,
     target: "_blank",
-    hex: "#1e70aa" // Dark green (matches your original item_6)
+    hex: "#1e70aa"
   },
   {
     name: "G&G",
@@ -53,14 +53,6 @@ export const cardDetails = [
     img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/gg_u096hn.webp",
     id: 7,
     target: "_blank",
-    hex: "#c7aa7f" // Dark blue-gray (matches your original item_7)
+    hex: "#c7aa7f"
   },
-  // {
-  //   name: "Bluesky",
-  //   url: "https://bluesky-weatherapp.netlify.app/",
-  //   img: "https://res.cloudinary.com/decjm9mmr/image/upload/q_10,f_auto/bluesky-wl_kqlrlf.webp",
-  //   id: 8,
-  //   target: "_blank",
-  //   hex: "#87CEEB" // Sky blue - if you want to uncomment this
-  // },
 ];

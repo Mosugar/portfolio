@@ -1,4 +1,3 @@
-// src/components/SEO.jsx
 import { useEffect } from 'react';
 
 const SEO = ({
@@ -13,14 +12,12 @@ const SEO = ({
   follow = true
 }) => {
   useEffect(() => {
-    // Update document title
     document.title = title;
-    
-    // Update meta tags
+
     const updateMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
       let element = document.querySelector(`meta[${attribute}="${name}"]`);
-      
+
       if (element) {
         element.setAttribute('content', content);
       } else {
@@ -31,25 +28,21 @@ const SEO = ({
       }
     };
 
-    // Basic meta tags
     updateMetaTag('description', description);
     updateMetaTag('keywords', keywords);
     updateMetaTag('robots', `${index ? 'index' : 'noindex'}, ${follow ? 'follow' : 'nofollow'}`);
-    
-    // Open Graph tags
+
     updateMetaTag('og:title', title, true);
     updateMetaTag('og:description', description, true);
     updateMetaTag('og:image', image, true);
     updateMetaTag('og:url', url, true);
     updateMetaTag('og:type', type, true);
-    
-    // Twitter tags
+
     updateMetaTag('twitter:title', title, true);
     updateMetaTag('twitter:description', description, true);
     updateMetaTag('twitter:image', image, true);
     updateMetaTag('twitter:url', url, true);
-    
-    // Update canonical URL
+
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
       canonical.setAttribute('href', url);
@@ -60,7 +53,6 @@ const SEO = ({
       document.head.appendChild(canonical);
     }
 
-    // Add section-specific structured data
     if (section) {
       addSectionStructuredData(section, title, description, url);
     }
@@ -70,7 +62,6 @@ const SEO = ({
   return null;
 };
 
-// Function to add section-specific structured data
 const addSectionStructuredData = (section, title, description, url) => {
   const existingScript = document.querySelector(`script[data-section="${section}"]`);
   if (existingScript) {
@@ -104,31 +95,11 @@ const addSectionStructuredData = (section, title, description, url) => {
         "description": description,
         "url": url,
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "React.js"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Laravel"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "JavaScript"
-          },
-          {
-            "@type": "ListItem",
-            "position": 4,
-            "name": "PHP"
-          },
-          {
-            "@type": "ListItem",
-            "position": 5,
-            "name": "MySQL"
-          }
+          { "@type": "ListItem", "position": 1, "name": "React.js" },
+          { "@type": "ListItem", "position": 2, "name": "Laravel" },
+          { "@type": "ListItem", "position": 3, "name": "JavaScript" },
+          { "@type": "ListItem", "position": 4, "name": "PHP" },
+          { "@type": "ListItem", "position": 5, "name": "MySQL" }
         ]
       };
       break;

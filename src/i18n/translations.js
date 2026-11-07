@@ -1,6 +1,5 @@
 const translations = {
   fr: {
-    // Nav
     nav: {
       home: 'Accueil',
       about: 'À propos',
@@ -11,7 +10,6 @@ const translations = {
       contact: 'Contact',
     },
 
-    // Hero
     hero: {
       label: 'Développeur Full-Stack · Paris, Île-de-France',
       available: 'Disponible en alternance',
@@ -21,7 +19,6 @@ const translations = {
       scroll: 'Défiler',
     },
 
-    // About
     about: {
       label: 'À propos',
       h2a: 'Je crée des choses',
@@ -46,14 +43,12 @@ const translations = {
       ],
     },
 
-    // Skills
     skills: {
       label: 'Stack technique',
       h2a: 'Mes outils',
       h2b: 'de travail.',
     },
 
-    // Experience
     experience: {
       label: 'Parcours',
       h2a: 'Là où',
@@ -149,7 +144,6 @@ const translations = {
       ],
     },
 
-    // Resume
     resume: {
       label: 'CV',
       h2a: 'Tout ce qu\'il faut',
@@ -161,7 +155,6 @@ const translations = {
       role: 'Développeur Full-Stack',
     },
 
-    // Works
     works: {
       label: 'Projets sélectionnés',
       h2a: 'Ce que j\'ai',
@@ -170,7 +163,6 @@ const translations = {
       count: '{n} projets livrés',
     },
 
-    // Footer
     footer: {
       label: 'Travaillons ensemble',
       h2a: 'Un projet',
@@ -191,7 +183,6 @@ const translations = {
       },
     },
 
-    // Intro animation
     intro: {
       soundPrompt: "Tu préfères que je parle ou juste que j'écrive ?",
       soundYes: "🔊 Parle !",
@@ -206,7 +197,6 @@ const translations = {
       skip: "Passer",
     },
 
-    // Tour guide
     tour: {
       steps: [
         { title: "Salut, je suis Sugar ! 👋", text: "Le guide de Mohamed. Tu veux une visite guidée ?", isIntro: true },
@@ -424,7 +414,6 @@ const translations = {
       },
     },
 
-    // Intro animation
     intro: {
       soundPrompt: "Would you like me to speak or just write?",
       soundYes: "🔊 Speak!",

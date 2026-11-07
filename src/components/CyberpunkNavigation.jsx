@@ -43,7 +43,6 @@ const BottomNavigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -58,7 +57,6 @@ const BottomNavigation = () => {
     }, menuOpen ? 300 : 0);
   };
 
-  /* ── Mobile burger ── */
   if (isMobile) {
     return (
       <>
@@ -178,7 +176,6 @@ const BottomNavigation = () => {
     );
   }
 
-  /* ── Desktop pill nav ── */
   return (
     <AnimatePresence>
       {scrolled && (

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
 const SEEN_KEY = 'sugar-intro-seen';
 
-// ─── Sugar SVG ───────────────────────────────────────────────────────────────
 const SugarBig = ({ talking, blinking, waving }) => (
   <svg
     width="180"
@@ -66,7 +65,6 @@ const SugarBig = ({ talking, blinking, waving }) => (
   </svg>
 );
 
-// ─── Particle sparks on landing ─────────────────────────────────────────────
 const Sparks = () => (
   <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none' }}>
     {[...Array(6)].map((_, i) => {
@@ -86,7 +84,6 @@ const Sparks = () => (
   </div>
 );
 
-// ─── Main component ──────────────────────────────────────────────────────────
 const IntroAnimation = () => {
   const { t, lang } = useLanguage();
 
@@ -97,7 +94,6 @@ const IntroAnimation = () => {
 
   const [landed, setLanded] = useState(false);
   const [showSparks, setShowSparks] = useState(false);
-  // phase: null → 'ask-sound' → 'typing'
   const [phase, setPhase] = useState(null);
   const [_soundEnabled, setSoundEnabled] = useState(false);
   const [line1, setLine1] = useState('');
@@ -111,7 +107,6 @@ const IntroAnimation = () => {
 
   const landedRef = useRef(false);
 
-  // Blinking loop
   useEffect(() => {
     if (!visible || gone) return;
     let id;
@@ -125,7 +120,6 @@ const IntroAnimation = () => {
     return () => clearTimeout(id);
   }, [visible, gone]);
 
-  // Strip emojis + punctuation that TTS reads literally ("." → "point", "!" → "point d'exclamation")
   const cleanForSpeech = (str) =>
     str
       .replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27FF}\u{2300}-\u{23FF}\u{2B00}-\u{2BFF}]/gu, '')
@@ -134,7 +128,6 @@ const IntroAnimation = () => {
       .replace(/\s{2,}/g, ' ')
       .trim();
 
-  // Pick the best available voice for a language
   const pickBestVoice = (voices, langPrefix) => {
     const pool = voices.filter(v => v.lang.startsWith(langPrefix));
     if (!pool.length) return null;
@@ -145,7 +138,6 @@ const IntroAnimation = () => {
     );
   };
 
-  // Speak a cleaned string; skip if empty after cleaning
   const sayIn = (text, langCode, voice, onEnd) => {
     const cleaned = cleanForSpeech(text);
     if (!cleaned) { if (onEnd) onEnd(); return; }
@@ -159,7 +151,6 @@ const IntroAnimation = () => {
     window.speechSynthesis.speak(u);
   };
 
-  // Pick time-based greeting
   const getTimedGreeting = () => {
     const h = new Date().getHours();
     if (h >= 5  && h < 12) return t.intro.greetingMorning;
@@ -168,7 +159,6 @@ const IntroAnimation = () => {
     return t.intro.greetingNight;
   };
 
-  // Start typewriter after user picks sound preference
   const startTyping = (withSound) => {
     const line1Full = getTimedGreeting();
     const line2Full = t.intro.line2;
@@ -176,7 +166,6 @@ const IntroAnimation = () => {
     setPhase('typing');
     setTalking(true);
 
-    // Speak via Web Speech API if opted in
     if (withSound && window.speechSynthesis) {
       window.speechSynthesis.cancel();
 
@@ -203,7 +192,6 @@ const IntroAnimation = () => {
       }
     }
 
-    // Typewriter line 1
     let i = 0;
     const interval1 = setInterval(() => {
       i++;
@@ -499,7 +487,6 @@ const IntroAnimation = () => {
               setLanded(true);
               setShowSparks(true);
               setTimeout(() => setShowSparks(false), 600);
-              // Wave then show the sound-choice bubble
               setWaving(true);
               setTimeout(() => setWaving(false), 700);
               setTimeout(() => setPhase('ask-sound'), 400);

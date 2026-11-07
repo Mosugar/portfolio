@@ -1,5 +1,3 @@
-'use client';
-
 import { memo, useEffect, useRef } from 'react';
 import { Eye } from 'lucide-react';
 import './ProfileCard.css';

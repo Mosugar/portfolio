@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Matter from 'matter-js';
 import './FolderFloat.css';
@@ -114,7 +112,6 @@ export default function FolderFloat({
     };
     measure();
     document.fonts?.ready.then(measure);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [n, labelsKey]);
 
   const stopPhysics = useCallback(() => {
@@ -205,7 +202,6 @@ export default function FolderFloat({
       s.raf = requestAnimationFrame(tick);
     };
     w.raf = requestAnimationFrame(tick);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [n, spread, lift, pos.map(p => `${p.x},${p.y}`).join('|')]);
 
   const set = useCallback(

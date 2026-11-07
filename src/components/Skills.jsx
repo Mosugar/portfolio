@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/LanguageContext";
 import { useBubbleSound } from "../hooks/useSound";
 
-// Memoized Tilt component for better performance
 const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, className = "" }) => {
   const [tiltStyle, setTiltStyle] = useState({
     transform: `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale(1)`,
@@ -32,11 +31,9 @@ const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, classNa
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
 
-    // Calculate tilt effect - max 10 degrees rotation
     const tiltX = (0.5 - y) * 10;
     const tiltY = (x - 0.5) * 10;
 
-    // Update glare position
     const glareX = x * 100;
     const glareY = y * 100;
 
@@ -80,7 +77,6 @@ const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, classNa
 
 TiltComponent.displayName = "TiltComponent";
 
-// Skill bubble component - memoized for performance
 const SkillBubble = memo(({ skill }) => {
   const skillKey = Object.keys(skill)[0];
   const { icon, name } = skill[skillKey];
@@ -109,13 +105,11 @@ const SkillBubble = memo(({ skill }) => {
 
 SkillBubble.displayName = "SkillBubble";
 
-// Main Skills component
 const Skills = () => {
   const { t } = useLanguage();
   const skillRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
-  // Set up Intersection Observer to trigger animations only when in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -138,7 +132,6 @@ const Skills = () => {
     };
   }, []);
 
-  // Set up GSAP animations when element is in view
   useEffect(() => {
     if (!isInView) return;
 
@@ -146,7 +139,6 @@ const Skills = () => {
     const skillEl = skillRef.current;
 
     if (skillEl) {
-      // Use timeline for better performance
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: skillEl,
@@ -155,7 +147,6 @@ const Skills = () => {
         },
       });
 
-      // Animate bubbles in from invisible
       tl.from(`.${styles.skillBubble}`, {
         y: 20,
         opacity: 0,
@@ -170,7 +161,6 @@ const Skills = () => {
   }, [isInView]);
 
   const skillsList = [
-    // { Html: { icon: Images.html, name: "HTML" } },
     { SCSS: { icon: Images.scss, name: "SCSS" } },
     { Js: { icon: Images.js, name: "JavaScript" } },
     { React: { icon: Images.react, name: "React.js" } },
