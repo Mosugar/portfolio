@@ -31,9 +31,13 @@ const item = {
 const Hero = () => {
   const { t } = useLanguage();
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    const check = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+      setIsMobile(window.innerWidth < 768);
+    };
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
@@ -86,35 +90,37 @@ const Hero = () => {
           className="h-6"
           style={{ color: 'var(--text)', opacity: 0.9 }}
         />
-        <motion.div
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.4rem 0.9rem',
-            borderRadius: '999px',
-            border: '1px solid rgba(34,197,94,0.3)',
-            backgroundColor: 'rgba(34,197,94,0.07)',
-          }}
-        >
-          <span
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
             style={{
-              width: '7px',
-              height: '7px',
-              borderRadius: '50%',
-              backgroundColor: '#22c55e',
-              boxShadow: '0 0 8px #22c55e',
-              animation: 'pulse 2s ease-in-out infinite',
-              display: 'inline-block',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.4rem 0.9rem',
+              borderRadius: '999px',
+              border: '1px solid rgba(34,197,94,0.3)',
+              backgroundColor: 'rgba(34,197,94,0.07)',
             }}
-          />
-          <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#86efac', letterSpacing: '0.03em' }}>
-            {t.hero.available}
-          </span>
-        </motion.div>
+          >
+            <span
+              style={{
+                width: '7px',
+                height: '7px',
+                borderRadius: '50%',
+                backgroundColor: '#22c55e',
+                boxShadow: '0 0 8px #22c55e',
+                animation: 'pulse 2s ease-in-out infinite',
+                display: 'inline-block',
+              }}
+            />
+            <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#86efac', letterSpacing: '0.03em' }}>
+              {t.hero.available}
+            </span>
+          </motion.div>
+        )}
       </div>
 
       {/* Main content */}
@@ -124,6 +130,26 @@ const Hero = () => {
         animate="show"
         style={{ position: 'relative', zIndex: 1, maxWidth: '900px', paddingTop: '4rem' }}
       >
+        {/* Badge — mobile only, sits in content flow */}
+        {isMobile && (
+          <motion.div
+            variants={item}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.35rem 0.85rem',
+              borderRadius: '999px',
+              border: '1px solid rgba(34,197,94,0.3)',
+              backgroundColor: 'rgba(34,197,94,0.07)',
+              marginBottom: '1.25rem',
+            }}
+          >
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 6px #22c55e', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
+            <span style={{ fontSize: '0.7rem', fontWeight: 500, color: '#86efac', letterSpacing: '0.03em' }}>{t.hero.available}</span>
+          </motion.div>
+        )}
+
         {/* Label */}
         <motion.p variants={item} className="section-label" style={{ marginBottom: '1.5rem' }}>
           {t.hero.label}
@@ -142,7 +168,7 @@ const Hero = () => {
             margin: '0 0 2rem 0',
           }}
         >
-          Mohamed<br />
+          <span style={{ color: 'var(--accent-light)' }}>Mohamed</span><br />
           <span style={{ color: 'var(--accent-light)' }}>Sekkar.</span>
         </motion.h1>
 

@@ -20,13 +20,35 @@ const About = () => {
       style={{
         backgroundColor: 'var(--surface)',
         padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      {/* SVG dot-grid background */}
+      <svg
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          opacity: 0.18,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      >
+        <defs>
+          <pattern id="about-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.5" fill="rgba(139,92,246,0.6)" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#about-dots)" />
+      </svg>
       <motion.div
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
         initial="hidden"
         animate={inView ? 'show' : 'hidden'}
-        style={{ maxWidth: '1100px', margin: '0 auto' }}
+        style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         {/* Label */}
         <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '1rem' }}>

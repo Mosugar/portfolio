@@ -85,6 +85,15 @@ const projects = [
     subtitle: 'Restaurant · React',
     url: 'https://gourmet-grove.vercel.app/',
   },
+  {
+    id: 10,
+    name: 'Recur',
+    src: 'https://opengraph.githubassets.com/1/Mosugar/recur',
+    alt: 'Recur subscription tracker app',
+    title: 'Recur',
+    subtitle: 'Mobile · Expo · React Native',
+    url: 'https://github.com/Mosugar/recur',
+  },
 ];
 
 const fadeUp = {

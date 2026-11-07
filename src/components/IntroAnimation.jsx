@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
 const SEEN_KEY = 'sugar-intro-seen';
@@ -99,7 +99,7 @@ const IntroAnimation = () => {
   const [showSparks, setShowSparks] = useState(false);
   // phase: null → 'ask-sound' → 'typing'
   const [phase, setPhase] = useState(null);
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [_soundEnabled, setSoundEnabled] = useState(false);
   const [line1, setLine1] = useState('');
   const [line2, setLine2] = useState('');
   const [talking, setTalking] = useState(false);
@@ -184,28 +184,14 @@ const IntroAnimation = () => {
         const voices   = window.speechSynthesis.getVoices();
         const frVoice  = pickBestVoice(voices, 'fr');
         const enVoice  = pickBestVoice(voices, 'en');
-        const mainLang = lang === 'fr' ? 'fr-FR' : 'en-US';
-        const mainVoice = lang === 'fr' ? frVoice : enVoice;
 
         if (lang === 'fr') {
-          // Split line2 at the name so we can switch voice for it
-          const [beforeName, afterName] = line2Full.split('Mohamed');
           sayIn(line1Full, 'fr-FR', frVoice, () => {
-            setTimeout(() => {
-              sayIn(beforeName, 'fr-FR', frVoice, () => {
-                // Phonetic spelling → en-US voice reads it as "moh-HA-med"
-                sayIn('Mouhamed', 'en-US', enVoice, () => {
-                  // afterName is usually just "." — cleanForSpeech strips it, sayIn skips empty
-                  sayIn(afterName ?? '', 'fr-FR', frVoice);
-                });
-              });
-            }, 220);
+            setTimeout(() => sayIn(line2Full, 'fr-FR', frVoice), 220);
           });
         } else {
-          // English: replace with phonetic so it doesn't sound like "MOH-hamd"
-          const line2Phonetic = line2Full.replace('Mohamed', 'Mouhamed');
           sayIn(line1Full, 'en-US', enVoice, () => {
-            setTimeout(() => sayIn(line2Phonetic, 'en-US', enVoice), 220);
+            setTimeout(() => sayIn(line2Full, 'en-US', enVoice), 220);
           });
         }
       };
@@ -248,7 +234,7 @@ const IntroAnimation = () => {
   const handleEnter = () => {
     window.speechSynthesis?.cancel();
     setExiting(true);
-    try { sessionStorage.setItem(SEEN_KEY, '1'); } catch {}
+    try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (_e) {}
     setTimeout(() => setGone(true), 750);
   };
 
@@ -445,7 +431,21 @@ const IntroAnimation = () => {
               minHeight: '1.4em',
               lineHeight: 1.55,
             }}>
-              {line2}
+              {(() => {
+                const name = 'Mohamed';
+                const idx = t.intro.line2.indexOf(name);
+                if (idx === -1) return line2;
+                const before = line2.slice(0, idx);
+                const nameTyped = line2.slice(idx, idx + name.length);
+                const after = line2.slice(idx + name.length);
+                return (
+                  <>
+                    {before}
+                    {nameTyped && <span style={{ color: '#f4f4f8', fontWeight: 600 }}>{nameTyped}</span>}
+                    {after}
+                  </>
+                );
+              })()}
               {talking && line1.length >= t.intro.line1.length && line2.length < t.intro.line2.length && (
                 <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>|</motion.span>
               )}
