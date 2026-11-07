@@ -19,6 +19,13 @@ html {
   background-color: var(--bg);
 }
 
+/* Hide native cursor on pointer devices — custom cursor takes over */
+@media (hover: hover) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 body {
   background-color: var(--bg);
   margin: 0;
@@ -88,6 +95,17 @@ div, section, main, article, footer, header, nav {
 @keyframes shimmer {
   0% { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
+}
+
+/* Marquee animations */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 /* Fade in for page load */

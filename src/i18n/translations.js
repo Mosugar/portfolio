@@ -163,6 +163,14 @@ const translations = {
       count: '{n} projets livrés',
     },
 
+    design: {
+      label: 'Design / UI',
+      h2a: 'Le travail',
+      h2b: ' visuel.',
+      sub: 'Une sélection de designs UI et de projets graphiques livrés pour de vrais clients.',
+      cta: 'Voir tout sur Behance',
+    },
+
     footer: {
       label: 'Travaillons ensemble',
       h2a: 'Un projet',
@@ -392,6 +400,14 @@ const translations = {
       h2b: 'shipped.',
       hint: 'Drag to spin · Click to visit',
       count: '{n} projects shipped',
+    },
+
+    design: {
+      label: 'Design / UI',
+      h2a: 'The visual',
+      h2b: ' work.',
+      sub: 'A selection of UI designs and branding work delivered for real clients.',
+      cta: 'View all on Behance',
     },
 
     footer: {

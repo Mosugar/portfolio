@@ -8,10 +8,12 @@ import ExperienceHistory from './components/ExperienceHistory.jsx';
 import Navigation from './components/CyberpunkNavigation.jsx';
 import About from './components/About.jsx';
 import Resume from './components/Resume.jsx';
+import DesignShowcase from './components/DesignShowcase.jsx';
 import SEO from './components/SEO.jsx';
 import TourGuide from './components/TourGuide.jsx';
 import IntroAnimation from './components/IntroAnimation.jsx';
 import { LanguageProvider } from './context/LanguageContext.jsx';
+import Cursor from './components/Cursor.jsx';
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -24,6 +26,7 @@ function App() {
 
   return (
     <LanguageProvider>
+      <Cursor />
       <IntroAnimation />
       <div className={`app-container ${visible ? 'visible' : ''}`}>
         <SEO />
@@ -37,6 +40,7 @@ function App() {
             <ExperienceHistory />
             <Resume />
             <Work />
+            <DesignShowcase />
             <Footer />
           </main>
         </GlobalBackground>

@@ -88,7 +88,7 @@ const projects = [
   {
     id: 10,
     name: 'Recur',
-    src: 'https://opengraph.githubassets.com/1/Mosugar/recur',
+    src: '/images/recur-icon.svg',
     alt: 'Recur subscription tracker app',
     title: 'Recur',
     subtitle: 'Mobile · Expo · React Native',
