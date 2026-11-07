@@ -16,7 +16,7 @@ const projects = [
   {
     id: 2,
     name: 'TL Global',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/tl_global_screenshot.png',
+    src: 'https://res.cloudinary.com/dylpck2et/image/upload/v1752879892/TL_GLOBAL_lxew7e.jpg',
     alt: 'TL Global website',
     title: 'TL Global',
     subtitle: 'Web · React',
