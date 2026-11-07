@@ -298,18 +298,20 @@ const TourGuide = () => {
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             style={{
               pointerEvents: 'all',
-              backgroundColor: '#18181f',
+              backgroundColor: 'rgba(18,18,28,0.28)',
+              backdropFilter: 'blur(16px) saturate(1.4)',
+              WebkitBackdropFilter: 'blur(16px) saturate(1.4)',
               border: `1px solid ${isAngry ? 'rgba(248,113,113,0.35)' : 'rgba(139,92,246,0.3)'}`,
               borderRadius: '16px',
               padding: '1.1rem 1.4rem',
               maxWidth: '290px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(139,92,246,0.1)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(139,92,246,0.08)',
               position: 'relative',
             }}
           >
             {/* Tail */}
             <div style={{ position: 'absolute', bottom: '-8px', right: '28px', width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: `8px solid ${isAngry ? 'rgba(248,113,113,0.35)' : 'rgba(139,92,246,0.3)'}` }} />
-            <div style={{ position: 'absolute', bottom: '-6px', right: '29px', width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '7px solid #18181f' }} />
+            <div style={{ position: 'absolute', bottom: '-6px', right: '29px', width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '7px solid rgba(18,18,28,0.28)' }} />
 
             {/* ── Easter egg ── */}
             {bubbleMode === 'easter' && (

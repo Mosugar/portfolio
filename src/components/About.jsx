@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import FolderFloat from './FolderFloat';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -165,28 +164,6 @@ const About = () => {
               ))}
             </div>
 
-            {/* Sugar's notes folder */}
-            <div style={{ display: 'flex', justifyContent: 'flex-start', paddingTop: '1rem' }}>
-              <FolderFloat
-                label={t.about.folderLabel}
-                items={t.about.folderItems}
-                trigger="hover"
-                physics={true}
-                folderColor="#1e1e28"
-                frontColor="#2d2a3e"
-                paperColor="#f4f0ff"
-                itemColor="#ede9fe"
-                itemTextColor="#3b1f6e"
-                labelColor="#c4b5fd"
-                width={200}
-                height={148}
-                radius={14}
-                spread={190}
-                lift={30}
-                tilt={8}
-                bounce={0.35}
-              />
-            </div>
           </motion.div>
         </div>
       </motion.div>

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import FolderFloat from './FolderFloat';
 
 const MoSugarLogo = ({ className, style }) => (
   <svg className={className} style={{ height: '24px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
@@ -29,6 +30,15 @@ const item = {
 
 const Hero = () => {
   const { t } = useLanguage();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section
       id="home"
@@ -38,7 +48,7 @@ const Hero = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'visible',
         backgroundColor: 'var(--bg)',
         padding: '0 clamp(1.5rem, 6vw, 6rem)',
       }}
@@ -198,6 +208,41 @@ const Hero = () => {
           </a>
         </motion.div>
       </motion.div>
+
+      {/* Folder — desktop only */}
+      {isDesktop && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            position: 'absolute',
+            right: 'clamp(3rem, 10vw, 10rem)',
+            top: '28%',
+            zIndex: 2,
+          }}
+        >
+          <FolderFloat
+            label={t.about.folderLabel}
+            items={t.about.folderItems}
+            trigger="hover"
+            physics={true}
+            folderColor="#1e1e28"
+            frontColor="#2d2a3e"
+            paperColor="#f4f0ff"
+            itemColor="#ede9fe"
+            itemTextColor="#3b1f6e"
+            labelColor="#c4b5fd"
+            width={200}
+            height={148}
+            radius={14}
+            spread={160}
+            lift={30}
+            tilt={8}
+            bounce={0.35}
+          />
+        </motion.div>
+      )}
 
       {/* Scroll hint */}
       <motion.div

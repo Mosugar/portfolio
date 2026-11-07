@@ -1,8 +1,7 @@
 'use client';
 
 import { memo, useEffect, useRef } from 'react';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { Mail01Icon } from '@hugeicons/core-free-icons';
+import { Eye } from 'lucide-react';
 import './ProfileCard.css';
 
 const THEMES = {
@@ -322,7 +321,7 @@ const ProfileCard = ({
                 onClick={onContactClick}
                 aria-label={name ? `${contactText} ${name}` : contactText}
               >
-                <HugeiconsIcon icon={Mail01Icon} size={16} strokeWidth={1.8} />
+                <Eye size={15} strokeWidth={1.8} />
                 {contactText}
               </button>
             )}

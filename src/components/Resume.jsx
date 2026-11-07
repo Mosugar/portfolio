@@ -118,8 +118,8 @@ const Resume = () => {
             avatarUrl="https://res.cloudinary.com/dylpck2et/image/upload/v1752367825/sugar_copy_2_tdpniz.jpg"
             name="Mohamed Sekkar"
             title={t.resume.role}
-            handle="Mosugar"
-            status={t.resume.available}
+            handle=""
+            status=""
             statusColor="#22c55e"
             contactText={t.resume.viewResume}
             theme="dark"
