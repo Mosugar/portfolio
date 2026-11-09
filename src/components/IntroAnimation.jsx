@@ -88,8 +88,8 @@ const IntroAnimation = () => {
   const { t, lang } = useLanguage();
 
   const [visible] = useState(() => {
-    try { return !sessionStorage.getItem(SEEN_KEY); }
-    catch { return true; }
+    try { return !localStorage.getItem(SEEN_KEY); }
+    catch { return true; } // storage blocked (private mode) — show the intro
   });
 
   const [landed, setLanded] = useState(false);
@@ -222,9 +222,20 @@ const IntroAnimation = () => {
   const handleEnter = () => {
     window.speechSynthesis?.cancel();
     setExiting(true);
-    try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (_e) {}
+    try {
+      localStorage.setItem(SEEN_KEY, '1');
+    } catch {
+      // Storage unavailable — the intro will simply show again next visit
+    }
     setTimeout(() => setGone(true), 750);
   };
+
+  useEffect(() => {
+    if (gone) return;
+    const onKey = (e) => { if (e.key === 'Escape') handleEnter(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
 
   if (gone) return null;
 
@@ -268,31 +279,30 @@ const IntroAnimation = () => {
         pointerEvents: 'none',
       }} />
 
-      {/* Skip */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
+      {/* Name — visible within the first second so recruiters know where they are */}
+      <motion.div
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05, duration: 0.35 }}
+        className="absolute top-6 left-6 sm:left-8"
+      >
+        <p className="m-0 font-display text-lg sm:text-xl font-bold tracking-tight text-[var(--text)]">
+          Mohamed Sekkar
+        </p>
+        <p className="m-0 mt-0.5 text-xs text-[var(--text-2)]">{t.hero.label}</p>
+      </motion.div>
+
+      {/* Skip — visible immediately, also reachable with Escape */}
+      <button
+        type="button"
         onClick={handleEnter}
-        style={{
-          position: 'absolute',
-          top: '1.5rem',
-          right: '1.5rem',
-          padding: '0.4rem 1rem',
-          borderRadius: '999px',
-          border: '1px solid rgba(255,255,255,0.08)',
-          backgroundColor: 'transparent',
-          color: '#4a4a6a',
-          fontSize: '0.78rem',
-          cursor: 'pointer',
-          fontFamily: 'inherit',
-          transition: 'color 0.2s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.color = '#8888a8'}
-        onMouseLeave={e => e.currentTarget.style.color = '#4a4a6a'}
+        autoFocus
+        aria-label={`${t.intro.skip} (Esc)`}
+        className="absolute top-6 right-6 sm:right-8 inline-flex items-center gap-2 rounded-full border border-[rgba(139,92,246,0.45)] bg-[rgba(139,92,246,0.12)] px-5 py-2 text-sm font-semibold text-[var(--text)] transition-colors hover:bg-[rgba(139,92,246,0.25)] hover:border-[var(--accent-light)]"
       >
         {t.intro.skip}
-      </motion.button>
+        <span aria-hidden="true" className="text-[0.65rem] font-medium text-[var(--text-2)]">Esc</span>
+      </button>
 
       {/* Speech bubble */}
       <AnimatePresence mode="wait">

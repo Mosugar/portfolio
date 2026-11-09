@@ -161,14 +161,19 @@ const translations = {
       h2b: 'livré.',
       hint: 'Faire glisser · Cliquer pour visiter',
       count: '{n} projets livrés',
-    },
-
-    design: {
-      label: 'Design / UI',
-      h2a: 'Le travail',
-      h2b: ' visuel.',
-      sub: 'Une sélection de designs UI et de projets graphiques livrés pour de vrais clients.',
-      cta: 'Voir tout sur Behance',
+      behance: 'Travail design sur Behance',
+      caseLabel: 'Études de cas',
+      caseOpen: "Lire l'étude de cas",
+      caseStudy: {
+        problem: 'Problème',
+        role: 'Mon rôle',
+        stack: 'Stack',
+        challenge: 'Défi technique',
+        result: 'Résultat',
+        screenshots: "Captures d'écran",
+        visit: 'Voir le projet',
+        close: "Fermer l'étude de cas",
+      },
     },
 
     footer: {
@@ -400,14 +405,19 @@ const translations = {
       h2b: 'shipped.',
       hint: 'Drag to spin · Click to visit',
       count: '{n} projects shipped',
-    },
-
-    design: {
-      label: 'Design / UI',
-      h2a: 'The visual',
-      h2b: ' work.',
-      sub: 'A selection of UI designs and branding work delivered for real clients.',
-      cta: 'View all on Behance',
+      behance: 'Design work on Behance',
+      caseLabel: 'Case studies',
+      caseOpen: 'Read the case study',
+      caseStudy: {
+        problem: 'Problem',
+        role: 'My role',
+        stack: 'Stack',
+        challenge: 'Technical challenge',
+        result: 'Result',
+        screenshots: 'Screenshots',
+        visit: 'View project',
+        close: 'Close case study',
+      },
     },
 
     footer: {

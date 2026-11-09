@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import CircularCarousel from './CircularCarousel';
+import CaseStudy from './CaseStudy';
+import { caseStudies } from '../data/caseStudies';
 import { useLanguage } from '../context/LanguageContext';
 
 const projects = [
@@ -88,6 +91,7 @@ const projects = [
   {
     id: 10,
     name: 'Recur',
+    // TODO: swap for '/images/recur/home.webp' once the screenshots are added
     src: '/images/recur-icon.svg',
     alt: 'Recur subscription tracker app',
     title: 'Recur',
@@ -122,8 +126,9 @@ const MobileGrid = ({ items }) => (
 );
 
 const Works = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const ref = useRef(null);
+  const [openStudy, setOpenStudy] = useState(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [isMobile, setIsMobile] = useState(false);
 
@@ -246,7 +251,56 @@ const Works = () => {
         >
           {t.works.count.replace('{n}', projects.length)}
         </motion.p>
+
+        {/* Case studies */}
+        <motion.div variants={fadeUp} className="mt-16">
+          <h3 className="section-label m-0 mb-5">{t.works.caseLabel}</h3>
+          <ul className="m-0 grid list-none gap-4 p-0 md:grid-cols-3">
+            {caseStudies.map((study) => (
+              <li key={study.id}>
+                <button
+                  type="button"
+                  onClick={() => setOpenStudy(study)}
+                  aria-haspopup="dialog"
+                  className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-0 text-left transition-colors hover:border-[var(--border-accent)]"
+                >
+                  <img
+                    src={study.img}
+                    alt=""
+                    loading="lazy"
+                    className="block aspect-[16/9] w-full bg-[#0a0a14] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <span className="flex flex-1 flex-col gap-1 p-5">
+                    <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--accent-light)]">
+                      {study.tag[lang]}
+                    </span>
+                    <span className="font-display text-lg font-bold text-[var(--text)]">{study.name}</span>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm text-[var(--text-2)] transition-colors group-hover:text-[var(--text)]">
+                      {t.works.caseOpen}
+                      <ArrowUpRight size={14} aria-hidden="true" />
+                    </span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        {/* Design work lives on Behance — no duplicated screenshots here */}
+        <motion.div variants={fadeUp} className="mt-10 text-center">
+          <a
+            href="https://www.behance.net/mohamed_sekkar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-[rgba(139,92,246,0.3)] px-6 py-2.5 text-sm font-medium text-[var(--accent-light)] no-underline transition-colors hover:border-[rgba(139,92,246,0.55)] hover:bg-[rgba(139,92,246,0.12)] hover:text-[#c4b5fd]"
+          >
+            {t.works.behance}
+            <ArrowUpRight size={15} aria-hidden="true" />
+          </a>
+        </motion.div>
       </motion.div>
+
+      <CaseStudy study={openStudy} onClose={() => setOpenStudy(null)} />
     </section>
   );
 };

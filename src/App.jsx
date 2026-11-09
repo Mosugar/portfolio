@@ -8,7 +8,6 @@ import ExperienceHistory from './components/ExperienceHistory.jsx';
 import Navigation from './components/CyberpunkNavigation.jsx';
 import About from './components/About.jsx';
 import Resume from './components/Resume.jsx';
-import DesignShowcase from './components/DesignShowcase.jsx';
 import SEO from './components/SEO.jsx';
 import TourGuide from './components/TourGuide.jsx';
 import IntroAnimation from './components/IntroAnimation.jsx';
@@ -40,7 +39,6 @@ function App() {
             <ExperienceHistory />
             <Resume />
             <Work />
-            <DesignShowcase />
             <Footer />
           </main>
         </GlobalBackground>

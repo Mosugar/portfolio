@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 :root {
   --bg: #09090f;
   --surface: #111118;
@@ -24,6 +29,12 @@ html {
   *, *::before, *::after {
     cursor: none !important;
   }
+}
+
+/* Modal dialogs render in the top layer, above the custom cursor — use the native one there */
+@media (hover: hover) {
+  dialog, dialog * { cursor: auto !important; }
+  dialog a, dialog button { cursor: pointer !important; }
 }
 
 body {
