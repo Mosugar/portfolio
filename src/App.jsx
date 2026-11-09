@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Hero from './components/Hero.jsx';
-import Skills from './components/Skills.jsx';
-import Footer from './components/Footer.jsx';
-import Work from './components/Work.jsx';
 import GlobalBackground from './components/Layout.jsx';
-import ExperienceHistory from './components/ExperienceHistory.jsx';
 import Navigation from './components/CyberpunkNavigation.jsx';
 import About from './components/About.jsx';
-import Resume from './components/Resume.jsx';
 import SEO from './components/SEO.jsx';
-import TourGuide from './components/TourGuide.jsx';
 import IntroAnimation from './components/IntroAnimation.jsx';
 import { LanguageProvider } from './context/LanguageContext.jsx';
 import Cursor from './components/Cursor.jsx';
+
+// Below-the-fold sections (gsap, carousel, contact form…) load in their own chunks
+const Skills = lazy(() => import('./components/Skills.jsx'));
+const ExperienceHistory = lazy(() => import('./components/ExperienceHistory.jsx'));
+const Resume = lazy(() => import('./components/Resume.jsx'));
+const Work = lazy(() => import('./components/Work.jsx'));
+const Footer = lazy(() => import('./components/Footer.jsx'));
+const TourGuide = lazy(() => import('./components/TourGuide.jsx'));
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -31,15 +33,19 @@ function App() {
         <SEO />
         <GlobalBackground>
           <Navigation />
-          <TourGuide />
+          <Suspense fallback={null}>
+            <TourGuide />
+          </Suspense>
           <main>
             <Hero />
             <About />
-            <Skills />
-            <ExperienceHistory />
-            <Resume />
-            <Work />
-            <Footer />
+            <Suspense fallback={<div className="min-h-screen" aria-hidden="true" />}>
+              <Skills />
+              <ExperienceHistory />
+              <Resume />
+              <Work />
+              <Footer />
+            </Suspense>
           </main>
         </GlobalBackground>
       </div>

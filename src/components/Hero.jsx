@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import FolderFloat from './FolderFloat';
+
+// matter-js physics — desktop only, so only fetched when it's actually shown
+const FolderFloat = lazy(() => import('./FolderFloat'));
 
 const MoSugarLogo = ({ className, style }) => (
   <svg className={className} style={{ height: '24px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
@@ -248,6 +250,7 @@ const Hero = () => {
             zIndex: 2,
           }}
         >
+          <Suspense fallback={null}>
           <FolderFloat
             label={t.about.folderLabel}
             items={t.about.folderItems}
@@ -267,6 +270,7 @@ const Hero = () => {
             tilt={8}
             bounce={0.35}
           />
+          </Suspense>
         </motion.div>
       )}
 

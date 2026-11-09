@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import CircularCarousel from './CircularCarousel';
-import CaseStudy from './CaseStudy';
 import { caseStudies } from '../data/caseStudies';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -100,6 +99,8 @@ const projects = [
   },
 ];
 
+const CaseStudy = lazy(() => import('./CaseStudy'));
+
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
@@ -129,6 +130,9 @@ const Works = () => {
   const { t, lang } = useLanguage();
   const ref = useRef(null);
   const [openStudy, setOpenStudy] = useState(null);
+  // Load the modal on first open, then keep it mounted so the dialog can restore focus on close
+  const [caseStudyLoaded, setCaseStudyLoaded] = useState(false);
+  const openCaseStudy = (study) => { setCaseStudyLoaded(true); setOpenStudy(study); };
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [isMobile, setIsMobile] = useState(false);
 
@@ -260,7 +264,7 @@ const Works = () => {
               <li key={study.id}>
                 <button
                   type="button"
-                  onClick={() => setOpenStudy(study)}
+                  onClick={() => openCaseStudy(study)}
                   aria-haspopup="dialog"
                   className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-0 text-left transition-colors hover:border-[var(--border-accent)]"
                 >
@@ -300,7 +304,11 @@ const Works = () => {
         </motion.div>
       </motion.div>
 
-      <CaseStudy study={openStudy} onClose={() => setOpenStudy(null)} />
+      {caseStudyLoaded && (
+        <Suspense fallback={null}>
+          <CaseStudy study={openStudy} onClose={() => setOpenStudy(null)} />
+        </Suspense>
+      )}
     </section>
   );
 };

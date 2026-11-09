@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 const Images = {
     html: '/images/icons/icon-html.svg',
     scss: '/images/icons/icon-scss.svg', 
