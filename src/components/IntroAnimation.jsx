@@ -11,7 +11,7 @@ const SugarBig = ({ talking, blinking, waving }) => (
     viewBox="0 0 64 80"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ filter: 'drop-shadow(0 12px 40px rgba(139,92,246,0.55))' }}
+    className="[filter:drop-shadow(0_12px_40px_rgba(139,92,246,0.55))]"
   >
     {/* Antenna */}
     <line x1="32" y1="6" x2="32" y2="14" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" />
@@ -24,14 +24,14 @@ const SugarBig = ({ talking, blinking, waving }) => (
 
     {/* Eyes */}
     <ellipse cx="22" cy="31" rx="6" ry={blinking ? 0.8 : 6} fill="#111118" />
-    <circle cx="22" cy="31" r="3.5" fill="white" style={{ opacity: blinking ? 0 : 1 }} />
-    <circle cx="23.5" cy="29.5" r="1.5" fill="#18181f" style={{ opacity: blinking ? 0 : 1 }} />
-    <circle cx="24.5" cy="28.5" r="0.8" fill="white" opacity="0.8" style={{ opacity: blinking ? 0 : 0.8 }} />
+    <circle cx="22" cy="31" r="3.5" fill="white" className={blinking ? 'opacity-0' : ''} />
+    <circle cx="23.5" cy="29.5" r="1.5" fill="#18181f" className={blinking ? 'opacity-0' : ''} />
+    <circle cx="24.5" cy="28.5" r="0.8" fill="white" className={blinking ? 'opacity-0' : 'opacity-80'} />
 
     <ellipse cx="42" cy="31" rx="6" ry={blinking ? 0.8 : 6} fill="#111118" />
-    <circle cx="42" cy="31" r="3.5" fill="white" style={{ opacity: blinking ? 0 : 1 }} />
-    <circle cx="43.5" cy="29.5" r="1.5" fill="#18181f" style={{ opacity: blinking ? 0 : 1 }} />
-    <circle cx="44.5" cy="28.5" r="0.8" fill="white" opacity="0.8" style={{ opacity: blinking ? 0 : 0.8 }} />
+    <circle cx="42" cy="31" r="3.5" fill="white" className={blinking ? 'opacity-0' : ''} />
+    <circle cx="43.5" cy="29.5" r="1.5" fill="#18181f" className={blinking ? 'opacity-0' : ''} />
+    <circle cx="44.5" cy="28.5" r="0.8" fill="white" className={blinking ? 'opacity-0' : 'opacity-80'} />
 
     {/* Mouth */}
     {talking ? (
@@ -53,7 +53,7 @@ const SugarBig = ({ talking, blinking, waving }) => (
     </circle>
 
     {/* Left arm — waves when waving=true */}
-    <g style={{ transformOrigin: '14px 55px', transform: waving ? 'rotate(-40deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>
+    <g className={`origin-[14px_55px] [transition:transform_0.3s_ease] ${waving ? '[transform:rotate(-40deg)]' : '[transform:rotate(0deg)]'}`}>
       <rect x="4" y="52" width="10" height="6" rx="3" fill="#18181f" stroke="#8b5cf6" strokeWidth="1.2" />
     </g>
     {/* Right arm */}
@@ -66,7 +66,7 @@ const SugarBig = ({ talking, blinking, waving }) => (
 );
 
 const Sparks = () => (
-  <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none' }}>
+  <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2">
     {[...Array(6)].map((_, i) => {
       const angle = (i / 6) * 360;
       const dist = 55 + Math.random() * 25;
@@ -77,12 +77,26 @@ const Sparks = () => (
           initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
           animate={{ x: Math.cos(rad) * dist, y: Math.sin(rad) * dist - 20, opacity: 0, scale: 0 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          style={{ position: 'absolute', width: 6, height: 6, borderRadius: '50%', backgroundColor: i % 2 === 0 ? '#a78bfa' : '#8b5cf6' }}
+          className={`absolute size-[6px] rounded-full ${i % 2 === 0 ? 'bg-[#a78bfa]' : 'bg-[#8b5cf6]'}`}
         />
       );
     })}
   </div>
 );
+
+const bubbleClass =
+  'relative mb-7 w-[90vw] max-w-[340px] rounded-[20px] border border-[rgba(139,92,246,0.3)] bg-[#18181f] px-[1.6rem] py-[1.4rem] shadow-[0_12px_48px_rgba(0,0,0,0.6),0_0_0_1px_rgba(139,92,246,0.08)]';
+
+// Two stacked CSS triangles: violet outline + surface fill
+const BubbleTail = () => (
+  <>
+    <div className="absolute -bottom-2 left-1/2 h-0 w-0 -translate-x-1/2 border-x-[9px] border-t-[9px] border-x-transparent border-t-[rgba(139,92,246,0.3)]" />
+    <div className="absolute bottom-[-6px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-8 border-t-8 border-x-transparent border-t-[#18181f]" />
+  </>
+);
+
+const primaryBtnClass =
+  'cursor-pointer rounded-xl border-none bg-[linear-gradient(135deg,#7c3aed,#8b5cf6)] font-semibold text-white [transition:opacity_0.2s,translate_0.2s] hover:-translate-y-px hover:opacity-90';
 
 const IntroAnimation = () => {
   const { t, lang } = useLanguage();
@@ -244,40 +258,17 @@ const IntroAnimation = () => {
       initial={{ opacity: 1 }}
       animate={{ opacity: exiting ? 0 : 1 }}
       transition={{ duration: 0.65, ease: 'easeInOut' }}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        backgroundColor: '#09090f',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-      }}
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#09090f]"
     >
       {/* Background radial glow */}
       <motion.div
         animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
+        className="pointer-events-none absolute size-[500px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.14)_0%,transparent_70%)]"
       />
 
       {/* Subtle grid lines */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: 'linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px)',
-        backgroundSize: '48px 48px',
-        pointerEvents: 'none',
-      }} />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
       {/* Name — visible within the first second so recruiters know where they are */}
       <motion.div
@@ -313,72 +304,26 @@ const IntroAnimation = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-            style={{
-              maxWidth: '340px',
-              width: '90vw',
-              marginBottom: '1.75rem',
-              backgroundColor: '#18181f',
-              border: '1px solid rgba(139,92,246,0.3)',
-              borderRadius: '20px',
-              padding: '1.4rem 1.6rem',
-              position: 'relative',
-              boxShadow: '0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,92,246,0.08)',
-            }}
+            className={bubbleClass}
           >
-            <div style={{ position: 'absolute', bottom: '-8px', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '9px solid transparent', borderRight: '9px solid transparent', borderTop: '9px solid rgba(139,92,246,0.3)' }} />
-            <div style={{ position: 'absolute', bottom: '-6px', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: '8px solid #18181f' }} />
+            <BubbleTail />
 
-            <p style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: '1rem',
-              fontWeight: 700,
-              color: '#f4f4f8',
-              margin: '0 0 1.1rem 0',
-              lineHeight: 1.4,
-              textAlign: 'center',
-            }}>
+            <p className="m-0 mb-[1.1rem] text-center font-display text-[1rem] leading-[1.4] font-bold text-[#f4f4f8]">
               {t.intro.soundPrompt}
             </p>
 
-            <div style={{ display: 'flex', gap: '0.6rem' }}>
+            <div className="flex gap-[0.6rem]">
               <button
+                type="button"
                 onClick={() => handleSoundChoice(true)}
-                style={{
-                  flex: 1,
-                  padding: '0.65rem 0.5rem',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #7c3aed, #8b5cf6)',
-                  border: 'none',
-                  color: '#fff',
-                  fontSize: '0.88rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  fontFamily: 'inherit',
-                  boxShadow: '0 4px 16px rgba(139,92,246,0.4)',
-                  transition: 'opacity 0.2s, transform 0.2s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.opacity = '0.9'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                className={`${primaryBtnClass} flex-1 px-2 py-[0.65rem] text-[0.88rem] shadow-[0_4px_16px_rgba(139,92,246,0.4)]`}
               >
                 {t.intro.soundYes}
               </button>
               <button
+                type="button"
                 onClick={() => handleSoundChoice(false)}
-                style={{
-                  flex: 1,
-                  padding: '0.65rem 0.5rem',
-                  borderRadius: '12px',
-                  background: 'transparent',
-                  border: '1px solid rgba(139,92,246,0.3)',
-                  color: '#a78bfa',
-                  fontSize: '0.88rem',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  fontFamily: 'inherit',
-                  transition: 'background 0.2s, transform 0.2s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(139,92,246,0.08)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                className="flex-1 cursor-pointer rounded-xl border border-[rgba(139,92,246,0.3)] bg-transparent px-2 py-[0.65rem] text-[0.88rem] font-medium text-[#a78bfa] [transition:background_0.2s,translate_0.2s] hover:-translate-y-px hover:bg-[rgba(139,92,246,0.08)]"
               >
                 {t.intro.soundNo}
               </button>
@@ -393,42 +338,18 @@ const IntroAnimation = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-            style={{
-              maxWidth: '340px',
-              width: '90vw',
-              marginBottom: '1.75rem',
-              backgroundColor: '#18181f',
-              border: '1px solid rgba(139,92,246,0.3)',
-              borderRadius: '20px',
-              padding: '1.4rem 1.6rem',
-              position: 'relative',
-              boxShadow: '0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,92,246,0.08)',
-            }}
+            className={bubbleClass}
           >
-            <div style={{ position: 'absolute', bottom: '-8px', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '9px solid transparent', borderRight: '9px solid transparent', borderTop: '9px solid rgba(139,92,246,0.3)' }} />
-            <div style={{ position: 'absolute', bottom: '-6px', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: '8px solid #18181f' }} />
+            <BubbleTail />
 
-            <p style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: '1.05rem',
-              fontWeight: 700,
-              color: '#f4f4f8',
-              margin: '0 0 0.5rem 0',
-              minHeight: '1.5em',
-            }}>
+            <p className="m-0 mb-2 min-h-[1.5em] font-display text-[1.05rem] font-bold text-[#f4f4f8]">
               {line1}
               {talking && line1.length > 0 && line1.length < t.intro.line1.length && (
                 <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>|</motion.span>
               )}
             </p>
 
-            <p style={{
-              fontSize: '0.92rem',
-              color: '#8888a8',
-              margin: 0,
-              minHeight: '1.4em',
-              lineHeight: 1.55,
-            }}>
+            <p className="m-0 min-h-[1.4em] text-[0.92rem] leading-[1.55] text-[#8888a8]">
               {(() => {
                 const name = 'Mohamed';
                 const idx = t.intro.line2.indexOf(name);
@@ -439,7 +360,7 @@ const IntroAnimation = () => {
                 return (
                   <>
                     {before}
-                    {nameTyped && <span style={{ color: '#f4f4f8', fontWeight: 600 }}>{nameTyped}</span>}
+                    {nameTyped && <span className="font-semibold text-[#f4f4f8]">{nameTyped}</span>}
                     {after}
                   </>
                 );
@@ -452,28 +373,12 @@ const IntroAnimation = () => {
             <AnimatePresence>
               {showButton && (
                 <motion.button
+                  type="button"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 22 }}
                   onClick={handleEnter}
-                  style={{
-                    marginTop: '1.25rem',
-                    width: '100%',
-                    padding: '0.72rem 1rem',
-                    borderRadius: '12px',
-                    background: 'linear-gradient(135deg, #7c3aed, #8b5cf6)',
-                    border: 'none',
-                    color: '#fff',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    letterSpacing: '0.01em',
-                    fontFamily: 'inherit',
-                    boxShadow: '0 4px 24px rgba(139,92,246,0.4)',
-                    transition: 'opacity 0.2s, transform 0.2s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.opacity = '0.9'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                  className={`${primaryBtnClass} mt-5 w-full px-4 py-[0.72rem] text-[0.9rem] tracking-[0.01em] shadow-[0_4px_24px_rgba(139,92,246,0.4)]`}
                 >
                   {t.intro.enter}
                 </motion.button>
@@ -484,7 +389,7 @@ const IntroAnimation = () => {
       </AnimatePresence>
 
       {/* Sugar bot with entry animation */}
-      <div style={{ position: 'relative' }}>
+      <div className="relative">
         <motion.div
           initial={{ y: -380, opacity: 0 }}
           animate={exiting

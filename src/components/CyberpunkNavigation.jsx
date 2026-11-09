@@ -67,33 +67,14 @@ const BottomNavigation = () => {
           transition={{ delay: 0.6 }}
           onClick={() => setMenuOpen(v => !v)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          style={{
-            position: 'fixed',
-            top: '1.1rem',
-            right: '1.25rem',
-            zIndex: 200,
-            width: '42px',
-            height: '42px',
-            borderRadius: '12px',
-            backgroundColor: 'rgba(17,17,24,0.9)',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '5px',
-            cursor: 'pointer',
-            padding: 0,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-          }}
+          className="fixed top-[1.1rem] right-5 z-[200] flex size-[42px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(17,17,24,0.9)] p-0 shadow-[0_4px_20px_rgba(0,0,0,0.4)] backdrop-blur-[16px]"
         >
           <motion.span animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }} transition={{ duration: 0.25 }}
-            style={{ display: 'block', width: '18px', height: '2px', borderRadius: '2px', backgroundColor: '#f4f4f8' }} />
+            className="block h-[2px] w-[18px] rounded-[2px] bg-[#f4f4f8]" />
           <motion.span animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }} transition={{ duration: 0.2 }}
-            style={{ display: 'block', width: '14px', height: '2px', borderRadius: '2px', backgroundColor: '#8888a8', alignSelf: 'flex-end', marginRight: '4px' }} />
+            className="mr-1 block h-[2px] w-[14px] self-end rounded-[2px] bg-[#8888a8]" />
           <motion.span animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }} transition={{ duration: 0.25 }}
-            style={{ display: 'block', width: '18px', height: '2px', borderRadius: '2px', backgroundColor: '#f4f4f8' }} />
+            className="block h-[2px] w-[18px] rounded-[2px] bg-[#f4f4f8]" />
         </motion.button>
 
         {/* Full-screen overlay menu */}
@@ -104,18 +85,7 @@ const BottomNavigation = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              style={{
-                position: 'fixed',
-                inset: 0,
-                zIndex: 150,
-                backgroundColor: 'rgba(9,9,15,0.97)',
-                backdropFilter: 'blur(24px)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.25rem',
-              }}
+              className="fixed inset-0 z-[150] flex flex-col items-center justify-center gap-1 bg-[rgba(9,9,15,0.97)] backdrop-blur-[24px]"
             >
               {NAV_ITEMS.map((item, i) => {
                 const isActive = activeSection === item.id;
@@ -127,20 +97,9 @@ const BottomNavigation = () => {
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ delay: i * 0.05, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     onClick={() => scrollTo(item.id)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: 'clamp(1.6rem, 7vw, 2.2rem)',
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      fontWeight: 700,
-                      letterSpacing: '-0.02em',
-                      color: isActive ? '#a78bfa' : '#f4f4f8',
-                      padding: '0.5rem 1.5rem',
-                      borderRadius: '12px',
-                      transition: 'color 0.2s',
-                      opacity: isActive ? 1 : 0.7,
-                    }}
+                    className={`cursor-pointer rounded-xl border-none bg-none px-6 py-2 font-display text-[clamp(1.6rem,7vw,2.2rem)] font-bold tracking-[-0.02em] [transition:color_0.2s] ${
+                      isActive ? 'text-[#a78bfa] opacity-100' : 'text-[#f4f4f8] opacity-70'
+                    }`}
                   >
                     {t.nav[item.key]}
                   </motion.button>
@@ -154,18 +113,7 @@ const BottomNavigation = () => {
                 exit={{ opacity: 0 }}
                 transition={{ delay: NAV_ITEMS.length * 0.05 + 0.1 }}
                 onClick={toggle}
-                style={{
-                  marginTop: '1.5rem',
-                  padding: '0.6rem 1.5rem',
-                  borderRadius: '10px',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  color: '#a78bfa',
-                  background: 'rgba(139,92,246,0.12)',
-                  border: '1px solid rgba(139,92,246,0.25)',
-                  cursor: 'pointer',
-                  letterSpacing: '0.08em',
-                }}
+                className="mt-6 cursor-pointer rounded-[10px] border border-[rgba(139,92,246,0.25)] bg-[rgba(139,92,246,0.12)] px-6 py-[0.6rem] text-[0.85rem] font-semibold tracking-[0.08em] text-[#a78bfa]"
               >
                 {lang === 'fr' ? 'EN' : 'FR'}
               </motion.button>
@@ -179,27 +127,13 @@ const BottomNavigation = () => {
   return (
     <AnimatePresence>
       {scrolled && (
+        // No -translate-x-1/2: framer's y animation owns `transform`, so the nav has always rendered from left: 50%
         <motion.nav
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            position: 'fixed',
-            top: '1.25rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 100,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '2px',
-            padding: '5px',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(17,17,24,0.85)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.07)',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-          }}
+          className="fixed top-5 left-1/2 z-[100] flex items-center gap-[2px] rounded-[14px] border border-[rgba(255,255,255,0.07)] bg-[rgba(17,17,24,0.85)] p-[5px] shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-[20px]"
         >
           {NAV_ITEMS.map(item => {
             const isActive = activeSection === item.id;
@@ -207,55 +141,27 @@ const BottomNavigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                style={{
-                  position: 'relative',
-                  padding: '0.45rem 0.9rem',
-                  borderRadius: '10px',
-                  fontSize: '0.8rem',
-                  fontWeight: isActive ? 600 : 400,
-                  color: isActive ? '#f4f4f8' : '#8888a8',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'color 0.2s',
-                  whiteSpace: 'nowrap',
-                }}
+                className={`relative cursor-pointer rounded-[10px] border-none bg-none px-[0.9rem] py-[0.45rem] text-[0.8rem] whitespace-nowrap [transition:color_0.2s] ${
+                  isActive ? 'font-semibold text-[#f4f4f8]' : 'font-normal text-[#8888a8]'
+                }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="nav-pill"
-                    style={{
-                      position: 'absolute', inset: 0, borderRadius: '10px',
-                      backgroundColor: 'rgba(139,92,246,0.18)',
-                      border: '1px solid rgba(139,92,246,0.3)',
-                    }}
+                    className="absolute inset-0 rounded-[10px] border border-[rgba(139,92,246,0.3)] bg-[rgba(139,92,246,0.18)]"
                     transition={{ type: 'spring', duration: 0.4, bounce: 0.2 }}
                   />
                 )}
-                <span style={{ position: 'relative', zIndex: 1 }}>{t.nav[item.key]}</span>
+                <span className="relative z-[1]">{t.nav[item.key]}</span>
               </button>
             );
           })}
 
-          <div style={{ width: '1px', height: '20px', backgroundColor: 'rgba(255,255,255,0.08)', margin: '0 4px' }} />
+          <div className="mx-1 h-5 w-px bg-[rgba(255,255,255,0.08)]" />
 
           <button
             onClick={toggle}
-            style={{
-              position: 'relative',
-              padding: '0.45rem 0.75rem',
-              borderRadius: '10px',
-              fontSize: '0.72rem',
-              fontWeight: 600,
-              color: '#a78bfa',
-              background: 'rgba(139,92,246,0.1)',
-              border: '1px solid rgba(139,92,246,0.2)',
-              cursor: 'pointer',
-              letterSpacing: '0.05em',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(139,92,246,0.2)'; }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(139,92,246,0.1)'; }}
+            className="relative cursor-pointer rounded-[10px] border border-[rgba(139,92,246,0.2)] bg-[rgba(139,92,246,0.1)] px-3 py-[0.45rem] text-[0.72rem] font-semibold tracking-[0.05em] text-[#a78bfa] [transition:all_0.2s] hover:bg-[rgba(139,92,246,0.2)]"
           >
             {lang === 'fr' ? 'EN' : 'FR'}
           </button>

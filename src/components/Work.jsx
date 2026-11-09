@@ -107,19 +107,19 @@ const fadeUp = {
 };
 
 const MobileGrid = ({ items }) => (
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+  <div className="grid grid-cols-[repeat(2,1fr)] gap-3">
     {items.map(item => (
-      <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"
-        style={{ position: 'relative', display: 'block', borderRadius: '12px', overflow: 'hidden', aspectRatio: '4/3', textDecoration: 'none', backgroundColor: '#0a0a14' }}
+      <a
+        key={item.id}
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative block aspect-[4/3] overflow-hidden rounded-xl bg-[#0a0a14] no-underline"
       >
-        <img src={item.src} alt={item.alt} style={{ width: '100%', height: '100%', objectFit: 'contain' }} loading="lazy" />
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(9,9,15,0.9) 0%, transparent 55%)',
-          display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0.6rem',
-        }}>
-          <span style={{ color: '#fff', fontSize: '0.75rem', fontWeight: 600, lineHeight: 1.2 }}>{item.title}</span>
-          <span style={{ color: 'rgba(167,139,250,0.9)', fontSize: '0.62rem', marginTop: '2px' }}>{item.subtitle}</span>
+        <img src={item.src} alt={item.alt} className="h-full w-full object-contain" loading="lazy" />
+        <div className="absolute inset-0 flex flex-col justify-end bg-[linear-gradient(to_top,rgba(9,9,15,0.9)_0%,transparent_55%)] p-[0.6rem]">
+          <span className="text-[0.75rem] leading-[1.2] font-semibold text-white">{item.title}</span>
+          <span className="mt-[2px] text-[0.62rem] text-[rgba(167,139,250,0.9)]">{item.subtitle}</span>
         </div>
       </a>
     ))}
@@ -151,30 +151,13 @@ const Works = () => {
     <section
       id="works"
       ref={ref}
-      style={{
-        backgroundColor: 'var(--bg)',
-        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="relative overflow-hidden bg-[var(--bg)] px-[clamp(1.5rem,6vw,6rem)] py-[clamp(5rem,10vw,9rem)]"
     >
       {/* Giant background word */}
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        fontFamily: "'Space Grotesk', sans-serif",
-        fontSize: 'clamp(6rem, 18vw, 18rem)',
-        fontWeight: 700,
-        letterSpacing: '-0.04em',
-        color: 'transparent',
-        WebkitTextStroke: '1px rgba(139,92,246,0.05)',
-        userSelect: 'none',
-        pointerEvents: 'none',
-        whiteSpace: 'nowrap',
-        zIndex: 0,
-      }}>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-display text-[clamp(6rem,18vw,18rem)] font-bold tracking-[-0.04em] whitespace-nowrap text-transparent select-none [-webkit-text-stroke:1px_rgba(139,92,246,0.05)]"
+      >
         WORKS
       </div>
 
@@ -182,41 +165,33 @@ const Works = () => {
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
         initial="hidden"
         animate={inView ? 'show' : 'hidden'}
-        style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}
+        className="relative z-[1] mx-auto max-w-[1200px]"
       >
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '0.75rem' }}>
+            <motion.p variants={fadeUp} className="section-label mb-3">
               {t.works.label}
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                color: 'var(--text)',
-                lineHeight: 1.1,
-                margin: 0,
-              }}
+              className="m-0 font-display text-[clamp(2rem,4vw,3rem)] leading-[1.1] font-bold tracking-[-0.02em] text-[var(--text)]"
             >
               {t.works.h2a}<br />
-              <span style={{ color: 'var(--accent-light)' }}>{t.works.h2b}</span>
+              <span className="text-[var(--accent-light)]">{t.works.h2b}</span>
             </motion.h2>
           </div>
 
           <motion.p
             variants={fadeUp}
-            style={{ color: 'var(--text-2)', fontSize: '0.85rem', maxWidth: '260px', lineHeight: 1.6, margin: 0 }}
+            className="m-0 max-w-[260px] text-[0.85rem] leading-[1.6] text-[var(--text-2)]"
           >
             {t.works.hint}
           </motion.p>
         </div>
 
         {/* Carousel / Mobile Grid */}
-        <motion.div variants={fadeUp} style={{ borderRadius: '20px', overflow: 'hidden', height: isMobile ? 'auto' : '580px' }}>
+        <motion.div variants={fadeUp} className={`overflow-hidden rounded-[20px] ${isMobile ? 'h-auto' : 'h-[580px]'}`}>
           {isMobile ? (
             <MobileGrid items={projects} />
           ) : (
@@ -244,14 +219,7 @@ const Works = () => {
         {/* Count */}
         <motion.p
           variants={fadeUp}
-          style={{
-            textAlign: 'center',
-            color: 'var(--text-3)',
-            fontSize: '0.78rem',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            marginTop: '1.5rem',
-          }}
+          className="mt-6 text-center text-[0.78rem] tracking-[0.12em] text-[var(--text-3)] uppercase"
         >
           {t.works.count.replace('{n}', projects.length)}
         </motion.p>
