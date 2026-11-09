@@ -21,8 +21,7 @@ const Section = ({ title, children }) => (
   </section>
 );
 
-const Screenshot = ({ shot, lang }) => {
-  const [missing, setMissing] = useState(false);
+const Screenshot = ({ shot, lang, missing, onMissing }) => {
   return (
     <figure className="m-0">
       {missing ? (
@@ -35,7 +34,7 @@ const Screenshot = ({ shot, lang }) => {
           src={shot.src}
           alt={`Recur — ${shot.label[lang]}`}
           loading="lazy"
-          onError={() => setMissing(true)}
+          onError={onMissing}
           className="block aspect-[9/19] w-full rounded-xl object-cover"
         />
       )}
@@ -43,6 +42,32 @@ const Screenshot = ({ shot, lang }) => {
     </figure>
   );
 };
+
+// Until real screenshots exist: dashed placeholders in dev, nothing at all in production
+const ScreenshotGallery = ({ shots, title, lang }) => {
+  const [missing, setMissing] = useState(() => new Set());
+  if (!SHOW_TODOS && missing.size === shots.length) return null;
+  return (
+    <Section title={title}>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {shots.map((shot) => (
+          (SHOW_TODOS || !missing.has(shot.src)) && (
+            <Screenshot
+              key={shot.src}
+              shot={shot}
+              lang={lang}
+              missing={missing.has(shot.src)}
+              onMissing={() => setMissing((prev) => new Set(prev).add(shot.src))}
+            />
+          )
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+// A section with no verified content yet only shows (as a TODO) in dev
+const hasContent = (study, field) => Boolean(study[field]) || (SHOW_TODOS && Boolean(study[`${field}Todo`]));
 
 const CaseStudy = ({ study, onClose }) => {
   const { t, lang } = useLanguage();
@@ -117,22 +142,22 @@ const CaseStudy = ({ study, onClose }) => {
               )}
             </Section>
 
-            <Section title={cs.challenge}>
-              {study.challenge && <p className="m-0">{p('challenge')}</p>}
-              <Todo item={study.challengeTodo} />
-            </Section>
+            {hasContent(study, 'challenge') && (
+              <Section title={cs.challenge}>
+                {study.challenge && <p className="m-0">{p('challenge')}</p>}
+                <Todo item={study.challengeTodo} />
+              </Section>
+            )}
 
-            <Section title={cs.result}>
-              {study.result && <p className="m-0">{p('result')}</p>}
-              <Todo item={study.resultTodo} />
-            </Section>
+            {hasContent(study, 'result') && (
+              <Section title={cs.result}>
+                {study.result && <p className="m-0">{p('result')}</p>}
+                <Todo item={study.resultTodo} />
+              </Section>
+            )}
 
             {study.screenshots && (
-              <Section title={cs.screenshots}>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  {study.screenshots.map((shot) => <Screenshot key={shot.src} shot={shot} lang={lang} />)}
-                </div>
-              </Section>
+              <ScreenshotGallery key={study.id} shots={study.screenshots} title={cs.screenshots} lang={lang} />
             )}
           </div>
 
