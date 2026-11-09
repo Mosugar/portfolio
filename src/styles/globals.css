@@ -31,17 +31,46 @@ html {
   background-color: var(--bg);
 }
 
-/* Hide native cursor on pointer devices — custom cursor takes over */
-@media (hover: hover) {
+/* Hide the native cursor only where the custom one runs: fine pointer, no reduced-motion preference.
+   Must match the check in Cursor.jsx */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   *, *::before, *::after {
     cursor: none !important;
   }
-}
 
-/* Modal dialogs render in the top layer, above the custom cursor — use the native one there */
-@media (hover: hover) {
+  /* Modal dialogs render in the top layer, above the custom cursor — use the native one there */
   dialog, dialog * { cursor: auto !important; }
   dialog a, dialog button { cursor: pointer !important; }
+}
+
+/* Visible keyboard focus everywhere (unlayered, so it wins over outline-none utilities) */
+:focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 3px;
+}
+
+/* Skip link: hidden until focused with the keyboard */
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100000;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* The skip-link target only receives focus programmatically — no ring around the whole page */
+main:focus-visible {
+  outline: none;
 }
 
 body {

@@ -6,6 +6,7 @@ const SEEN_KEY = 'sugar-intro-seen';
 
 const SugarBig = ({ talking, blinking, waving }) => (
   <svg
+    aria-hidden="true"
     width="180"
     height="225"
     viewBox="0 0 64 80"
@@ -98,7 +99,7 @@ const BubbleTail = () => (
 const primaryBtnClass =
   'cursor-pointer rounded-xl border-none bg-[linear-gradient(135deg,#7c3aed,#8b5cf6)] font-semibold text-white [transition:opacity_0.2s,translate_0.2s] hover:-translate-y-px hover:opacity-90';
 
-const IntroAnimation = () => {
+const IntroAnimation = ({ onClose }) => {
   const { t, lang } = useLanguage();
 
   const [visible] = useState(() => {
@@ -118,6 +119,11 @@ const IntroAnimation = () => {
   const [showButton, setShowButton] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [gone, setGone] = useState(!visible);
+
+  // Tell the app the overlay is gone (also on load when the intro was already seen)
+  useEffect(() => {
+    if (gone) onClose?.();
+  }, [gone, onClose]);
 
   const landedRef = useRef(false);
 
@@ -258,6 +264,9 @@ const IntroAnimation = () => {
       initial={{ opacity: 1 }}
       animate={{ opacity: exiting ? 0 : 1 }}
       transition={{ duration: 0.65, ease: 'easeInOut' }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mohamed Sekkar — portfolio"
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#09090f]"
     >
       {/* Background radial glow */}

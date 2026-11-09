@@ -26,7 +26,7 @@
 }
 
 .circular-carousel:focus-visible {
-  box-shadow: inset 0 0 0 2px rgba(139, 92, 246, 0.4);
+  box-shadow: inset 0 0 0 2px #a78bfa;
 }
 
 .circular-carousel__view {

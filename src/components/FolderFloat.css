@@ -134,6 +134,12 @@
     opacity 200ms ease;
 }
 
+.folder-float__trigger:focus-visible,
+.folder-float__item:focus-visible {
+  outline: 2px solid var(--accent-light, #a78bfa);
+  outline-offset: 3px;
+}
+
 .folder-float__items {
   position: absolute;
   top: var(--ff-tab);

@@ -6,6 +6,7 @@ const TOUR_SECTIONS = [null, 'home', 'about', 'skills', 'experience', 'resume', 
 
 const SugarBot = ({ blinking, talking, sleeping }) => (
   <svg
+    aria-hidden="true"
     width="96"
     height="120"
     viewBox="0 0 64 80"
@@ -356,7 +357,7 @@ const TourGuide = () => {
                       <button onClick={handleNext} className={primaryBtn}>
                         {t.tour.next}
                       </button>
-                      <button onClick={handleDismiss} className={`${ghostBtn} px-[0.6rem]`}>
+                      <button onClick={handleDismiss} aria-label={t.tour.skip} className={`${ghostBtn} px-[0.6rem]`}>
                         ✕
                       </button>
                     </>
@@ -369,18 +370,20 @@ const TourGuide = () => {
       </AnimatePresence>
 
       {/* Bot */}
-      <motion.div
+      <motion.button
+        type="button"
+        aria-label={t.a11y.tourBot}
         animate={sleeping ? { y: [0, -3, 0] } : { y: [0, -6, 0] }}
         transition={sleeping
           ? { duration: 4, repeat: Infinity, ease: 'easeInOut' }
           : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
         }
-        className="pointer-events-auto cursor-pointer"
+        className="pointer-events-auto block cursor-pointer border-none bg-transparent p-0"
         onClick={handleBotClick}
-        title={sleeping ? 'Click to wake Sugar up' : ''}
+        title={sleeping ? 'Click to wake Sugar up' : undefined}
       >
         <SugarBot blinking={blinking} talking={talking} sleeping={sleeping} />
-      </motion.div>
+      </motion.button>
     </div>
   );
 };

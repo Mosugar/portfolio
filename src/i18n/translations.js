@@ -10,6 +10,18 @@ const translations = {
       contact: 'Contact',
     },
 
+    a11y: {
+      skipToContent: 'Aller au contenu principal',
+      mainNav: 'Navigation principale',
+      switchLang: 'Passer le site en anglais',
+      openMenu: 'Ouvrir le menu',
+      closeMenu: 'Fermer le menu',
+      backToTop: 'Retour en haut de page',
+      tourBot: 'Sugar, le guide du portfolio',
+      projectsCarousel: 'Carrousel des projets',
+      selectExperience: 'Afficher le détail',
+    },
+
     hero: {
       label: 'Développeur Full-Stack · Paris, Île-de-France',
       available: 'Disponible en alternance',
@@ -252,6 +264,18 @@ const translations = {
       resume: 'Resume',
       works: 'Works',
       contact: 'Contact',
+    },
+
+    a11y: {
+      skipToContent: 'Skip to main content',
+      mainNav: 'Main navigation',
+      switchLang: 'Switch the site to French',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      backToTop: 'Back to top',
+      tourBot: 'Sugar, the portfolio guide',
+      projectsCarousel: 'Projects carousel',
+      selectExperience: 'Show details',
     },
 
     hero: {

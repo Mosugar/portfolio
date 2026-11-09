@@ -212,6 +212,7 @@ const Works = () => {
               parallax={0.25}
               stretch={0.4}
               onItemClick={handleItemClick}
+              ariaLabel={t.a11y.projectsCarousel}
             />
           )}
         </motion.div>

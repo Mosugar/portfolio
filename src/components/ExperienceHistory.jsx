@@ -65,6 +65,13 @@ const ExperienceHistory = () => {
                 intensity={0.14}
                 spotlightSize={220}
                 borderGlow={active === i ? 0.9 : 0.4}
+                role="button"
+                tabIndex={0}
+                aria-pressed={active === i}
+                aria-controls="experience-detail"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(i); }
+                }}
                 className="cursor-pointer px-4 py-[0.85rem] [transition:transform_0.15s_ease]"
                 style={{
                   '--spotlight-card-surface': active === i ? '#1a1a24' : '#111118',
@@ -97,6 +104,8 @@ const ExperienceHistory = () => {
 
           {/* Right: detail panel */}
           <motion.div
+            id="experience-detail"
+            aria-live="polite"
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}

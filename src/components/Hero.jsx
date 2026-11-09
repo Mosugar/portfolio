@@ -7,7 +7,7 @@ import { useLanguage } from '../context/useLanguage';
 const FolderFloat = lazy(() => import('./FolderFloat'));
 
 const MoSugarLogo = ({ className = '' }) => (
-  <svg className={`block h-6 w-auto ${className}`} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
+  <svg role="img" aria-label="Mo Sugar" className={`block h-6 w-auto ${className}`} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
       <path d="M26.16,1.81v18.28h-3.41v-10.06l-4.66,10.06h-1.79l-4.65-10.11v10.12h-3.41V1.81h3.07l5.9,12.54L23.09,1.81h3.07Z"/>
       <path d="M32.05,19.58c-1-.57-1.77-1.38-2.33-2.42-.56-1.04-.83-2.24-.83-3.59s.28-2.53.85-3.58c.56-1.05,1.34-1.86,2.33-2.44.99-.58,2.12-.87,3.38-.87s2.4.29,3.39.86,1.78,1.38,2.34,2.43.85,2.25.85,3.6-.28,2.52-.85,3.56-1.34,1.85-2.34,2.43-2.13.87-3.39.87-2.4-.29-3.39-.86h-.01ZM37.64,16.31c.55-.68.82-1.59.82-2.73s-.27-2.06-.82-2.74-1.28-1.03-2.2-1.03-1.63.34-2.17,1.03-.82,1.6-.82,2.74.27,2.05.81,2.73c.54.68,1.26,1.01,2.18,1.01s1.65-.34,2.2-1.01Z"/>

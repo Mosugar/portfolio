@@ -87,6 +87,7 @@ const CircularCarousel = ({
   onChange,
   onItemClick,
   className = '',
+  ariaLabel = 'Image carousel',
   style,
 }) => {
   const incoming = items.length ? items : [];
@@ -490,7 +491,7 @@ const CircularCarousel = ({
       ref={rootRef}
       className={`circular-carousel ${className}`.trim()}
       style={{ ...style, '--cc-fade': fadeColor, '--cc-radius': `${Math.max(0,cornerRadius)}px`, '--cc-inner': (1-clamp(innerShade,0,1)).toFixed(3) }}
-      role="region" aria-roledescription="carousel" aria-label="Image carousel"
+      role="region" aria-roledescription="carousel" aria-label={ariaLabel}
       tabIndex={0} data-axis={axis} data-shape={shape}
       data-ready={ready?'':undefined} data-draggable={draggable?'':undefined} data-dragging={dragging?'':undefined}
       onPointerDown={handlePointerDown} onPointerMove={handlePointerMove}

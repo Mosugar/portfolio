@@ -83,9 +83,10 @@ const About = () => {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   title={label}
+                  aria-label={label}
                   className="flex size-10 items-center justify-center rounded-[10px] border border-[var(--border)] text-[var(--text-2)] no-underline [transition:all_0.2s] hover:border-[var(--border-accent)] hover:text-[var(--accent-light)]"
                 >
-                  <Icon size={16} />
+                  <Icon size={16} aria-hidden="true" />
                 </a>
               ))}
             </div>

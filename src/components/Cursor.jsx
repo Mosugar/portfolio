@@ -1,7 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
+// Fine pointer only, and never when the user asked for reduced motion.
+// Must match the cursor: none media query in globals.css
+const CURSOR_QUERY = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
+
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = () => setMatches(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, [query]);
+  return matches;
+};
+
 export default function Cursor() {
+  const enabled = useMediaQuery(CURSOR_QUERY);
   const [visible,  setVisible]  = useState(false);
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);
@@ -27,7 +43,7 @@ export default function Cursor() {
   const t4Y = useSpring(t3Y,  { stiffness: 45,  damping: 14 });
 
   useEffect(() => {
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (!enabled) return;
 
     const onMove = (e) => {
       mouseX.set(e.clientX);
@@ -65,12 +81,9 @@ export default function Cursor() {
       document.documentElement.removeEventListener('mouseenter', onEnter);
       clearTimeout(moveTimer.current);
     };
-  }, [mouseX, mouseY]);
+  }, [enabled, mouseX, mouseY]);
 
-  // Skip on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
-    return null;
-  }
+  if (!enabled) return null;
 
   const trail = [
     { x: t4X, y: t4Y, size: 2.5, alpha: 0.14 },
