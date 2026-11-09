@@ -1,5 +1,5 @@
 # Robots.txt for Mohamed Sekkar Portfolio
-# https://mohamedsekkar.dev/robots.txt
+# https://www.mohamedsekkar.com/robots.txt
 
 User-agent: *
 Allow: /
@@ -24,7 +24,7 @@ Allow: /*.webp$
 Allow: /*.svg$
 
 # Sitemap location
-Sitemap: https://mohamedsekkar.dev/sitemap.xml
+Sitemap: https://www.mohamedsekkar.com/sitemap.xml
 
 # Crawl delay (optional - 1 second)
 Crawl-delay: 1
