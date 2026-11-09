@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, X, ImageOff } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 const SHOW_TODOS = import.meta.env.DEV;
 

@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
+
+const NAV_ITEMS = [
+  { id: 'home',       key: 'home' },
+  { id: 'about',      key: 'about' },
+  { id: 'skills',     key: 'skills' },
+  { id: 'experience', key: 'experience' },
+  { id: 'resume',     key: 'resume' },
+  { id: 'works',      key: 'works' },
+  { id: 'contact',    key: 'contact' },
+];
 
 const BottomNavigation = () => {
   const { lang, toggle, t } = useLanguage();
@@ -8,16 +18,6 @@ const BottomNavigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const navItems = [
-    { id: 'home',       key: 'home' },
-    { id: 'about',      key: 'about' },
-    { id: 'skills',     key: 'skills' },
-    { id: 'experience', key: 'experience' },
-    { id: 'resume',     key: 'resume' },
-    { id: 'works',      key: 'works' },
-    { id: 'contact',    key: 'contact' },
-  ];
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -30,7 +30,7 @@ const BottomNavigation = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
       let current = 'home';
-      for (const item of navItems) {
+      for (const item of NAV_ITEMS) {
         const el = document.getElementById(item.id);
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -117,7 +117,7 @@ const BottomNavigation = () => {
                 gap: '0.25rem',
               }}
             >
-              {navItems.map((item, i) => {
+              {NAV_ITEMS.map((item, i) => {
                 const isActive = activeSection === item.id;
                 return (
                   <motion.button
@@ -152,7 +152,7 @@ const BottomNavigation = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ delay: navItems.length * 0.05 + 0.1 }}
+                transition={{ delay: NAV_ITEMS.length * 0.05 + 0.1 }}
                 onClick={toggle}
                 style={{
                   marginTop: '1.5rem',
@@ -201,7 +201,7 @@ const BottomNavigation = () => {
             boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
           }}
         >
-          {navItems.map(item => {
+          {NAV_ITEMS.map(item => {
             const isActive = activeSection === item.id;
             return (
               <button

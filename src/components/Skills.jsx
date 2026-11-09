@@ -3,7 +3,7 @@ import styles from "../styles/skills.module.css";
 import Images from "../assets/images/index";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../context/useLanguage";
 import { useBubbleSound } from "../hooks/useSound";
 
 const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, className = "" }) => {
@@ -125,11 +125,7 @@ const Skills = () => {
       observer.observe(skillRef.current);
     }
 
-    return () => {
-      if (skillRef.current) {
-        observer.disconnect();
-      }
-    };
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {

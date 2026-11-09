@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Matter from 'matter-js';
 import './FolderFloat.css';
 
@@ -96,10 +96,13 @@ export default function FolderFloat({
   latest.current = { onSelect, onOpenChange, drift, reduce: false };
   const popTimer = useRef(undefined);
   const liveTimer = useRef(undefined);
-  const list = items.map(item => (typeof item === 'string' ? { label: item, value: item } : item));
+  const list = useMemo(
+    () => items.map(item => (typeof item === 'string' ? { label: item, value: item } : item)),
+    [items]
+  );
   const n = list.length;
   const sub = sublabel || `${n} ${n === 1 ? 'note' : 'notes'}`;
-  const pos = layout(list, spread, lift, tilt, sizes);
+  const pos = useMemo(() => layout(list, spread, lift, tilt, sizes), [list, spread, lift, tilt, sizes]);
 
   const labelsKey = list.map(item => item.label).join('|');
   useLayoutEffect(() => {
@@ -202,7 +205,7 @@ export default function FolderFloat({
       s.raf = requestAnimationFrame(tick);
     };
     w.raf = requestAnimationFrame(tick);
-  }, [n, spread, lift, pos.map(p => `${p.x},${p.y}`).join('|')]);
+  }, [n, spread, lift, pos]);
 
   const set = useCallback(
     next => {
@@ -262,7 +265,11 @@ export default function FolderFloat({
     if (!b) return;
     const p = pointerAt(e);
     w.drag = { i, id: e.pointerId, dx: b.position.x - p.x, dy: b.position.y - p.y, sx: e.clientX, sy: e.clientY, moved: false };
-    try { e.currentTarget.setPointerCapture(e.pointerId); } catch {}
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // Pointer already released (fast tap) — drag still works without capture
+    }
   };
   const move = (e, i) => {
     const w = world.current;
@@ -288,7 +295,11 @@ export default function FolderFloat({
     if (!d || d.i !== i || d.id !== e.pointerId) return;
     w.drag = null;
     e.currentTarget.removeAttribute('data-drag');
-    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // Capture was never set or already released — nothing to undo
+    }
     if (!d.moved && e.type === 'pointerup') pick(item, i);
   };
 

@@ -34,6 +34,7 @@ export const useBubbleSound = () => {
       osc.start(ctx.currentTime);
       osc.stop(ctx.currentTime + 0.09);
     } catch {
+      // Web Audio unavailable or blocked by autoplay policy — sound is decorative, stay silent
     }
   }, []);
 

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { MapPin, Calendar, ExternalLink, ArrowUpRight } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 
 const statusDot = {

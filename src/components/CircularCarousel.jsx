@@ -410,7 +410,11 @@ const CircularCarousel = ({
       if (Math.abs(delta)<DRAG_THRESHOLD) return;
       if (Math.abs(cross)>Math.abs(delta)*1.2 && event.pointerType!=='mouse') { state.press=null; return; }
       press.moved=true; press.origin=delta; state.drag=true; state.target=null; state.velocity=0; setDragging(true);
-      try { rootRef.current.setPointerCapture(event.pointerId); } catch {}
+      try {
+        rootRef.current.setPointerCapture(event.pointerId);
+      } catch {
+        // Pointer already released — dragging continues via window listeners
+      }
     }
     const perPixel=180/(Math.PI*s.radius*state.fit);
     state.angle=press.angle+(delta-press.origin)*perPixel*(s.layout.inward?-1:1);

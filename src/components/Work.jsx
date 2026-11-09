@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import CircularCarousel from './CircularCarousel';
 import { caseStudies } from '../data/caseStudies';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 const projects = [
   {

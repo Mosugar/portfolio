@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 const TOUR_SECTIONS = [null, 'home', 'about', 'skills', 'experience', 'resume', 'works', 'contact'];
 
@@ -83,10 +83,10 @@ const SugarBot = ({ blinking, talking, sleeping }) => (
 
 const TourGuide = () => {
   const { t } = useLanguage();
-  const TOUR_STEPS = t.tour.steps.map((step, i) => ({
-    ...step,
-    section: TOUR_SECTIONS[i],
-  }));
+  const TOUR_STEPS = useMemo(
+    () => t.tour.steps.map((step, i) => ({ ...step, section: TOUR_SECTIONS[i] })),
+    [t]
+  );
 
   const [step, setStep]               = useState(0);
   const [visible, setVisible]         = useState(false);
@@ -195,7 +195,7 @@ const TourGuide = () => {
     }, 22);
 
     return () => clearInterval(typeTimerRef.current);
-  }, [step, visible, dismissed, easterEggText, reaction]);
+  }, [step, visible, dismissed, easterEggText, reaction, TOUR_STEPS]);
 
   const currentStep = TOUR_STEPS[step];
 

@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import { useState } from 'react';
 import translations from '../i18n/translations';
-
-const LanguageContext = createContext(null);
+import { LanguageContext } from './useLanguage';
 
 export const LanguageProvider = ({ children }) => {
   const [lang, setLang] = useState('fr');
@@ -13,5 +12,3 @@ export const LanguageProvider = ({ children }) => {
     </LanguageContext.Provider>
   );
 };
-
-export const useLanguage = () => useContext(LanguageContext);

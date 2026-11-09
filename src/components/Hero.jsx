@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 // matter-js physics — desktop only, so only fetched when it's actually shown
 const FolderFloat = lazy(() => import('./FolderFloat'));

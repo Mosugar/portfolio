@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FileDown } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 import ProfileCard from './ProfileCard';
 
 const RESUME_URL = '/mohamed-sekkar-cv-resume.pdf';

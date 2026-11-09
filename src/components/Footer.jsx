@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 const MoSugarLogo = ({ className, style }) => (
   <svg className={className} style={{ height: '20px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
