@@ -44,17 +44,8 @@ const Noise = ({ opacity = 0.025, blendMode = 'overlay' }) => {
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        pointerEvents: 'none',
-        opacity,
-        mixBlendMode: blendMode,
-        zIndex: 1000,
-      }}
+      className="pointer-events-none fixed top-0 left-0 z-[1000] h-screen w-screen"
+      style={{ opacity, mixBlendMode: blendMode }}
     />
   );
 };

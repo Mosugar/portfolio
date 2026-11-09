@@ -85,7 +85,7 @@ export default function Cursor() {
   return (
     <div
       aria-hidden="true"
-      style={{ position: 'fixed', inset: 0, zIndex: 99999, pointerEvents: 'none' }}
+      className="pointer-events-none fixed inset-0 z-[99999]"
     >
       {/* ── Trail ── */}
       {trail.map((t, i) => (
@@ -93,19 +93,9 @@ export default function Cursor() {
           key={i}
           animate={{ opacity: visible && moving ? t.alpha : 0 }}
           transition={{ duration: 0.12 }}
-          style={{
-            position: 'absolute',
-            left: 0, top: 0,
-            x: t.x,
-            y: t.y,
-            width:  t.size,
-            height: t.size,
-            borderRadius: '50%',
-            backgroundColor: '#8b5cf6',
-            translateX: '-50%',
-            translateY: '-50%',
-            display: 'block',
-          }}
+          className="absolute top-0 left-0 block rounded-full bg-[#8b5cf6]"
+          // Motion values (spring-driven position) have to stay in style
+          style={{ x: t.x, y: t.y, width: t.size, height: t.size, translateX: '-50%', translateY: '-50%' }}
         />
       ))}
 
@@ -122,38 +112,16 @@ export default function Cursor() {
           opacity: visible ? 1 : 0,
         }}
         transition={{ duration: 0.18, ease: 'easeOut' }}
-        style={{
-          position: 'absolute',
-          left: 0, top: 0,
-          x: ringX,
-          y: ringY,
-          borderRadius: '50%',
-          borderStyle: 'solid',
-          borderWidth: '1.5px',
-          translateX: '-50%',
-          translateY: '-50%',
-          display: 'block',
-        }}
+        className="absolute top-0 left-0 block rounded-full border-[1.5px] border-solid"
+        style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
       />
 
       {/* ── Dot ── */}
       <motion.span
         animate={{ opacity: visible ? (hovering ? 0 : 1) : 0 }}
         transition={{ duration: 0.14 }}
-        style={{
-          position: 'absolute',
-          left: 0, top: 0,
-          x: mouseX,
-          y: mouseY,
-          width:  7,
-          height: 7,
-          borderRadius: '50%',
-          backgroundColor: '#8b5cf6',
-          boxShadow: '0 0 9px rgba(139,92,246,0.95)',
-          translateX: '-50%',
-          translateY: '-50%',
-          display: 'block',
-        }}
+        className="absolute top-0 left-0 block size-[7px] rounded-full bg-[#8b5cf6] shadow-[0_0_9px_rgba(139,92,246,0.95)]"
+        style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%' }}
       />
     </div>
   );

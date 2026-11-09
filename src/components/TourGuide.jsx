@@ -11,7 +11,7 @@ const SugarBot = ({ blinking, talking, sleeping }) => (
     viewBox="0 0 64 80"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ display: 'block', filter: 'drop-shadow(0 4px 16px rgba(139,92,246,0.4))' }}
+    className="block [filter:drop-shadow(0_4px_16px_rgba(139,92,246,0.4))]"
   >
     {/* Antenna */}
     <line x1="32" y1="6" x2="32" y2="14" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" />
@@ -40,14 +40,14 @@ const SugarBot = ({ blinking, talking, sleeping }) => (
     ) : (
       <>
         <ellipse cx="22" cy="31" rx="6" ry={blinking ? 1 : 6} fill="#111118" />
-        <circle cx="22" cy="31" r="3.5" fill="white" style={{ opacity: blinking ? 0 : 1 }} />
-        <circle cx="23.5" cy="29.5" r="1.5" fill="#18181f" style={{ opacity: blinking ? 0 : 1 }} />
-        <circle cx="24.5" cy="28.5" r="0.8" fill="white" opacity="0.8" style={{ opacity: blinking ? 0 : 0.8 }} />
+        <circle cx="22" cy="31" r="3.5" fill="white" className={blinking ? 'opacity-0' : ''} />
+        <circle cx="23.5" cy="29.5" r="1.5" fill="#18181f" className={blinking ? 'opacity-0' : ''} />
+        <circle cx="24.5" cy="28.5" r="0.8" fill="white" className={blinking ? 'opacity-0' : 'opacity-80'} />
 
         <ellipse cx="42" cy="31" rx="6" ry={blinking ? 1 : 6} fill="#111118" />
-        <circle cx="42" cy="31" r="3.5" fill="white" style={{ opacity: blinking ? 0 : 1 }} />
-        <circle cx="43.5" cy="29.5" r="1.5" fill="#18181f" style={{ opacity: blinking ? 0 : 1 }} />
-        <circle cx="44.5" cy="28.5" r="0.8" fill="white" opacity="0.8" style={{ opacity: blinking ? 0 : 0.8 }} />
+        <circle cx="42" cy="31" r="3.5" fill="white" className={blinking ? 'opacity-0' : ''} />
+        <circle cx="43.5" cy="29.5" r="1.5" fill="#18181f" className={blinking ? 'opacity-0' : ''} />
+        <circle cx="44.5" cy="28.5" r="0.8" fill="white" className={blinking ? 'opacity-0' : 'opacity-80'} />
       </>
     )}
 
@@ -80,6 +80,12 @@ const SugarBot = ({ blinking, talking, sleeping }) => (
     <rect x="37" y="70" width="10" height="6" rx="3" fill="#18181f" stroke="#8b5cf6" strokeWidth="1.2" />
   </svg>
 );
+
+const primaryBtn =
+  'flex-1 cursor-pointer rounded-lg border-none bg-[linear-gradient(135deg,#7c3aed,#8b5cf6)] px-3 py-[0.45rem] text-[0.78rem] font-semibold text-white';
+const ghostBtn =
+  'cursor-pointer rounded-lg border border-[var(--border)] bg-transparent py-[0.45rem] text-[0.78rem] text-[var(--text-3)]';
+const cursorBlink = 'text-[#8b5cf6]';
 
 const TourGuide = () => {
   const { t } = useLanguage();
@@ -265,19 +271,7 @@ const TourGuide = () => {
   const isAngry       = bubbleMode === 'easter';
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: '1.5rem',
-        right: '1.5rem',
-        zIndex: 999,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-        gap: '0.75rem',
-        pointerEvents: 'none',
-      }}
-    >
+    <div className="pointer-events-none fixed right-6 bottom-6 z-[999] flex flex-col items-end gap-3">
       {/* Speech bubble */}
       <AnimatePresence mode="wait">
         {bubbleVisible && (
@@ -287,22 +281,13 @@ const TourGuide = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.97 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              pointerEvents: 'all',
-              backgroundColor: 'rgba(18,18,28,0.28)',
-              backdropFilter: 'blur(16px) saturate(1.4)',
-              WebkitBackdropFilter: 'blur(16px) saturate(1.4)',
-              border: `1px solid ${isAngry ? 'rgba(248,113,113,0.35)' : 'rgba(139,92,246,0.3)'}`,
-              borderRadius: '16px',
-              padding: '1.1rem 1.4rem',
-              maxWidth: '290px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(139,92,246,0.08)',
-              position: 'relative',
-            }}
+            className={`pointer-events-auto relative max-w-[290px] rounded-2xl border bg-[rgba(18,18,28,0.28)] px-[1.4rem] py-[1.1rem] shadow-[0_8px_32px_rgba(0,0,0,0.35),0_0_0_1px_rgba(139,92,246,0.08)] backdrop-blur-[16px] backdrop-saturate-[1.4] ${
+              isAngry ? 'border-[rgba(248,113,113,0.35)]' : 'border-[rgba(139,92,246,0.3)]'
+            }`}
           >
             {/* Tail */}
-            <div style={{ position: 'absolute', bottom: '-8px', right: '28px', width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: `8px solid ${isAngry ? 'rgba(248,113,113,0.35)' : 'rgba(139,92,246,0.3)'}` }} />
-            <div style={{ position: 'absolute', bottom: '-6px', right: '29px', width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '7px solid rgba(18,18,28,0.28)' }} />
+            <div className={`absolute right-7 -bottom-2 h-0 w-0 border-x-8 border-t-8 border-x-transparent ${isAngry ? 'border-t-[rgba(248,113,113,0.35)]' : 'border-t-[rgba(139,92,246,0.3)]'}`} />
+            <div className="absolute right-[29px] bottom-[-6px] h-0 w-0 border-x-[7px] border-t-[7px] border-x-transparent border-t-[rgba(18,18,28,0.28)]" />
 
             {/* ── Easter egg ── */}
             {bubbleMode === 'easter' && (
@@ -310,7 +295,7 @@ const TourGuide = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: [1, 1.04, 1] }}
                 transition={{ duration: 0.4 }}
-                style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.9rem', fontWeight: 700, color: '#f87171', margin: 0, lineHeight: 1.5 }}
+                className="m-0 font-display text-[0.9rem] leading-[1.5] font-bold text-[#f87171]"
               >
                 {easterEggText}
               </motion.p>
@@ -319,8 +304,8 @@ const TourGuide = () => {
             {/* ── Section reaction ── */}
             {bubbleMode === 'reaction' && (
               <>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.72rem', fontWeight: 600, color: '#a78bfa', margin: '0 0 0.3rem 0', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Sugar</p>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-2)', margin: 0, lineHeight: 1.6 }}>
+                <p className="m-0 mb-[0.3rem] font-display text-[0.72rem] font-semibold tracking-[0.08em] text-[#a78bfa] uppercase">Sugar</p>
+                <p className="m-0 text-[0.88rem] leading-[1.6] text-[var(--text-2)]">
                   {reaction}
                 </p>
               </>
@@ -330,47 +315,48 @@ const TourGuide = () => {
             {bubbleMode === 'tour' && (
               <>
                 {tourStarted && !currentStep.isIntro && (
-                  <div style={{ display: 'flex', gap: '4px', marginBottom: '0.6rem' }}>
+                  <div className="mb-[0.6rem] flex gap-1">
                     {TOUR_STEPS.slice(1).map((_, i) => (
-                      <div key={i} style={{
-                        width: '5px', height: '5px', borderRadius: '50%',
-                        backgroundColor: i < step ? '#8b5cf6' : i === step - 1 ? '#a78bfa' : 'rgba(139,92,246,0.2)',
-                        transition: 'background-color 0.3s',
-                      }} />
+                      <div
+                        key={i}
+                        className={`size-[5px] rounded-full [transition:background-color_0.3s] ${
+                          i < step ? 'bg-[#8b5cf6]' : i === step - 1 ? 'bg-[#a78bfa]' : 'bg-[rgba(139,92,246,0.2)]'
+                        }`}
+                      />
                     ))}
                   </div>
                 )}
 
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.82rem', fontWeight: 700, color: '#a78bfa', margin: '0 0 0.3rem 0', letterSpacing: '0.05em', minHeight: '1.2em' }}>
+                <p className="m-0 mb-[0.3rem] min-h-[1.2em] font-display text-[0.82rem] font-bold tracking-[0.05em] text-[#a78bfa]">
                   {typedTitle}
-                  {isTitleTyping && <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.5, repeat: Infinity }} style={{ color: '#8b5cf6' }}>|</motion.span>}
+                  {isTitleTyping && <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.5, repeat: Infinity }} className={cursorBlink}>|</motion.span>}
                 </p>
 
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-2)', margin: '0 0 1rem 0', lineHeight: 1.6, minHeight: '1.4em' }}>
+                <p className="m-0 mb-4 min-h-[1.4em] text-[0.88rem] leading-[1.6] text-[var(--text-2)]">
                   {typedText}
-                  {isTextTyping && <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.5, repeat: Infinity }} style={{ color: '#8b5cf6' }}>|</motion.span>}
+                  {isTextTyping && <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.5, repeat: Infinity }} className={cursorBlink}>|</motion.span>}
                 </p>
 
-                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <div className="flex items-center gap-2">
                   {currentStep.isIntro ? (
                     <>
-                      <button onClick={handleStart} style={{ flex: 1, padding: '0.45rem 0.75rem', borderRadius: '8px', background: 'linear-gradient(135deg, #7c3aed, #8b5cf6)', border: 'none', color: '#fff', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                      <button onClick={handleStart} className={primaryBtn}>
                         {t.tour.takeTour}
                       </button>
-                      <button onClick={handleDismiss} style={{ padding: '0.45rem 0.75rem', borderRadius: '8px', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-3)', fontSize: '0.78rem', cursor: 'pointer', fontFamily: 'inherit' }}>
+                      <button onClick={handleDismiss} className={`${ghostBtn} px-3`}>
                         {t.tour.skip}
                       </button>
                     </>
                   ) : currentStep.isLast ? (
-                    <button onClick={handleDismiss} style={{ flex: 1, padding: '0.45rem 0.75rem', borderRadius: '8px', background: 'linear-gradient(135deg, #7c3aed, #8b5cf6)', border: 'none', color: '#fff', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                    <button onClick={handleDismiss} className={primaryBtn}>
                       {t.tour.close}
                     </button>
                   ) : (
                     <>
-                      <button onClick={handleNext} style={{ flex: 1, padding: '0.45rem 0.75rem', borderRadius: '8px', background: 'linear-gradient(135deg, #7c3aed, #8b5cf6)', border: 'none', color: '#fff', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                      <button onClick={handleNext} className={primaryBtn}>
                         {t.tour.next}
                       </button>
-                      <button onClick={handleDismiss} style={{ padding: '0.45rem 0.6rem', borderRadius: '8px', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-3)', fontSize: '0.78rem', cursor: 'pointer', fontFamily: 'inherit' }}>
+                      <button onClick={handleDismiss} className={`${ghostBtn} px-[0.6rem]`}>
                         ✕
                       </button>
                     </>
@@ -389,7 +375,7 @@ const TourGuide = () => {
           ? { duration: 4, repeat: Infinity, ease: 'easeInOut' }
           : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
         }
-        style={{ pointerEvents: 'all', cursor: 'pointer' }}
+        className="pointer-events-auto cursor-pointer"
         onClick={handleBotClick}
         title={sleeping ? 'Click to wake Sugar up' : ''}
       >

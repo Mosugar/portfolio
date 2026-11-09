@@ -192,17 +192,10 @@ const Skills = () => {
 
   return (
     <section id="skills" className={styles.skillsSection}>
-      <div style={{ textAlign: 'center', marginBottom: '1rem', padding: '0 2rem' }}>
-        <p className="section-label" style={{ marginBottom: '1rem' }}>{t.skills.label}</p>
-        <h2 style={{
-          fontFamily: "'Space Grotesk', sans-serif",
-          fontSize: 'clamp(2rem, 4vw, 3rem)',
-          fontWeight: 700,
-          letterSpacing: '-0.02em',
-          color: 'var(--text)',
-          margin: 0,
-        }}>
-          {t.skills.h2a}<span style={{ color: 'var(--accent-light)' }}>{t.skills.h2b}</span>
+      <div className="mb-4 px-8 text-center">
+        <p className="section-label mb-4">{t.skills.label}</p>
+        <h2 className="m-0 font-display text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.02em] text-[var(--text)]">
+          {t.skills.h2a}<span className="text-[var(--accent-light)]">{t.skills.h2b}</span>
         </h2>
       </div>
 
