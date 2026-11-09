@@ -1,13 +1,13 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/useLanguage';
 
 // matter-js physics — desktop only, so only fetched when it's actually shown
 const FolderFloat = lazy(() => import('./FolderFloat'));
 
-const MoSugarLogo = ({ className, style }) => (
-  <svg className={className} style={{ height: '24px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
+const MoSugarLogo = ({ className = '' }) => (
+  <svg className={`block h-6 w-auto ${className}`} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
       <path d="M26.16,1.81v18.28h-3.41v-10.06l-4.66,10.06h-1.79l-4.65-10.11v10.12h-3.41V1.81h3.07l5.9,12.54L23.09,1.81h3.07Z"/>
       <path d="M32.05,19.58c-1-.57-1.77-1.38-2.33-2.42-.56-1.04-.83-2.24-.83-3.59s.28-2.53.85-3.58c.56-1.05,1.34-1.86,2.33-2.44.99-.58,2.12-.87,3.38-.87s2.4.29,3.39.86,1.78,1.38,2.34,2.43.85,2.25.85,3.6-.28,2.52-.85,3.56-1.34,1.85-2.34,2.43-2.13.87-3.39.87-2.4-.29-3.39-.86h-.01ZM37.64,16.31c.55-.68.82-1.59.82-2.73s-.27-2.06-.82-2.74-1.28-1.03-2.2-1.03-1.63.34-2.17,1.03-.82,1.6-.82,2.74.27,2.05.81,2.73c.54.68,1.26,1.01,2.18,1.01s1.65-.34,2.2-1.01Z"/>
@@ -48,77 +48,23 @@ const Hero = () => {
   return (
     <section
       id="home"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'visible',
-        backgroundColor: 'var(--bg)',
-        padding: '0 clamp(1.5rem, 6vw, 6rem)',
-      }}
+      className="relative flex min-h-screen flex-col justify-center overflow-visible bg-[var(--bg)] px-[clamp(1.5rem,6vw,6rem)]"
     >
       {/* Violet ambient glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '30%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '70vw',
-          height: '50vh',
-          background: 'radial-gradient(ellipse at center, rgba(139,92,246,0.12) 0%, transparent 70%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      />
+      <div className="pointer-events-none absolute top-[30%] left-1/2 z-0 h-[50vh] w-[70vw] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.12)_0%,transparent_70%)]" />
 
       {/* Top bar: logo left + status right */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '1.5rem clamp(1.5rem, 6vw, 6rem)',
-          zIndex: 50,
-        }}
-      >
-        <MoSugarLogo
-          className="h-6"
-          style={{ color: 'var(--text)', opacity: 0.9 }}
-        />
+      <div className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-[clamp(1.5rem,6vw,6rem)] py-6">
+        <MoSugarLogo className="text-[var(--text)] opacity-90" />
         {!isMobile && (
           <motion.div
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.4rem 0.9rem',
-              borderRadius: '999px',
-              border: '1px solid rgba(34,197,94,0.3)',
-              backgroundColor: 'rgba(34,197,94,0.07)',
-            }}
+            className="flex items-center gap-2 rounded-full border border-[rgba(34,197,94,0.3)] bg-[rgba(34,197,94,0.07)] px-[0.9rem] py-[0.4rem]"
           >
-            <span
-              style={{
-                width: '7px',
-                height: '7px',
-                borderRadius: '50%',
-                backgroundColor: '#22c55e',
-                boxShadow: '0 0 8px #22c55e',
-                animation: 'pulse 2s ease-in-out infinite',
-                display: 'inline-block',
-              }}
-            />
-            <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#86efac', letterSpacing: '0.03em' }}>
+            <span className="inline-block size-[7px] animate-status-pulse rounded-full bg-[#22c55e] shadow-[0_0_8px_#22c55e]" />
+            <span className="text-[0.72rem] font-medium tracking-[0.03em] text-[#86efac]">
               {t.hero.available}
             </span>
           </motion.div>
@@ -130,107 +76,56 @@ const Hero = () => {
         variants={stagger}
         initial="hidden"
         animate="show"
-        style={{ position: 'relative', zIndex: 1, maxWidth: '900px', paddingTop: '4rem' }}
+        className="relative z-[1] max-w-[900px] pt-16"
       >
         {/* Badge — mobile only, sits in content flow */}
         {isMobile && (
           <motion.div
             variants={item}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.35rem 0.85rem',
-              borderRadius: '999px',
-              border: '1px solid rgba(34,197,94,0.3)',
-              backgroundColor: 'rgba(34,197,94,0.07)',
-              marginBottom: '1.25rem',
-            }}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(34,197,94,0.3)] bg-[rgba(34,197,94,0.07)] px-[0.85rem] py-[0.35rem]"
           >
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 6px #22c55e', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
-            <span style={{ fontSize: '0.7rem', fontWeight: 500, color: '#86efac', letterSpacing: '0.03em' }}>{t.hero.available}</span>
+            <span className="inline-block size-[6px] animate-status-pulse rounded-full bg-[#22c55e] shadow-[0_0_6px_#22c55e]" />
+            <span className="text-[0.7rem] font-medium tracking-[0.03em] text-[#86efac]">{t.hero.available}</span>
           </motion.div>
         )}
 
         {/* Label */}
-        <motion.p variants={item} className="section-label" style={{ marginBottom: '1.5rem' }}>
+        <motion.p variants={item} className="section-label mb-6">
           {t.hero.label}
         </motion.p>
 
         {/* Name */}
         <motion.h1
           variants={item}
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: 'clamp(3.5rem, 10vw, 9rem)',
-            fontWeight: 700,
-            lineHeight: 0.95,
-            letterSpacing: '-0.03em',
-            color: 'var(--text)',
-            margin: '0 0 2rem 0',
-          }}
+          className="m-0 mb-8 font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.95] font-bold tracking-[-0.03em] text-[var(--text)]"
         >
-          <span style={{ color: 'var(--accent-light)' }}>Mohamed</span><br />
-          <span style={{ color: 'var(--accent-light)' }}>Sekkar.</span>
+          <span className="text-[var(--accent-light)]">Mohamed</span><br />
+          <span className="text-[var(--accent-light)]">Sekkar.</span>
         </motion.h1>
 
         {/* Tagline */}
         <motion.p
           variants={item}
-          style={{
-            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-            color: 'var(--text-2)',
-            maxWidth: '520px',
-            lineHeight: 1.65,
-            marginBottom: '2.5rem',
-          }}
+          className="mb-10 max-w-[520px] text-[clamp(1rem,2vw,1.2rem)] leading-[1.65] text-[var(--text-2)]"
         >
           {t.hero.tagline}
         </motion.p>
 
         {/* CTAs */}
-        <motion.div variants={item} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <motion.div variants={item} className="flex flex-wrap gap-4">
           <a
             href="#works"
             onClick={e => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }); }}
-            className="btn-electric"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.75rem 1.75rem',
-              borderRadius: '10px',
-              fontWeight: 600,
-              fontSize: '0.9rem',
-              color: 'var(--text)',
-              cursor: 'pointer',
-              textDecoration: 'none',
-              transition: 'opacity 0.2s',
-            }}
+            className="btn-electric inline-flex cursor-pointer items-center gap-2 rounded-[10px] px-7 py-3 text-[0.9rem] font-semibold text-[var(--text)] no-underline [transition:opacity_0.2s]"
           >
             {t.hero.cta1}
-            <ArrowRight size={16} />
+            <ArrowRight size={16} aria-hidden="true" />
           </a>
 
           <a
             href="#contact"
             onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.75rem 1.75rem',
-              borderRadius: '10px',
-              fontWeight: 600,
-              fontSize: '0.9rem',
-              color: 'var(--text-2)',
-              textDecoration: 'none',
-              border: '1px solid var(--border)',
-              transition: 'all 0.2s',
-              cursor: 'pointer',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-accent)'; e.currentTarget.style.color = 'var(--text)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-2)'; }}
+            className="inline-flex cursor-pointer items-center gap-2 rounded-[10px] border border-[var(--border)] px-7 py-3 text-[0.9rem] font-semibold text-[var(--text-2)] no-underline [transition:all_0.2s] hover:border-[var(--border-accent)] hover:text-[var(--text)]"
           >
             {t.hero.cta2}
           </a>
@@ -243,33 +138,28 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            position: 'absolute',
-            right: 'clamp(3rem, 10vw, 10rem)',
-            top: '28%',
-            zIndex: 2,
-          }}
+          className="absolute top-[28%] right-[clamp(3rem,10vw,10rem)] z-[2]"
         >
           <Suspense fallback={null}>
-          <FolderFloat
-            label={t.about.folderLabel}
-            items={t.about.folderItems}
-            trigger="hover"
-            physics={true}
-            folderColor="#1e1e28"
-            frontColor="#2d2a3e"
-            paperColor="#f4f0ff"
-            itemColor="#ede9fe"
-            itemTextColor="#3b1f6e"
-            labelColor="#c4b5fd"
-            width={200}
-            height={148}
-            radius={14}
-            spread={160}
-            lift={30}
-            tilt={8}
-            bounce={0.35}
-          />
+            <FolderFloat
+              label={t.about.folderLabel}
+              items={t.about.folderItems}
+              trigger="hover"
+              physics={true}
+              folderColor="#1e1e28"
+              frontColor="#2d2a3e"
+              paperColor="#f4f0ff"
+              itemColor="#ede9fe"
+              itemTextColor="#3b1f6e"
+              labelColor="#c4b5fd"
+              width={200}
+              height={148}
+              radius={14}
+              spread={160}
+              lift={30}
+              tilt={8}
+              bounce={0.35}
+            />
           </Suspense>
         </motion.div>
       )}
@@ -279,31 +169,13 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.6 }}
-        style={{
-          position: 'absolute',
-          bottom: '2.5rem',
-          left: 'clamp(1.5rem, 6vw, 6rem)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: 'var(--text-3)',
-          fontSize: '0.75rem',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-        }}
+        className="absolute bottom-10 left-[clamp(1.5rem,6vw,6rem)] flex items-center gap-2 text-[0.75rem] tracking-[0.1em] text-[var(--text-3)] uppercase"
       >
         <span>{t.hero.scroll}</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
       </motion.div>
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.7; transform: scale(1.3); }
-        }
-      `}</style>
     </section>
   );
 };

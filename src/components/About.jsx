@@ -17,26 +17,10 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      style={{
-        backgroundColor: 'var(--surface)',
-        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="relative overflow-hidden bg-[var(--surface)] px-[clamp(1.5rem,6vw,6rem)] py-[clamp(5rem,10vw,9rem)]"
     >
       {/* SVG dot-grid background */}
-      <svg
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          opacity: 0.18,
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      >
+      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.18]">
         <defs>
           <pattern id="about-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
             <circle cx="1.5" cy="1.5" r="1.5" fill="rgba(139,92,246,0.6)" />
@@ -48,67 +32,46 @@ const About = () => {
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
         initial="hidden"
         animate={inView ? 'show' : 'hidden'}
-        style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 1 }}
+        className="relative z-[1] mx-auto max-w-[1100px]"
       >
         {/* Label */}
-        <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '1rem' }}>
+        <motion.p variants={fadeUp} className="section-label mb-4">
           {t.about.label}
         </motion.p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'start' }}>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-start gap-16">
           {/* Left: photo + info */}
-          <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <motion.div variants={fadeUp} className="flex flex-col gap-6">
             {/* Photo */}
-            <div style={{ position: 'relative', width: '100%', maxWidth: '340px' }}>
-              <div
-                style={{
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  aspectRatio: '4/5',
-                  border: '1px solid var(--border)',
-                }}
-              >
+            <div className="relative w-full max-w-[340px]">
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-[var(--border)]">
                 <img
                   src="https://res.cloudinary.com/dylpck2et/image/upload/v1752367825/sugar_copy_2_tdpniz.jpg"
                   alt="Mohamed Sekkar"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                  className="h-full w-full object-cover object-top"
                 />
               </div>
               {/* Status dot */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '1rem',
-                  right: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.35rem 0.75rem',
-                  borderRadius: '999px',
-                  backgroundColor: 'rgba(9,9,15,0.85)',
-                  border: '1px solid rgba(34,197,94,0.3)',
-                  backdropFilter: 'blur(8px)',
-                }}
-              >
-                <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e', display: 'inline-block', animation: 'pulse 2s infinite' }} />
-                <span style={{ fontSize: '0.7rem', color: '#86efac', fontWeight: 500 }}>{t.about.available}</span>
+              <div className="absolute right-4 bottom-4 flex items-center gap-[0.4rem] rounded-full border border-[rgba(34,197,94,0.3)] bg-[rgba(9,9,15,0.85)] px-3 py-[0.35rem] backdrop-blur-[8px]">
+                <span className="inline-block size-[7px] animate-[status-pulse_2s_infinite] rounded-full bg-[#22c55e] shadow-[0_0_8px_#22c55e]" />
+                <span className="text-[0.7rem] font-medium text-[#86efac]">{t.about.available}</span>
               </div>
             </div>
 
             {/* Meta info */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-2)', fontSize: '0.9rem' }}>
-                <MapPin size={14} style={{ color: 'var(--accent)' }} />
+            <div className="flex flex-col gap-[0.6rem]">
+              <div className="flex items-center gap-2 text-[0.9rem] text-[var(--text-2)]">
+                <MapPin size={14} className="text-[var(--accent)]" aria-hidden="true" />
                 {t.about.location}
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-2)', fontSize: '0.9rem' }}>
-                <span style={{ fontSize: '14px', color: 'var(--accent)' }}>✦</span>
+              <div className="flex items-center gap-2 text-[0.9rem] text-[var(--text-2)]">
+                <span aria-hidden="true" className="text-[14px] text-[var(--accent)]">✦</span>
                 {t.about.age}
               </div>
             </div>
 
             {/* Social */}
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <div className="flex gap-3">
               {[
                 { href: 'https://github.com/Mosugar', icon: Github, label: 'GitHub' },
                 { href: 'https://www.linkedin.com/in/mohamedsekkar/', icon: Linkedin, label: 'LinkedIn' },
@@ -120,20 +83,7 @@ const About = () => {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   title={label}
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '10px',
-                    border: '1px solid var(--border)',
-                    color: 'var(--text-2)',
-                    transition: 'all 0.2s',
-                    textDecoration: 'none',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-accent)'; e.currentTarget.style.color = 'var(--accent-light)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-2)'; }}
+                  className="flex size-10 items-center justify-center rounded-[10px] border border-[var(--border)] text-[var(--text-2)] no-underline [transition:all_0.2s] hover:border-[var(--border-accent)] hover:text-[var(--accent-light)]"
                 >
                   <Icon size={16} />
                 </a>
@@ -142,30 +92,20 @@ const About = () => {
           </motion.div>
 
           {/* Right: text */}
-          <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                color: 'var(--text)',
-                lineHeight: 1.1,
-                margin: 0,
-              }}
-            >
+          <motion.div variants={fadeUp} className="flex flex-col gap-8">
+            <h2 className="m-0 font-display text-[clamp(2rem,4vw,3rem)] leading-[1.1] font-bold tracking-[-0.02em] text-[var(--text)]">
               {t.about.h2a}<br />
-              <span style={{ color: 'var(--accent-light)' }}>{t.about.h2b}</span>
+              <span className="text-[var(--accent-light)]">{t.about.h2b}</span>
             </h2>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-2)', fontSize: '1rem', lineHeight: 1.75 }}>
-              <p style={{ margin: 0 }} dangerouslySetInnerHTML={{ __html: t.about.p1 }} />
-              <p style={{ margin: 0 }} dangerouslySetInnerHTML={{ __html: t.about.p2 }} />
-              <p style={{ margin: 0 }} dangerouslySetInnerHTML={{ __html: t.about.p3 }} />
+            <div className="flex flex-col gap-4 text-[1rem] leading-[1.75] text-[var(--text-2)]">
+              <p className="m-0" dangerouslySetInnerHTML={{ __html: t.about.p1 }} />
+              <p className="m-0" dangerouslySetInnerHTML={{ __html: t.about.p2 }} />
+              <p className="m-0" dangerouslySetInnerHTML={{ __html: t.about.p3 }} />
             </div>
 
             {/* Stats */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+            <div className="grid grid-cols-[repeat(3,1fr)] gap-4">
               {[
                 { value: '3+', label: t.about.stat1 },
                 { value: '8+', label: t.about.stat2 },
@@ -173,15 +113,10 @@ const About = () => {
               ].map(({ value, label }) => (
                 <div
                   key={label}
-                  style={{
-                    padding: '1rem',
-                    borderRadius: '12px',
-                    border: '1px solid var(--border)',
-                    backgroundColor: 'var(--surface-2)',
-                  }}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--surface-2)] p-4"
                 >
-                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.75rem', fontWeight: 700, color: 'var(--accent-light)', lineHeight: 1 }}>{value}</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-3)', marginTop: '0.3rem' }}>{label}</div>
+                  <div className="font-display text-[1.75rem] leading-none font-bold text-[var(--accent-light)]">{value}</div>
+                  <div className="mt-[0.3rem] text-[0.78rem] text-[var(--text-3)]">{label}</div>
                 </div>
               ))}
             </div>
@@ -189,13 +124,6 @@ const About = () => {
           </motion.div>
         </div>
       </motion.div>
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.4); }
-        }
-      `}</style>
     </section>
   );
 };

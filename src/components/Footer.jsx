@@ -4,8 +4,8 @@ import { Github, Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } 
 import { useForm, ValidationError } from '@formspree/react';
 import { useLanguage } from '../context/useLanguage';
 
-const MoSugarLogo = ({ className, style }) => (
-  <svg className={className} style={{ height: '20px', width: 'auto', display: 'block', ...style }} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
+const MoSugarLogo = ({ className = '' }) => (
+  <svg className={`block h-5 w-auto ${className}`} viewBox="0 0 129.79 27.71" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
       <path d="M26.16,1.81v18.28h-3.41v-10.06l-4.66,10.06h-1.79l-4.65-10.11v10.12h-3.41V1.81h3.07l5.9,12.54L23.09,1.81h3.07Z"/>
       <path d="M32.05,19.58c-1-.57-1.77-1.38-2.33-2.42-.56-1.04-.83-2.24-.83-3.59s.28-2.53.85-3.58c.56-1.05,1.34-1.86,2.33-2.44.99-.58,2.12-.87,3.38-.87s2.4.29,3.39.86,1.78,1.38,2.34,2.43.85,2.25.85,3.6-.28,2.52-.85,3.56-1.34,1.85-2.34,2.43-2.13.87-3.39.87-2.4-.29-3.39-.86h-.01ZM37.64,16.31c.55-.68.82-1.59.82-2.73s-.27-2.06-.82-2.74-1.28-1.03-2.2-1.03-1.63.34-2.17,1.03-.82,1.6-.82,2.74.27,2.05.81,2.73c.54.68,1.26,1.01,2.18,1.01s1.65-.34,2.2-1.01Z"/>
@@ -18,18 +18,16 @@ const MoSugarLogo = ({ className, style }) => (
   </svg>
 );
 
-const inputStyle = {
-  width: '100%',
-  padding: '0.75rem 1rem',
-  borderRadius: '10px',
-  border: '1px solid var(--border)',
-  backgroundColor: 'var(--surface-2)',
-  color: 'var(--text)',
-  fontSize: '0.88rem',
-  outline: 'none',
-  transition: 'border-color 0.2s',
-  fontFamily: 'inherit',
-};
+const inputClass =
+  'w-full rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3 text-[0.88rem] text-[var(--text)] outline-none [transition:border-color_0.2s] focus:border-[var(--border-accent)]';
+
+const BUILT_WITH = [
+  { name: 'React',         className: 'text-[#61dafb] bg-[#61dafb12] border-[#61dafb28]' },
+  { name: 'Vite',          className: 'text-[#a78bfa] bg-[#a78bfa12] border-[#a78bfa28]' },
+  { name: 'Framer Motion', className: 'text-[#ff4d9e] bg-[#ff4d9e12] border-[#ff4d9e28]' },
+  { name: 'Tailwind CSS',  className: 'text-[#38bdf8] bg-[#38bdf812] border-[#38bdf828]' },
+  { name: 'Formspree',     className: 'text-[#f97316] bg-[#f9731612] border-[#f9731628]' },
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -47,41 +45,30 @@ const Footer = () => {
     <footer
       id="contact"
       ref={ref}
-      style={{
-        backgroundColor: 'var(--surface)',
-        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem) clamp(2rem, 4vw, 3rem)',
-      }}
+      className="bg-[var(--surface)] px-[clamp(1.5rem,6vw,6rem)] pt-[clamp(5rem,10vw,9rem)] pb-[clamp(2rem,4vw,3rem)]"
     >
       <motion.div
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
         initial="hidden"
         animate={inView ? 'show' : 'hidden'}
-        style={{ maxWidth: '1100px', margin: '0 auto' }}
+        className="mx-auto max-w-[1100px]"
       >
         {/* Top */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '4rem', marginBottom: '5rem' }}>
+        <div className="mb-20 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-16">
 
           {/* Left — Contact form */}
           <div>
-            <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '1rem' }}>
+            <motion.p variants={fadeUp} className="section-label mb-4">
               {t.footer.label}
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                color: 'var(--text)',
-                lineHeight: 1.1,
-                margin: '0 0 1rem 0',
-              }}
+              className="m-0 mb-4 font-display text-[clamp(2rem,4vw,2.8rem)] leading-[1.1] font-bold tracking-[-0.02em] text-[var(--text)]"
             >
               {t.footer.h2a}<br />
-              <span style={{ color: 'var(--accent-light)' }}>{t.footer.h2b}</span>
+              <span className="text-[var(--accent-light)]">{t.footer.h2b}</span>
             </motion.h2>
-            <motion.p variants={fadeUp} style={{ color: 'var(--text-2)', lineHeight: 1.7, fontSize: '0.9rem', marginBottom: '1.75rem' }}>
+            <motion.p variants={fadeUp} className="mb-7 text-[0.9rem] leading-[1.7] text-[var(--text-2)]">
               {t.footer.tagline}
             </motion.p>
 
@@ -92,19 +79,9 @@ const Footer = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    padding: '1.25rem',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(34,197,94,0.3)',
-                    backgroundColor: 'rgba(34,197,94,0.07)',
-                    color: '#86efac',
-                    fontSize: '0.9rem',
-                  }}
+                  className="flex items-center gap-3 rounded-xl border border-[rgba(34,197,94,0.3)] bg-[rgba(34,197,94,0.07)] p-5 text-[0.9rem] text-[#86efac]"
                 >
-                  <CheckCircle size={18} style={{ flexShrink: 0 }} />
+                  <CheckCircle size={18} className="shrink-0" aria-hidden="true" />
                   {t.footer.form.success}
                 </motion.div>
               ) : (
@@ -112,63 +89,40 @@ const Footer = () => {
                   key="form"
                   variants={fadeUp}
                   onSubmit={handleSubmit}
-                  style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+                  className="flex flex-col gap-3"
                 >
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                  <div className="grid grid-cols-[1fr_1fr] gap-3">
                     <input
                       name="name"
                       type="text"
                       required
                       placeholder={t.footer.form.name}
-                      style={inputStyle}
-                      onFocus={e => e.target.style.borderColor = 'var(--border-accent)'}
-                      onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                      className={inputClass}
                     />
                     <input
                       name="email"
                       type="email"
                       required
                       placeholder={t.footer.form.email}
-                      style={inputStyle}
-                      onFocus={e => e.target.style.borderColor = 'var(--border-accent)'}
-                      onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                      className={inputClass}
                     />
-                    <ValidationError field="email" errors={state.errors} style={{ color: '#f87171', fontSize: '0.78rem', gridColumn: '1/-1' }} />
+                    <ValidationError field="email" errors={state.errors} className="col-span-full text-[0.78rem] text-[#f87171]" />
                   </div>
                   <textarea
                     name="message"
                     required
                     rows={4}
                     placeholder={t.footer.form.message}
-                    style={{ ...inputStyle, resize: 'vertical', minHeight: '110px' }}
-                    onFocus={e => e.target.style.borderColor = 'var(--border-accent)'}
-                    onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                    className={`${inputClass} min-h-[110px] resize-y`}
                   />
-                  <ValidationError field="message" errors={state.errors} style={{ color: '#f87171', fontSize: '0.78rem' }} />
+                  <ValidationError field="message" errors={state.errors} className="text-[0.78rem] text-[#f87171]" />
 
                   <button
                     type="submit"
                     disabled={state.submitting}
-                    className="btn-electric"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.5rem',
-                      padding: '0.8rem 1.75rem',
-                      borderRadius: '10px',
-                      fontWeight: 600,
-                      fontSize: '0.9rem',
-                      color: 'var(--text)',
-                      background: 'none',
-                      border: 'none',
-                      cursor: state.submitting ? 'not-allowed' : 'pointer',
-                      opacity: state.submitting ? 0.7 : 1,
-                      width: 'fit-content',
-                      fontFamily: 'inherit',
-                    }}
+                    className="btn-electric inline-flex w-fit cursor-pointer items-center justify-center gap-2 rounded-[10px] border-none bg-none px-7 py-[0.8rem] text-[0.9rem] font-semibold text-[var(--text)] disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    <Send size={14} />
+                    <Send size={14} aria-hidden="true" />
                     {state.submitting ? t.footer.form.sending : t.footer.form.send}
                   </button>
                 </motion.form>
@@ -178,10 +132,10 @@ const Footer = () => {
 
           {/* Right — Links */}
           <div>
-            <motion.p variants={fadeUp} className="section-label" style={{ marginBottom: '1.5rem' }}>
+            <motion.p variants={fadeUp} className="section-label mb-6">
               {t.footer.findMe}
             </motion.p>
-            <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <motion.div variants={fadeUp} className="flex flex-col gap-3">
               {[
                 { href: 'https://github.com/Mosugar', label: 'GitHub', sub: 'github.com/Mosugar', icon: Github },
                 { href: 'https://www.linkedin.com/in/mohamedsekkar/', label: 'LinkedIn', sub: 'in/mohamedsekkar', icon: Linkedin },
@@ -192,29 +146,16 @@ const Footer = () => {
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    padding: '1rem 1.25rem',
-                    borderRadius: '12px',
-                    border: '1px solid var(--border)',
-                    backgroundColor: 'var(--surface-2)',
-                    textDecoration: 'none',
-                    transition: 'all 0.2s',
-                    cursor: 'pointer',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-accent)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                  className="flex cursor-pointer items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-5 py-4 no-underline [transition:all_0.2s] hover:-translate-y-[2px] hover:border-[var(--border-accent)]"
                 >
-                  <div style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', backgroundColor: 'rgba(139,92,246,0.1)', border: '1px solid var(--border-accent)' }}>
-                    <Icon size={16} style={{ color: 'var(--accent-light)' }} />
+                  <div className="flex size-9 items-center justify-center rounded-lg border border-[var(--border-accent)] bg-[rgba(139,92,246,0.1)]">
+                    <Icon size={16} className="text-[var(--accent-light)]" aria-hidden="true" />
                   </div>
                   <div>
-                    <div style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.9rem' }}>{label}</div>
-                    <div style={{ color: 'var(--text-3)', fontSize: '0.78rem' }}>{sub}</div>
+                    <div className="text-[0.9rem] font-medium text-[var(--text)]">{label}</div>
+                    <div className="text-[0.78rem] text-[var(--text-3)]">{sub}</div>
                   </div>
-                  <ArrowUpRight size={14} style={{ marginLeft: 'auto', color: 'var(--text-3)' }} />
+                  <ArrowUpRight size={14} className="ml-auto text-[var(--text-3)]" aria-hidden="true" />
                 </a>
               ))}
             </motion.div>
@@ -224,52 +165,27 @@ const Footer = () => {
         {/* Bottom bar */}
         <motion.div
           variants={fadeUp}
-          style={{
-            borderTop: '1px solid var(--border)',
-            paddingTop: '2rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.25rem',
-          }}
+          className="flex flex-col gap-5 border-t border-[var(--border)] pt-8"
         >
           {/* Top row: logo + copyright */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-              <MoSugarLogo
-                style={{ color: 'var(--text-3)', transition: 'color 0.2s', cursor: 'pointer' }}
-                onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
-                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-3)'}
-              />
+              <MoSugarLogo className="cursor-pointer text-[var(--text-3)] [transition:color_0.2s] hover:text-[var(--text)]" />
             </a>
-            <p style={{ color: 'var(--text-3)', fontSize: '0.8rem', margin: 0 }}>
+            <p className="m-0 text-[0.8rem] text-[var(--text-3)]">
               © {new Date().getFullYear()} Mohamed Sekkar · {t.footer.copyright}
             </p>
           </div>
 
           {/* Built with */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <span style={{ color: 'var(--text-3)', fontSize: '0.72rem' }}>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[0.72rem] text-[var(--text-3)]">
               {t.footer.builtWith}
             </span>
-            {[
-              { name: 'React',         color: '#61dafb' },
-              { name: 'Vite',          color: '#a78bfa' },
-              { name: 'Framer Motion', color: '#ff4d9e' },
-              { name: 'Tailwind CSS',  color: '#38bdf8' },
-              { name: 'Formspree',     color: '#f97316' },
-            ].map(({ name, color }) => (
+            {BUILT_WITH.map(({ name, className }) => (
               <span
                 key={name}
-                style={{
-                  padding: '0.18rem 0.55rem',
-                  borderRadius: '999px',
-                  fontSize: '0.68rem',
-                  fontWeight: 500,
-                  color,
-                  backgroundColor: `${color}12`,
-                  border: `1px solid ${color}28`,
-                  letterSpacing: '0.01em',
-                }}
+                className={`rounded-full border px-[0.55rem] py-[0.18rem] text-[0.68rem] font-medium tracking-[0.01em] ${className}`}
               >
                 {name}
               </span>
