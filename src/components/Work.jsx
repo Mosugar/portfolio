@@ -56,7 +56,7 @@ const projects = [
     alt: 'Wardd Music platform',
     title: 'Wardd Music',
     subtitle: 'Music · Full-Stack',
-    url: 'https://warddstudio.ma/',
+    url: 'https://www.warddmusic.com/',
   },
   {
     id: 7,
@@ -70,7 +70,7 @@ const projects = [
   {
     id: 8,
     name: 'Pristine Dental',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/pristine_dental_screenshot.png',
+    src: '/images/pristine-dental.webp',
     alt: 'Pristine Dental Center website',
     title: 'Pristine Dental',
     subtitle: 'Medical · React',
