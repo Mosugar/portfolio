@@ -21,21 +21,21 @@ const Section = ({ title, children }) => (
   </section>
 );
 
-const Screenshot = ({ shot, lang, missing, onMissing }) => {
+const Screenshot = ({ shot, name, aspect, lang, missing, onMissing }) => {
   return (
     <figure className="m-0">
       {missing ? (
-        <div className="flex aspect-[9/19] w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[var(--border-accent)] bg-[var(--surface-2)] text-[var(--text-3)]">
+        <div className={`flex ${aspect} w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[var(--border-accent)] bg-[var(--surface-2)] text-[var(--text-3)]`}>
           <ImageOff size={20} aria-hidden="true" />
           <span className="px-2 text-center text-[0.65rem]">{shot.src.split('/').pop()}</span>
         </div>
       ) : (
         <img
           src={shot.src}
-          alt={`Recur — ${shot.label[lang]}`}
+          alt={`${name} — ${shot.label[lang]}`}
           loading="lazy"
           onError={onMissing}
-          className="block aspect-[9/19] w-full rounded-xl object-cover"
+          className={`block ${aspect} w-full rounded-xl object-cover`}
         />
       )}
       <figcaption className="mt-1.5 text-center text-xs text-[var(--text-2)]">{shot.label[lang]}</figcaption>
@@ -44,17 +44,21 @@ const Screenshot = ({ shot, lang, missing, onMissing }) => {
 };
 
 // Until real screenshots exist: dashed placeholders in dev, nothing at all in production
-const ScreenshotGallery = ({ shots, title, lang }) => {
+// Landscape (desktop) shots get 2 columns so they stay readable; portrait phone shots fit 4 across
+const ScreenshotGallery = ({ shots, name, aspect = 'aspect-[9/19]', title, lang }) => {
+  const landscape = aspect !== 'aspect-[9/19]';
   const [missing, setMissing] = useState(() => new Set());
   if (!SHOW_TODOS && missing.size === shots.length) return null;
   return (
     <Section title={title}>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className={`grid gap-3 ${landscape ? 'sm:grid-cols-2' : 'grid-cols-2 sm:grid-cols-4'}`}>
         {shots.map((shot) => (
           (SHOW_TODOS || !missing.has(shot.src)) && (
             <Screenshot
               key={shot.src}
               shot={shot}
+              name={name}
+              aspect={aspect}
               lang={lang}
               missing={missing.has(shot.src)}
               onMissing={() => setMissing((prev) => new Set(prev).add(shot.src))}
@@ -127,20 +131,28 @@ const CaseStudy = ({ study, onClose }) => {
               <Todo item={study.roleTodo} />
             </Section>
 
-            <Section title={cs.stack}>
-              <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
-                {study.stack.map((s) => (
-                  <li key={s} className="rounded-full border border-[var(--border-accent)] bg-[rgba(139,92,246,0.08)] px-3 py-1 text-xs font-medium text-[var(--accent-light)]">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-              {study.features && (
-                <ul className="m-0 mt-3 list-disc space-y-1 pl-5">
+            {(study.stack.length > 0 || (SHOW_TODOS && study.stackTodo)) && (
+              <Section title={cs.stack}>
+                {study.stack.length > 0 && (
+                  <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+                    {study.stack.map((s) => (
+                      <li key={s} className="rounded-full border border-[var(--border-accent)] bg-[rgba(139,92,246,0.08)] px-3 py-1 text-xs font-medium text-[var(--accent-light)]">
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <Todo item={study.stackTodo} />
+              </Section>
+            )}
+
+            {study.features && (
+              <Section title={cs.features}>
+                <ul className="m-0 list-disc space-y-1 pl-5">
                   {study.features[lang].map((f) => <li key={f}>{f}</li>)}
                 </ul>
-              )}
-            </Section>
+              </Section>
+            )}
 
             {hasContent(study, 'challenge') && (
               <Section title={cs.challenge}>
@@ -157,7 +169,14 @@ const CaseStudy = ({ study, onClose }) => {
             )}
 
             {study.screenshots && (
-              <ScreenshotGallery key={study.id} shots={study.screenshots} title={cs.screenshots} lang={lang} />
+              <ScreenshotGallery
+                key={study.id}
+                shots={study.screenshots}
+                name={study.name}
+                aspect={study.screenshotAspect}
+                title={cs.screenshots}
+                lang={lang}
+              />
             )}
           </div>
 
@@ -167,7 +186,7 @@ const CaseStudy = ({ study, onClose }) => {
             rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 rounded-full border border-[var(--border-accent)] px-5 py-2.5 text-sm font-medium text-[var(--accent-light)] no-underline transition-colors hover:border-[rgba(139,92,246,0.55)] hover:bg-[rgba(139,92,246,0.12)] hover:text-[#c4b5fd]"
           >
-            {cs.visit}
+            {cs[study.linkLabel] ?? cs.visit}
             <ArrowUpRight size={15} aria-hidden="true" />
           </a>
         </article>

@@ -31,7 +31,7 @@ const projects = [
     alt: 'ElJamai Couture fashion e-commerce',
     title: 'ElJamai Couture',
     subtitle: 'E-Commerce · Laravel',
-    url: 'https://eljamaicouture.ae',
+    url: 'https://www.behance.net/gallery/228344479/Eljamaicoutureae',
   },
   {
     id: 4,
@@ -90,8 +90,7 @@ const projects = [
   {
     id: 10,
     name: 'Recur',
-    // TODO: swap for '/images/recur/home.webp' once the screenshots are added
-    src: '/images/recur-icon.svg',
+    src: '/images/recur-cover.webp',
     alt: 'Recur subscription tracker app',
     title: 'Recur',
     subtitle: 'Mobile · Expo · React Native',
