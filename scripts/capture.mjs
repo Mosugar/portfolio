@@ -43,6 +43,7 @@ const PROJECTS = {
   'wardd-music': {
     url: 'https://warddstudio.ma',
     wait: 3000,
+    reducedMotion: 'reduce',
     shots: [
       { name: 'sorties', vp: 'desktop', section: '#tracks' },
       { name: 'sorties-mobile', vp: 'mobile', section: '#tracks' },
@@ -81,8 +82,9 @@ const PROJECTS = {
     url: 'https://gourmet-grove.vercel.app',
     wait: 9000,
     shots: [
-      { name: 'accueil', vp: 'desktop' },
-      { name: 'accueil-mobile', vp: 'mobile' },
+      // The first screen is a full-bleed video; the restaurant's name sits right below it
+      { name: 'accueil', vp: 'desktop', section: 'h1' },
+      { name: 'accueil-mobile', vp: 'mobile', section: 'h1' },
       { name: 'menu', vp: 'desktop', path: '/menu' },
       { name: 'galerie', vp: 'desktop', section: '#gallery' },
     ],
