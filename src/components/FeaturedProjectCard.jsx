@@ -27,7 +27,8 @@ const FeaturedProjectCard = ({ project, wide = false }) => {
             cover.kind === 'mobile' ? 'mx-auto w-[44%] max-w-[210px] pt-6' : 'px-[7%] pt-[6%]'
           }`}
         >
-          <ProjectShot shot={cover} alt="" url={project.url} />
+          {/* A Behance link isn't the site's address, so the browser bar stays empty */}
+          <ProjectShot shot={cover} alt="" url={project.linkLabel ? null : project.url} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--surface)] to-transparent" />
       </div>
