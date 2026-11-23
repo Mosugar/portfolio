@@ -230,14 +230,6 @@ const translations = {
         "Continue et j'appelle Mohamed. Il est pas loin... 👀",
         "CINQ CLICS. T'as cliqué CINQ FOIS. Pourquoi ?! 😭",
       ],
-      sectionReactions: {
-        about:      "C'est lui, Mohamed. Full-stack et ouvert à l'alternance. 👀",
-        skills:     "Regarde toutes ces technos... Il sait ce qu'il fait. 🛠️",
-        experience: "Une vraie expérience pro, pas juste des projets d'école. 📋",
-        resume:     "Le CV est là si t'as besoin de convaincre quelqu'un. 📄",
-        works:      "Des vrais projets, avec du code dispo sur GitHub. 🚀",
-        contact:    "Toujours là ? Bien. C'est l'heure de le contacter. 📬",
-      },
     },
   },
 
@@ -472,14 +464,6 @@ const translations = {
         "Keep it up and I'm calling Mohamed. He's nearby... 👀",
         "FIVE CLICKS. You clicked FIVE TIMES. Why?! 😭",
       ],
-      sectionReactions: {
-        about:      "That's him. Full-stack, Paris-based, open to alternance. 👀",
-        skills:     "Look at all those techs... he really knows his stuff. 🛠️",
-        experience: "Real work experience, not just school projects. 📋",
-        resume:     "Full CV right here, downloadable too. 📄",
-        works:      "Real projects, code on GitHub. Go check it out. 🚀",
-        contact:    "Still here? Good. This is where you reach out. 📬",
-      },
     },
   },
 };
