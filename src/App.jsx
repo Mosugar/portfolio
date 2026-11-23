@@ -46,7 +46,8 @@ function App() {
       {showIntro && <IntroAnimation onClose={() => setIntroOpen(false)} />}
       <div className={`app-container ${visible ? 'visible' : ''}`} inert={introOpen}>
         <SkipLink />
-        <SEO />
+        {/* Project pages set their own title, description and preview image */}
+        {!slug && <SEO />}
         <GlobalBackground>
           <Navigation />
           {!slug && (

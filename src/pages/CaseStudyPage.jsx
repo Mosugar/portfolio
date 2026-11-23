@@ -5,6 +5,9 @@ import { useLanguage } from '../context/useLanguage';
 import Link from '../router/Link';
 import { projectPath } from '../router/navigation';
 import ProjectShot from '../components/ProjectFrame';
+import SEO from '../components/SEO';
+
+const SITE_URL = 'https://www.mohamedsekkar.com';
 
 // Drafts (texts not yet reviewed) are shown in full in dev only. In production a draft
 // keeps its summary, stack, screenshots and links, and the unreviewed sections stay hidden.
@@ -43,6 +46,7 @@ const ButtonLink = ({ href, children, primary = false }) => (
 
 const NotFound = ({ t }) => (
   <div className="mx-auto max-w-[700px] py-[clamp(6rem,14vw,10rem)] text-center">
+    <SEO title={`${t.project.notFound} | Mohamed Sekkar`} description={t.project.notFoundText} index={false} />
     <h1 className="m-0 font-display text-4xl font-bold text-[var(--text)]">{t.project.notFound}</h1>
     <p className="mt-4 text-[var(--text-2)]">{t.project.notFoundText}</p>
     <Link to="/#works" className="mt-8 inline-flex items-center gap-2 text-sm text-[var(--accent-light)] no-underline hover:text-[#c4b5fd]">
@@ -94,6 +98,13 @@ const CaseStudyPage = ({ slug }) => {
 
   return (
     <article className="relative px-[clamp(1.5rem,6vw,6rem)] pt-[clamp(2.5rem,6vw,4rem)] pb-[clamp(5rem,10vw,8rem)]">
+      <SEO
+        title={`${project.name} — ${project.type[lang]} | Mohamed Sekkar`}
+        description={project.summary[lang]}
+        image={SITE_URL + project.cover.src}
+        url={SITE_URL + projectPath(project.slug)}
+        type="article"
+      />
       <div className="mx-auto max-w-[1100px]">
         <Link to="/#works" className="inline-flex items-center gap-2 text-sm text-[var(--text-2)] no-underline transition-colors hover:text-[var(--text)]">
           <ArrowLeft size={15} aria-hidden="true" /> {tp.back}
