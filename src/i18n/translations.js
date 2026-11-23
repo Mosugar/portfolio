@@ -162,6 +162,7 @@ const translations = {
       count: '{n} projets réalisés',
       viewCase: "Voir l'étude de cas",
       others: 'Autres projets',
+      inProgress: 'En cours',
       behance: 'Travail design sur Behance',
     },
 
@@ -417,6 +418,7 @@ const translations = {
       count: '{n} projects built',
       viewCase: 'View the case study',
       others: 'Other projects',
+      inProgress: 'In progress',
       behance: 'Design work on Behance',
     },
 
