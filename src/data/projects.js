@@ -355,7 +355,7 @@ export const projects = [
         },
       },
     ],
-    result: { fr: 'En ligne.', en: 'Live.' },
+    result: { fr: 'En ligne depuis novembre 2026, en développement actif.', en: 'Live since November 2026, in active development.' },
     cover: shot('nexly', 'accueil', 'desktop', 'Accueil', 'Home page'),
     gallery: [
       shot('nexly', 'accueil', 'desktop', 'Accueil', 'Home page'),
