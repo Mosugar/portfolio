@@ -607,4 +607,63 @@ export const projects = [
       shot('gourmet-grove', 'galerie', 'desktop', 'Galerie de photos', 'Photo gallery'),
     ],
   },
+  {
+    slug: 'stretched-web',
+    name: 'Stretched Web',
+    featured: false,
+    draft: true,
+    year: '2023',
+    url: 'https://stretched-web.vercel.app/',
+    repos: [],
+    type: { fr: "Site d'agence · Next.js · GSAP", en: 'Agency website · Next.js · GSAP' },
+    summary: {
+      fr: "Site d'une agence web créative : accueil animé, portfolio de réalisations avec une page par projet, services et studio.",
+      en: 'Website for a creative web agency: animated home page, project portfolio with one page per project, services and studio.',
+    },
+    client: { fr: 'Stretched Web, agence web · poste de Développeur Frontend', en: 'Stretched Web, web agency · Frontend Developer role' },
+    role: { fr: 'Développeur Frontend (juin – août 2023).', en: 'Frontend Developer (June – August 2023).' },
+    stack: ['Next.js 14', 'React', 'GSAP', 'ScrollTrigger', 'Tailwind CSS', 'Vercel'],
+    context: {
+      fr: "Une agence web doit prouver son savoir-faire dès son propre site : il doit être animé et soigné, montrer ses réalisations et donner envie de la contacter.",
+      en: 'A web agency has to prove its skills on its own website: it must be animated and polished, show its work and make people want to get in touch.',
+    },
+    built: {
+      fr: [
+        "Écran d'accueil animé et page d'accueil avec réalisations récentes et avis clients",
+        'Portfolio : liste des réalisations avec leurs prestations, et une page par projet',
+        'Pages Services, Studio et Contact',
+        'Données structurées (JSON-LD Organization) et Open Graph',
+      ],
+      en: [
+        'Animated intro screen and home page with recent work and client testimonials',
+        'Portfolio: list of projects with their services, and one page per project',
+        'Services, Studio and Contact pages',
+        'Structured data (JSON-LD Organization) and Open Graph',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Des animations liées au défilement', en: 'Scroll-driven animations' },
+        text: {
+          fr: "Les titres et les sections s'animent au fil du défilement avec GSAP et son extension ScrollTrigger, pour un rendu fluide sans alourdir la lecture.",
+          en: 'Headings and sections animate as you scroll with GSAP and its ScrollTrigger plugin, for a smooth feel that doesn’t get in the way of reading.',
+        },
+      },
+      {
+        title: { fr: 'Une page par réalisation', en: 'One page per project' },
+        text: {
+          fr: 'Chaque réalisation a sa propre URL (/work/crib, /work/smiley…), construite sur le même gabarit : ajouter un projet ne demande pas de créer une nouvelle page à la main.',
+          en: 'Every project has its own URL (/work/crib, /work/smiley…), built on the same template: adding a project doesn’t mean hand-building a new page.',
+        },
+      },
+    ],
+    result: { fr: 'Site en ligne.', en: 'Site live.' },
+    cover: shot('stretched-web', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('stretched-web', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('stretched-web', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('stretched-web', 'realisations', 'desktop', 'Réalisations', 'Work'),
+      shot('stretched-web', 'services', 'desktop', 'Services', 'Services'),
+    ],
+  },
 ];
