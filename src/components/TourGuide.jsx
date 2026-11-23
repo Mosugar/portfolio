@@ -21,7 +21,8 @@ const SugarBot = ({ blinking, talking, sleeping }) => (
     viewBox="0 0 64 80"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="block [filter:drop-shadow(0_4px_16px_rgba(139,92,246,0.4))]"
+    // Smaller on phones so it hides as little of the page as possible
+    className="block h-auto w-16 [filter:drop-shadow(0_4px_16px_rgba(139,92,246,0.4))] md:w-24"
   >
     {/* Antenna */}
     <line x1="32" y1="6" x2="32" y2="14" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" />
@@ -292,7 +293,7 @@ const TourGuide = () => {
     <div
       inert={hidden}
       aria-hidden={hidden || undefined}
-      className={`pointer-events-none fixed right-6 bottom-6 z-[999] flex flex-col items-end gap-3 transition-[opacity,translate] duration-300 ${
+      className={`pointer-events-none fixed right-3 bottom-3 z-[999] md:right-6 md:bottom-6 flex flex-col items-end gap-3 transition-[opacity,translate] duration-300 ${
         hidden ? 'translate-y-3 opacity-0' : 'opacity-100'
       }`}
     >
