@@ -1,141 +1,23 @@
-import React, { lazy, Suspense, useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import CircularCarousel from './CircularCarousel';
-import { caseStudies } from '../data/caseStudies';
+import { projects } from '../data/projects';
 import { useLanguage } from '../context/useLanguage';
+import FeaturedProjectCard from './FeaturedProjectCard';
+import OtherProjects from './OtherProjects';
 
-const projects = [
-  {
-    id: 2,
-    name: 'TL Global',
-    src: 'https://res.cloudinary.com/dylpck2et/image/upload/v1752879892/TL_GLOBAL_lxew7e.jpg',
-    alt: 'TL Global website',
-    title: 'TL Global',
-    subtitle: 'Web · React',
-    url: 'https://toufaiq.vercel.app/',
-  },
-  {
-    id: 3,
-    name: 'ElJamai Couture',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/d-clubArtboard_1_cjqxkq.png',
-    alt: 'ElJamai Couture fashion e-commerce',
-    title: 'ElJamai Couture',
-    subtitle: 'E-Commerce · Laravel',
-    url: 'https://www.behance.net/gallery/228344479/Eljamaicoutureae',
-  },
-  {
-    id: 4,
-    name: 'Wardd Studio',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/wardd_cover_two_u2j8hi_ahpexf.webp',
-    alt: 'Wardd Studio creative agency',
-    title: 'Wardd Studio',
-    subtitle: 'Agency · Full-Stack',
-    url: 'https://warddstudio.ma/',
-  },
-  {
-    id: 5,
-    name: 'Stretched Web',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/Stretched_1_hjoiei.jpg',
-    alt: 'Stretched Web landing page',
-    title: 'Stretched Web',
-    subtitle: 'Landing · React',
-    url: 'https://stretched-web.vercel.app',
-  },
-  {
-    id: 6,
-    name: 'Wardd Music',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/wardd_music_02__xgryox.jpg',
-    alt: 'Wardd Music platform',
-    title: 'Wardd Music',
-    subtitle: 'Music · Full-Stack',
-    url: 'https://warddstudio.ma/#tracks',
-  },
-  {
-    id: 7,
-    name: 'CSBA Law Firm',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/lawyer_eto36c.webp',
-    alt: 'CSBA Law Firm website',
-    title: 'CSBA Law Firm',
-    subtitle: 'Legal · React',
-    url: 'https://lawyer-sulaiman.vercel.app/',
-  },
-  {
-    id: 8,
-    name: 'Pristine Dental',
-    src: '/images/pristine-dental.webp',
-    alt: 'Pristine Dental Center website',
-    title: 'Pristine Dental',
-    subtitle: 'Medical · React',
-    url: 'https://pristinedentalcenter.vercel.app/',
-  },
-  {
-    id: 9,
-    name: 'Gourmet & Grove',
-    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/gg_u096hn.webp',
-    alt: 'Gourmet and Grove restaurant website',
-    title: 'Gourmet & Grove',
-    subtitle: 'Restaurant · React',
-    url: 'https://gourmet-grove.vercel.app/',
-  },
-  {
-    id: 10,
-    name: 'Recur',
-    src: '/images/recur-cover.webp',
-    alt: 'Recur subscription tracker app',
-    title: 'Recur',
-    subtitle: 'Mobile · Expo · React Native',
-    url: 'https://github.com/Mosugar/recur',
-  },
-];
-
-const CaseStudy = lazy(() => import('./CaseStudy'));
+const featured = projects.filter((p) => p.featured);
+const others = projects.filter((p) => !p.featured);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const MobileGrid = ({ items }) => (
-  <div className="grid grid-cols-[repeat(2,1fr)] gap-3">
-    {items.map(item => (
-      <a
-        key={item.id}
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative block aspect-[4/3] overflow-hidden rounded-xl bg-[#0a0a14] no-underline"
-      >
-        <img src={item.src} alt={item.alt} className="h-full w-full object-contain" loading="lazy" />
-        <div className="absolute inset-0 flex flex-col justify-end bg-[linear-gradient(to_top,rgba(9,9,15,0.9)_0%,transparent_55%)] p-[0.6rem]">
-          <span className="text-[0.75rem] leading-[1.2] font-semibold text-white">{item.title}</span>
-          <span className="mt-[2px] text-[0.62rem] text-[rgba(167,139,250,0.9)]">{item.subtitle}</span>
-        </div>
-      </a>
-    ))}
-  </div>
-);
-
 const Works = () => {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const ref = useRef(null);
-  const [openStudy, setOpenStudy] = useState(null);
-  // Load the modal on first open, then keep it mounted so the dialog can restore focus on close
-  const [caseStudyLoaded, setCaseStudyLoaded] = useState(false);
-  const openCaseStudy = (study) => { setCaseStudyLoaded(true); setOpenStudy(study); };
   const inView = useInView(ref, { once: true, margin: '-80px' });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const handleItemClick = (item) => {
-    if (item.url) window.open(item.url, '_blank', 'noopener,noreferrer');
-  };
 
   return (
     <section
@@ -146,7 +28,7 @@ const Works = () => {
       {/* Giant background word */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-display text-[clamp(6rem,18vw,18rem)] font-bold tracking-[-0.04em] whitespace-nowrap text-transparent select-none [-webkit-text-stroke:1px_rgba(139,92,246,0.05)]"
+        className="pointer-events-none absolute top-[12%] left-1/2 z-0 -translate-x-1/2 font-display text-[clamp(6rem,18vw,18rem)] font-bold tracking-[-0.04em] whitespace-nowrap text-transparent select-none [-webkit-text-stroke:1px_rgba(139,92,246,0.05)]"
       >
         WORKS
       </div>
@@ -174,83 +56,33 @@ const Works = () => {
 
           <motion.p
             variants={fadeUp}
-            className="m-0 max-w-[260px] text-[0.85rem] leading-[1.6] text-[var(--text-2)]"
+            className="m-0 text-[0.78rem] tracking-[0.12em] text-[var(--text-3)] uppercase"
           >
-            {t.works.hint}
+            {t.works.count.replace('{n}', projects.length)}
           </motion.p>
         </div>
 
-        {/* Carousel / Mobile Grid */}
-        <motion.div variants={fadeUp} className={`overflow-hidden rounded-[20px] ${isMobile ? 'h-auto' : 'h-[580px]'}`}>
-          {isMobile ? (
-            <MobileGrid items={projects} />
-          ) : (
-            <CircularCarousel
-              items={projects}
-              preset="cylinder"
-              cardWidth={260}
-              aspectRatio={1.45}
-              gap={20}
-              speed={10}
-              autoplay="drift"
-              direction="left"
-              captions={true}
-              depthFade={0.6}
-              fadeColor="#09090f"
-              innerShade={0.5}
-              cornerRadius={14}
-              parallax={0.25}
-              stretch={0.4}
-              onItemClick={handleItemClick}
-              ariaLabel={t.a11y.projectsCarousel}
-            />
-          )}
-        </motion.div>
+        {/* Featured projects */}
+        <ul className="m-0 grid list-none gap-6 p-0 md:grid-cols-2">
+          {featured.map((project, i) => {
+            // An odd last card takes the whole row instead of leaving a gap next to it
+            const wide = featured.length % 2 === 1 && i === featured.length - 1;
+            return (
+              <motion.li key={project.slug} variants={fadeUp} className={wide ? 'md:col-span-2' : ''}>
+                <FeaturedProjectCard project={project} wide={wide} />
+              </motion.li>
+            );
+          })}
+        </ul>
 
-        {/* Count */}
-        <motion.p
-          variants={fadeUp}
-          className="mt-6 text-center text-[0.78rem] tracking-[0.12em] text-[var(--text-3)] uppercase"
-        >
-          {t.works.count.replace('{n}', projects.length)}
-        </motion.p>
-
-        {/* Case studies */}
+        {/* Other projects */}
         <motion.div variants={fadeUp} className="mt-16">
-          <h3 className="section-label m-0 mb-5">{t.works.caseLabel}</h3>
-          <ul className="m-0 grid list-none gap-4 p-0 md:grid-cols-3">
-            {caseStudies.map((study) => (
-              <li key={study.id}>
-                <button
-                  type="button"
-                  onClick={() => openCaseStudy(study)}
-                  aria-haspopup="dialog"
-                  className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-0 text-left transition-colors hover:border-[var(--border-accent)]"
-                >
-                  <img
-                    src={study.img}
-                    alt=""
-                    loading="lazy"
-                    className="block aspect-[16/9] w-full bg-[#0a0a14] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                  <span className="flex flex-1 flex-col gap-1 p-5">
-                    <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--accent-light)]">
-                      {study.tag[lang]}
-                    </span>
-                    <span className="font-display text-lg font-bold text-[var(--text)]">{study.name}</span>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-sm text-[var(--text-2)] transition-colors group-hover:text-[var(--text)]">
-                      {t.works.caseOpen}
-                      <ArrowUpRight size={14} aria-hidden="true" />
-                    </span>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          <h3 className="section-label m-0 mb-2">{t.works.others}</h3>
+          <OtherProjects projects={others} />
         </motion.div>
 
         {/* Design work lives on Behance — no duplicated screenshots here */}
-        <motion.div variants={fadeUp} className="mt-10 text-center">
+        <motion.div variants={fadeUp} className="mt-12 text-center">
           <a
             href="https://www.behance.net/mohamed_sekkar"
             target="_blank"
@@ -262,12 +94,6 @@ const Works = () => {
           </a>
         </motion.div>
       </motion.div>
-
-      {caseStudyLoaded && (
-        <Suspense fallback={null}>
-          <CaseStudy study={openStudy} onClose={() => setOpenStudy(null)} />
-        </Suspense>
-      )}
     </section>
   );
 };
