@@ -338,8 +338,8 @@ export const projects = [
       {
         title: { fr: 'De la vidéo en pair-à-pair', en: 'Peer-to-peer video' },
         text: {
-          fr: "La vidéo passe directement entre les deux navigateurs (WebRTC) et ne transite par aucun serveur, d'où l'absence d'enregistrement. La négociation de la connexion, les messages, l'indicateur « en train d'écrire » et l'état de la caméra passent par un canal Supabase Realtime privé, propre à chaque conversation. Pour les réseaux qui bloquent le pair-à-pair, une route serveur délivre des identifiants TURN temporaires, jamais inclus dans le code envoyé au navigateur.",
-          en: 'Video goes straight between the two browsers (WebRTC) and never through a server, which is why nothing is recorded. Connection setup, messages, the “typing” indicator and camera state go through a private Supabase Realtime channel for each conversation. For networks that block peer-to-peer, a server route hands out short-lived TURN credentials, never shipped in the browser code.',
+          fr: "La vidéo passe directement entre les deux navigateurs (WebRTC) et ne transite par aucun serveur, d'où l'absence d'enregistrement. La négociation de la connexion, les messages, l'indicateur « en train d'écrire » et l'état de la caméra passent par un canal Supabase Realtime privé, propre à chaque conversation. Quand la connexion directe pair-à-pair échoue (réseaux d'entreprise, certains opérateurs mobiles), la vidéo passe par le relais TURN de Cloudflare, actif en production. Une route serveur délivre des identifiants TURN temporaires, jamais inclus dans le code envoyé au navigateur.",
+          en: 'Video goes straight between the two browsers (WebRTC) and never through a server, which is why nothing is recorded. Connection setup, messages, the “typing” indicator and camera state go through a private Supabase Realtime channel for each conversation. When a direct peer-to-peer connection fails (corporate networks, some mobile carriers), video goes through Cloudflare’s TURN relay, live in production. A server route hands out short-lived TURN credentials, never shipped in the browser code.',
         },
       },
       {
