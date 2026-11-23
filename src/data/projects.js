@@ -417,4 +417,65 @@ export const projects = [
       shot('tl-global', 'contact', 'desktop', 'Demande de projet', 'Project request'),
     ],
   },
+  {
+    slug: 'wardd-music',
+    name: 'Wardd Music',
+    featured: false,
+    draft: true,
+    year: '2026',
+    url: 'https://warddstudio.ma/#tracks',
+    repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
+    type: { fr: 'Musique · Next.js', en: 'Music · Next.js' },
+    summary: {
+      fr: 'La partie musique du site Wardd : dernières sorties avec lecteur Spotify, clips YouTube et artistes passés au studio.',
+      en: 'The music side of the Wardd website: latest releases with a Spotify player, YouTube music videos and artists who recorded at the studio.',
+    },
+    client: { fr: 'Wardd Studios · label et studio musical', en: 'Wardd Studios · music label and studio' },
+    role: { fr: 'Conception et développement de la partie musique du site.', en: 'Designed and built the music side of the website.' },
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'Spotify oEmbed', 'YouTube oEmbed', 'Vercel'],
+    context: {
+      fr: 'Le studio produit des titres et des clips pour ses artistes. Il voulait les mettre en avant sur son site et donner envie de les écouter, sans quitter la page.',
+      en: 'The studio produces tracks and music videos for its artists. It wanted to showcase them on its website and make people want to listen, without leaving the page.',
+    },
+    built: {
+      fr: [
+        'Dernières sorties, dans le même ordre que la playlist Wardd sur Spotify',
+        'Lecteur Spotify intégré pour le titre sélectionné',
+        'Clips YouTube avec lecteur et liste',
+        'Artistes passés en cabine',
+        'Liens vers Spotify et la chaîne YouTube',
+      ],
+      en: [
+        'Latest releases, in the same order as the Wardd playlist on Spotify',
+        'Built-in Spotify player for the selected track',
+        'YouTube music videos with a player and a list',
+        'Artists who recorded at the studio',
+        'Links to Spotify and the YouTube channel',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Pas de mur de lecteurs Spotify', en: 'No wall of Spotify players' },
+        text: {
+          fr: "Afficher chaque sortie avec un lecteur Spotify aurait chargé des dizaines d'iframes lourdes. Le titre, l'artiste et la pochette de chaque sortie sont donc récupérés côté serveur (getStaticProps), et le site affiche sa propre interface : un seul lecteur Spotify est chargé, celui du titre sélectionné.",
+          en: "Showing every release with a Spotify player would have loaded dozens of heavy iframes. The title, artist and cover of each release are fetched on the server instead (getStaticProps), and the site renders its own UI: only one Spotify player is loaded, for the selected track.",
+        },
+      },
+      {
+        title: { fr: 'Des données toujours à jour, sans risque de panne', en: 'Always fresh data, without the risk of breaking' },
+        text: {
+          fr: "La page est régénérée toutes les 12 heures (ISR), donc une nouvelle sortie apparaît sans redéploiement : il suffit d'ajouter son identifiant Spotify. Chaque appel a un délai maximal et est protégé : si Spotify ou YouTube ne répond pas, la page s'affiche quand même avec un visuel de remplacement.",
+          en: "The page is regenerated every 12 hours (ISR), so a new release shows up without a redeploy: you only add its Spotify ID. Every request has a timeout and is guarded: if Spotify or YouTube doesn't answer, the page still renders with a placeholder.",
+        },
+      },
+    ],
+    result: { fr: 'En ligne sur warddstudio.ma.', en: 'Live on warddstudio.ma.' },
+    cover: shot('wardd-music', 'sorties', 'desktop', 'Dernières sorties', 'Latest releases'),
+    gallery: [
+      shot('wardd-music', 'sorties', 'desktop', 'Dernières sorties', 'Latest releases'),
+      shot('wardd-music', 'sorties-mobile', 'mobile', 'Sorties sur mobile', 'Releases on mobile'),
+      shot('wardd-music', 'clips', 'desktop', 'Clips', 'Music videos'),
+      shot('wardd-music', 'artistes', 'desktop', 'Artistes', 'Artists'),
+    ],
+  },
 ];
