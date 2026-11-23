@@ -5,6 +5,11 @@ import { projectCount, toolCount } from '../data/stats';
 
 const TOUR_SECTIONS = [null, 'home', 'about', 'skills', 'experience', 'resume', 'works', 'contact'];
 
+// One small invitation next to Sugar on the first visit only, then never again
+const HINT_KEY = 'sugar-hint-seen';
+const HINT_DELAY = 8000;
+const HINT_DURATION = 6000;
+
 const SugarBot = ({ blinking, talking, sleeping }) => (
   <svg
     aria-hidden="true"
@@ -108,6 +113,7 @@ const TourGuide = () => {
   const [talking, setTalking]         = useState(false);
   const [sleeping, setSleeping]       = useState(false);
   const [easterEggText, setEasterEggText] = useState(null);
+  const [hint, setHint] = useState(false);
 
   const [typedTitle, setTypedTitle] = useState('');
   const [typedText,  setTypedText]  = useState('');
@@ -131,6 +137,23 @@ const TourGuide = () => {
     schedule();
     return () => clearTimeout(blinkTimerRef.current);
   }, [dismissed, sleeping]);
+
+  useEffect(() => {
+    let seen;
+    try { seen = localStorage.getItem(HINT_KEY); } catch { seen = '1'; } // can't remember it, so don't risk repeating it
+    if (seen) return;
+    const timer = setTimeout(() => {
+      setHint(true);
+      try { localStorage.setItem(HINT_KEY, '1'); } catch { /* ignore */ }
+    }, HINT_DELAY);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!hint) return;
+    const timer = setTimeout(() => setHint(false), HINT_DURATION);
+    return () => clearTimeout(timer);
+  }, [hint]);
 
   const resetIdleTimer = () => {
     clearTimeout(idleTimerRef.current);
@@ -205,6 +228,7 @@ const TourGuide = () => {
 
   const handleBotClick = () => {
     if (dismissed) return;
+    setHint(false);
 
     if (sleeping) {
       resetIdleTimer();
@@ -327,21 +351,38 @@ const TourGuide = () => {
         )}
       </AnimatePresence>
 
-      {/* Bot */}
-      <motion.button
-        type="button"
-        aria-label={t.a11y.tourBot}
-        animate={sleeping ? { y: [0, -3, 0] } : { y: [0, -6, 0] }}
-        transition={sleeping
-          ? { duration: 4, repeat: Infinity, ease: 'easeInOut' }
-          : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
-        }
-        className="pointer-events-auto block cursor-pointer border-none bg-transparent p-0"
-        onClick={handleBotClick}
-        title={sleeping ? 'Click to wake Sugar up' : undefined}
-      >
-        <SugarBot blinking={blinking} talking={talking} sleeping={sleeping} />
-      </motion.button>
+      {/* Bot, with the first-visit invitation tucked to its left */}
+      <div className="relative">
+        <AnimatePresence>
+          {hint && !bubbleVisible && (
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 8 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={() => { setHint(false); setVisible(true); }}
+              className="pointer-events-auto absolute top-1/2 right-full mr-2 -translate-y-1/2 cursor-pointer rounded-full border border-[rgba(139,92,246,0.3)] bg-[rgba(18,18,28,0.85)] px-3 py-1.5 text-[0.75rem] whitespace-nowrap text-[var(--text-2)] shadow-[0_4px_16px_rgba(0,0,0,0.35)] backdrop-blur-[8px] hover:text-[var(--text)]"
+            >
+              {t.tour.hint}
+            </motion.button>
+          )}
+        </AnimatePresence>
+        <motion.button
+          type="button"
+          aria-label={t.a11y.tourBot}
+          animate={sleeping ? { y: [0, -3, 0] } : { y: [0, -6, 0] }}
+          transition={sleeping
+            ? { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
+          }
+          className="pointer-events-auto block cursor-pointer border-none bg-transparent p-0"
+          onClick={handleBotClick}
+          title={sleeping ? 'Click to wake Sugar up' : undefined}
+        >
+          <SugarBot blinking={blinking} talking={talking} sleeping={sleeping} />
+        </motion.button>
+      </div>
     </div>
   );
 };
