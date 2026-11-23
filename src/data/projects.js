@@ -230,4 +230,53 @@ export const projects = [
       { src: '/images/recur/settings.webp', kind: 'mobile', label: { fr: 'Réglages', en: 'Settings' } },
     ],
   },
+  {
+    slug: 'eljamai-couture',
+    name: 'ElJamai Couture',
+    featured: true,
+    draft: false,
+    year: '2024 – 2025',
+    // The client has replaced the site, so the work now lives on Behance
+    url: 'https://www.behance.net/gallery/228344479/Eljamaicoutureae',
+    linkLabel: 'visitBehance',
+    repos: [],
+    type: { fr: 'E-commerce · Laravel', en: 'E-commerce · Laravel' },
+    summary: {
+      fr: 'Boutique en ligne d’une maison de couture pour le marché des Émirats, avec paiement par carte et Apple Pay.',
+      en: 'Online store for a couture house selling to the UAE market, with card and Apple Pay checkout.',
+    },
+    client: { fr: 'Maison de couture · Wardd Studios', en: 'Couture fashion house · Wardd Studios' },
+    role: {
+      fr: "Projet réalisé avec Ali Yara au sein de Wardd Studios, l'agence créative que nous avons cofondée : frontend, backend, paiements et SEO de la boutique.",
+      en: 'Built with Ali Yara at Wardd Studios, the creative agency we co-founded: frontend, backend, payments and SEO for the store.',
+    },
+    stack: ['React', 'Laravel (PHP)', 'MySQL', 'Stripe', 'Apple Pay'],
+    context: {
+      fr: "Une maison de couture avait besoin d'une boutique en ligne pour vendre sur le marché des Émirats arabes unis.",
+      en: 'A couture fashion house needed an online store to sell to the UAE market.',
+    },
+    built: {
+      fr: ['Paiement Stripe', 'Apple Pay', 'SEO'],
+      en: ['Stripe checkout', 'Apple Pay', 'SEO'],
+    },
+    challenges: [
+      {
+        title: { fr: 'Paiements pour le marché des Émirats', en: 'Payments for the UAE market' },
+        text: {
+          fr: "Intégrer Stripe et Apple Pay pour une boutique qui vend aux Émirats : gérer la devise du marché, vérifier le domaine auprès d'Apple Pay pour afficher le bouton de paiement, et confirmer les paiements côté serveur via les webhooks Stripe plutôt que de se fier au retour du navigateur.",
+          en: "Integrating Stripe and Apple Pay for a store selling to the UAE: handling the market's currency, verifying the domain with Apple Pay so the payment button can show, and confirming payments on the server through Stripe webhooks instead of relying on the browser redirect.",
+        },
+      },
+    ],
+    result: {
+      fr: 'Boutique livrée au client et mise en ligne pour le marché des Émirats, avec paiement par carte et Apple Pay. Le client a depuis fait évoluer le site ; la version que nous avons réalisée est visible sur Behance.',
+      en: 'Store delivered to the client and launched for the UAE market, with card and Apple Pay checkout. The client has since changed the site; the version we built is on Behance.',
+    },
+    cover: shot('eljamai-couture', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('eljamai-couture', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('eljamai-couture', 'collection', 'desktop', 'Collection avec filtres', 'Collection with filters'),
+      shot('eljamai-couture', 'connexion', 'desktop', 'Connexion et création de compte', 'Sign-in and sign-up'),
+    ],
+  },
 ];
