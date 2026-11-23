@@ -546,4 +546,65 @@ export const projects = [
       shot('csba-law-firm', 'rendez-vous', 'desktop', 'Demande de rendez-vous', 'Appointment request'),
     ],
   },
+  {
+    slug: 'gourmet-grove',
+    name: 'Gourmet & Grove',
+    featured: false,
+    draft: true,
+    year: '2024',
+    url: 'https://gourmet-grove.vercel.app/',
+    repos: [],
+    type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
+    summary: {
+      fr: "Site d'une brasserie parisienne à Rabat : ambiance en vidéo, carte en ligne, galerie et réservation par téléphone ou e-mail.",
+      en: 'Website for a Parisian-style brasserie in Rabat: video atmosphere, online menu, gallery and booking by phone or email.',
+    },
+    client: { fr: 'Brasserie à Rabat (Maroc)', en: 'Brasserie in Rabat (Morocco)' },
+    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    stack: ['Next.js', 'React', 'next/image', 'Vercel'],
+    context: {
+      fr: "Un restaurant veut faire ressentir son ambiance avant même la visite, montrer sa carte et ses plats, et faciliter la réservation.",
+      en: 'A restaurant wants people to feel its atmosphere before they even visit, show its menu and dishes, and make booking easy.',
+    },
+    built: {
+      fr: [
+        "Page d'accueil avec vidéo plein écran",
+        'Pages À propos et Carte, avec les catégories (boissons, café, pâtisserie, desserts) et les prix',
+        'Galerie de photos',
+        "Présentation de l'équipe (gérant et chefs)",
+        'Réservation par téléphone ou e-mail, carte Google Maps et réseaux sociaux',
+      ],
+      en: [
+        'Home page with a full-screen video',
+        'About and Menu pages, with categories (drinks, coffee, pastries, desserts) and prices',
+        'Photo gallery',
+        'Team presentation (manager and chefs)',
+        'Booking by phone or email, Google Maps and social links',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Une vidéo plein écran dès l’arrivée', en: 'A full-screen video from the first second' },
+        text: {
+          fr: "L'accueil s'ouvre sur une vidéo plein écran. Un écran « Bienvenue » s'affiche pendant le chargement, pour que le visiteur ne voie jamais une page à moitié chargée.",
+          en: 'The home page opens on a full-screen video. A “Bienvenue” screen shows while it loads, so visitors never see a half-loaded page.',
+        },
+      },
+      {
+        title: { fr: 'Une carte lisible sur tous les écrans', en: 'A menu that reads well on every screen' },
+        text: {
+          fr: 'La carte a sa propre page, organisée par catégories, avec les prix alignés. Sur mobile, la navigation passe dans un menu burger, sans défilement horizontal à 375 px.',
+          en: 'The menu has its own page, organised by category, with aligned prices. On mobile, navigation moves into a burger menu, with no horizontal scrolling at 375 px.',
+        },
+      },
+    ],
+    result: { fr: 'Site en ligne.', en: 'Site live.' },
+    cover: shot('gourmet-grove', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('gourmet-grove', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('gourmet-grove', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('gourmet-grove', 'menu', 'desktop', 'La carte', 'The menu'),
+      shot('gourmet-grove', 'galerie', 'desktop', 'Galerie de photos', 'Photo gallery'),
+    ],
+  },
 ];
