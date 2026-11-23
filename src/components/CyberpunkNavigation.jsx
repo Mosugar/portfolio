@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/useLanguage';
+import { navigate } from '../router/navigation';
 
 const NAV_ITEMS = [
   { id: 'home',       key: 'home' },
@@ -57,8 +58,12 @@ const BottomNavigation = () => {
   const scrollTo = (id) => {
     setMenuOpen(false);
     setTimeout(() => {
-      if (id === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
-      else document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const onHome = window.location.pathname === '/';
+      const el = document.getElementById(id);
+      // On a project page, sections other than the footer live on the home page
+      if (!onHome && (id === 'home' || !el)) navigate(id === 'home' ? '/' : `/#${id}`);
+      else if (id === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+      else el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setActiveSection(id);
     }, menuOpen ? 300 : 0);
   };
