@@ -43,6 +43,15 @@ const projects = [
     url: 'https://stretched-web.vercel.app',
   },
   {
+    id: 6,
+    name: 'Wardd Music',
+    src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/wardd_music_02__xgryox.jpg',
+    alt: 'Wardd Music platform',
+    title: 'Wardd Music',
+    subtitle: 'Music · Full-Stack',
+    url: 'https://www.warddmusic.com/',
+  },
+  {
     id: 7,
     name: 'CSBA Law Firm',
     src: 'https://res.cloudinary.com/decjm9mmr/image/upload/q_80,f_auto/lawyer_eto36c.webp',
