@@ -122,7 +122,7 @@ export const projects = [
       en: 'Designed and built this version of the site on my own: UI, front-end build, booking, AI assistant and the bilingual FR/AR setup. Ali Yara, co-founder of Wardd Studios, contributed to earlier versions.',
     },
     // From the site's package.json and README (WARDD-V3)
-    stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify Web API', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify oEmbed', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
     context: {
       fr: "Un studio d'enregistrement avait besoin d'un site pour présenter le studio, son histoire (de 2016 à aujourd'hui), son travail et les projets qu'il a produits, et permettre aux clients de réserver des sessions.",
       en: 'A recording studio needed a website to present the studio, its story (2016 to today), its work and the projects it produced, and to let clients book sessions.',

@@ -22,7 +22,7 @@ export const caseStudies = [
       en: 'Designed and built this version of the site on my own: UI, front-end build, booking, AI assistant and the bilingual FR/AR setup. Ali Yara, co-founder of Wardd Studios, contributed to earlier versions.',
     },
     // From the site's package.json and README (WARDD-V3)
-    stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify Web API', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify oEmbed', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
     features: {
       fr: [
         'Présentation du studio et frise de son histoire',
