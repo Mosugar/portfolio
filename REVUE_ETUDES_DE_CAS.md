@@ -38,10 +38,10 @@ Repo `Mosugar/nexly` **privé** : pas de bouton « Code ». Le code a été lu p
 | Stack | Next.js 15, React 19, TypeScript, Tailwind CSS 4, Supabase (Postgres, Realtime), WebRTC, TensorFlow.js, nsfwjs, next-intl, Cloudflare Workers, OpenNext | `package.json` et README |
 | Contexte | Omegle « avec la sécurité au centre » | Déduit de la page d'accueil et de la page Sécurité. Pas de mention de la fermeture d'Omegle |
 | Défi 1 | File d'attente Postgres, `FOR UPDATE SKIP LOCKED`, présence toutes les ~1 s, seuls les clients vus dans les 6 s sont associés, priorité intérêts > langue > pays, pas de ré-association immédiate | Vérifié (`match_user`, migration `round2`) |
-| Défi 2 | WebRTC pair-à-pair, signalisation par canal Supabase Realtime privé par salle, identifiants TURN temporaires via une route serveur | Vérifié (`engine.ts`, `api/turn`). **Le relais TURN est-il activé en production ?** Le README dit de poser ses secrets « when ready » |
+| Défi 2 | WebRTC pair-à-pair, signalisation par canal Supabase Realtime privé par salle, identifiants TURN temporaires via une route serveur | Vérifié (`engine.ts`, `api/turn`). Relais TURN : **oui, actif en production via Cloudflare** (ta réponse), mentionné dans l'étude de cas |
 | Défi 3 | Détection de nudité sur l'appareil de celui qui regarde, modèle téléchargé au lancement d'un chat vidéo. Ban auto seulement après plusieurs personnes différentes, le détecteur ne bannit jamais seul, limite de signalements par heure | Vérifié (`nsfw.ts`, `submit_report`) |
 | Défi 4 | Déploiement OpenNext sur Workers, secrets dans Wrangler et jamais dans `.env` | Vérifié (README, `wrangler.jsonc`) |
-| Résultat | « En ligne. » | Aucun chiffre d'utilisation cité. L'URL est un sous-domaine `workers.dev` : domaine personnalisé prévu ? |
+| Résultat | « En ligne depuis novembre 2026, en développement actif. » + badge « En cours » sur la carte | Ta consigne. Aucun chiffre d'utilisation cité. Domaine personnalisé : **pas pour l'instant** (`workers.dev`) |
 | Captures | Accueil (desktop et mobile), fonctionnalités, page Sécurité, version arabe | Uniquement les pages publiques : aucun chat lancé, ni caméra ni vérification de l'âge |
 
 ## Pristine Dental (autres projets, brouillon)
