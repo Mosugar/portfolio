@@ -7,14 +7,19 @@ import ProjectShot from './ProjectFrame';
 const MAX_BADGES = 5;
 
 // The whole card is clickable through the case study link's ::after overlay,
-// so keyboard users still get a single, clearly labelled tab stop
-const FeaturedProjectCard = ({ project }) => {
+// so keyboard users still get a single, clearly labelled tab stop.
+// wide: full-row card (screenshot left, text right on desktop), used when a row would be left half-empty
+const FeaturedProjectCard = ({ project, wide = false }) => {
   const { t, lang } = useLanguage();
   const { cover } = project;
   const extra = project.stack.length - MAX_BADGES;
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--border-accent)]">
+    <article
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--border-accent)] ${
+        wide ? 'md:grid md:grid-cols-2' : ''
+      }`}
+    >
       {/* Screenshot peeking out of the top of the card */}
       <div className="relative aspect-[16/10] overflow-hidden bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.18),transparent_70%)]">
         <div
@@ -27,7 +32,7 @@ const FeaturedProjectCard = ({ project }) => {
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--surface)] to-transparent" />
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-6 sm:p-7">
+      <div className={`flex flex-1 flex-col gap-3 p-6 sm:p-7 ${wide ? 'md:justify-center md:py-10' : ''}`}>
         <p className="m-0 text-[0.65rem] font-semibold tracking-[0.14em] text-[var(--accent-light)] uppercase">
           {project.type[lang]} · {project.year}
         </p>
@@ -48,7 +53,7 @@ const FeaturedProjectCard = ({ project }) => {
         <Link
           to={projectPath(project.slug)}
           aria-label={`${t.works.viewCase} — ${project.name}`}
-          className="mt-auto inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border-accent)] px-5 py-2.5 text-sm font-medium text-[var(--accent-light)] no-underline transition-colors after:absolute after:inset-0 after:content-[''] group-hover:border-[rgba(139,92,246,0.55)] group-hover:bg-[rgba(139,92,246,0.12)] group-hover:text-[#c4b5fd]"
+          className={`mt-auto inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border-accent)] px-5 py-2.5 text-sm font-medium text-[var(--accent-light)] no-underline transition-colors after:absolute after:inset-0 after:content-[''] group-hover:border-[rgba(139,92,246,0.55)] group-hover:bg-[rgba(139,92,246,0.12)] group-hover:text-[#c4b5fd] ${wide ? 'md:mt-4' : ''}`}
         >
           {t.works.viewCase}
           <ArrowRight size={15} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
