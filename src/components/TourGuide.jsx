@@ -107,7 +107,6 @@ const TourGuide = () => {
   const [blinking, setBlinking]       = useState(false);
   const [talking, setTalking]         = useState(false);
   const [sleeping, setSleeping]       = useState(false);
-  const [reaction, setReaction]       = useState(null);
   const [easterEggText, setEasterEggText] = useState(null);
 
   const [typedTitle, setTypedTitle] = useState('');
@@ -118,7 +117,6 @@ const TourGuide = () => {
   const idleTimerRef     = useRef(null);
   const clickCountRef    = useRef(0);
   const clickTimerRef    = useRef(null);
-  const reactedSections  = useRef(new Set());
   const overrideTimerRef = useRef(null);
 
   // The bubble only opens when the visitor clicks Sugar; the bot itself stays alive (blinks, naps)
@@ -148,37 +146,7 @@ const TourGuide = () => {
 
   useEffect(() => {
     if (!visible || dismissed) return;
-    const ids = ['about', 'skills', 'experience', 'resume', 'works', 'contact'];
-    const observers = [];
-
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(([entry]) => {
-        if (
-          entry.isIntersecting &&
-          !reactedSections.current.has(id) &&
-          !tourStarted
-        ) {
-          reactedSections.current.add(id);
-          const text = t.tour.sectionReactions?.[id];
-          if (!text) return;
-          setReaction(text);
-          setVisible(true);
-          clearTimeout(overrideTimerRef.current);
-          overrideTimerRef.current = setTimeout(() => setReaction(null), 5000);
-        }
-      }, { threshold: 0.45 });
-      obs.observe(el);
-      observers.push(obs);
-    });
-
-    return () => observers.forEach(o => o.disconnect());
-  }, [visible, dismissed, tourStarted, t]);
-
-  useEffect(() => {
-    if (!visible || dismissed) return;
-    if (easterEggText || reaction) return; // override is showing
+    if (easterEggText) return; // override is showing
 
     const currentStep = TOUR_STEPS[step];
     const titleFull = currentStep.title;
@@ -203,7 +171,7 @@ const TourGuide = () => {
     }, 22);
 
     return () => clearInterval(typeTimerRef.current);
-  }, [step, visible, dismissed, easterEggText, reaction, TOUR_STEPS]);
+  }, [step, visible, dismissed, easterEggText, TOUR_STEPS]);
 
   const currentStep = TOUR_STEPS[step];
 
@@ -252,7 +220,6 @@ const TourGuide = () => {
       const msgs = t.tour.easterEgg;
       const msg  = msgs[Math.floor(Math.random() * msgs.length)];
       setEasterEggText(msg);
-      setReaction(null);
       setVisible(true);
       clearTimeout(overrideTimerRef.current);
       overrideTimerRef.current = setTimeout(() => setEasterEggText(null), 4000);
@@ -268,8 +235,8 @@ const TourGuide = () => {
   const isTitleTyping = typedTitle.length < currentStep.title.length;
   const isTextTyping  = !isTitleTyping && typedText.length < currentStep.text.length;
 
-  const bubbleVisible = easterEggText || reaction || visible;
-  const bubbleMode    = easterEggText ? 'easter' : reaction ? 'reaction' : 'tour';
+  const bubbleVisible = easterEggText || visible;
+  const bubbleMode    = easterEggText ? 'easter' : 'tour';
   const isAngry       = bubbleMode === 'easter';
 
   return (
@@ -278,7 +245,7 @@ const TourGuide = () => {
       <AnimatePresence mode="wait">
         {bubbleVisible && (
           <motion.div
-            key={bubbleMode === 'easter' ? `easter` : bubbleMode === 'reaction' ? `react-${reaction}` : `tour-${step}`}
+            key={bubbleMode === 'easter' ? 'easter' : `tour-${step}`}
             initial={{ opacity: 0, y: 8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.97 }}
@@ -301,16 +268,6 @@ const TourGuide = () => {
               >
                 {easterEggText}
               </motion.p>
-            )}
-
-            {/* ── Section reaction ── */}
-            {bubbleMode === 'reaction' && (
-              <>
-                <p className="m-0 mb-[0.3rem] font-display text-[0.72rem] font-semibold tracking-[0.08em] text-[#a78bfa] uppercase">Sugar</p>
-                <p className="m-0 text-[0.88rem] leading-[1.6] text-[var(--text-2)]">
-                  {reaction}
-                </p>
-              </>
             )}
 
             {/* ── Tour ── */}
