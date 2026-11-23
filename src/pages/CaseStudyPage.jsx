@@ -32,7 +32,7 @@ const ButtonLink = ({ href, children, primary = false }) => (
     rel="noopener noreferrer"
     className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium no-underline transition-colors ${
       primary
-        ? 'border-[var(--accent)] bg-[var(--accent)] text-white hover:bg-[#7c4fe0]'
+        ? 'border-[#7c3aed] bg-[#7c3aed] text-white hover:bg-[#6d28d9]' // darker than --accent so white text passes WCAG AA
         : 'border-[var(--border-accent)] text-[var(--accent-light)] hover:border-[rgba(139,92,246,0.55)] hover:bg-[rgba(139,92,246,0.12)] hover:text-[#c4b5fd]'
     }`}
   >
