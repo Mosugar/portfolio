@@ -169,7 +169,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute bottom-10 left-[clamp(1.5rem,6vw,6rem)] flex items-center gap-2 text-[0.75rem] tracking-[0.1em] text-[var(--text-3)] uppercase"
+        className="absolute bottom-10 left-[clamp(1.5rem,6vw,6rem)] flex items-center gap-2 text-[0.75rem] tracking-[0.1em] text-[var(--text-2)] uppercase"
       >
         <span>{t.hero.scroll}</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
