@@ -1,0 +1,210 @@
+import { motion } from 'framer-motion';
+import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react';
+import { projects } from '../data/projects';
+import { useLanguage } from '../context/useLanguage';
+import Link from '../router/Link';
+import ProjectShot from '../components/ProjectFrame';
+
+// Drafts (texts not yet reviewed) are shown in full in dev only. In production a draft
+// keeps its summary, stack, screenshots and links, and the unreviewed sections stay hidden.
+const SHOW_DRAFTS = import.meta.env.DEV;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const hostname = (url) => {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+};
+
+const Section = ({ title, children }) => (
+  <motion.section variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }} className="mt-16">
+    <h2 className="section-label m-0 mb-5">{title}</h2>
+    {children}
+  </motion.section>
+);
+
+const ButtonLink = ({ href, children, primary = false }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium no-underline transition-colors ${
+      primary
+        ? 'border-[var(--accent)] bg-[var(--accent)] text-white hover:bg-[#7c4fe0]'
+        : 'border-[var(--border-accent)] text-[var(--accent-light)] hover:border-[rgba(139,92,246,0.55)] hover:bg-[rgba(139,92,246,0.12)] hover:text-[#c4b5fd]'
+    }`}
+  >
+    {children}
+  </a>
+);
+
+const NotFound = ({ t }) => (
+  <div className="mx-auto max-w-[700px] py-[clamp(6rem,14vw,10rem)] text-center">
+    <h1 className="m-0 font-display text-4xl font-bold text-[var(--text)]">{t.project.notFound}</h1>
+    <p className="mt-4 text-[var(--text-2)]">{t.project.notFoundText}</p>
+    <Link to="/#works" className="mt-8 inline-flex items-center gap-2 text-sm text-[var(--accent-light)] no-underline hover:text-[#c4b5fd]">
+      <ArrowLeft size={15} aria-hidden="true" /> {t.project.back}
+    </Link>
+  </div>
+);
+
+const CaseStudyPage = ({ slug }) => {
+  const { t, lang } = useLanguage();
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return <NotFound t={t} />;
+
+  const full = !project.draft || SHOW_DRAFTS;
+  const tp = t.project;
+  // The cover is already shown above, so the gallery skips it
+  const shots = project.gallery.filter((s) => s.src !== project.cover.src);
+  const desktopShots = shots.filter((s) => s.kind === 'desktop');
+  const mobileShots = shots.filter((s) => s.kind === 'mobile');
+
+  return (
+    <article className="relative px-[clamp(1.5rem,6vw,6rem)] pt-[clamp(2.5rem,6vw,4rem)] pb-[clamp(5rem,10vw,8rem)]">
+      <div className="mx-auto max-w-[1100px]">
+        <Link to="/#works" className="inline-flex items-center gap-2 text-sm text-[var(--text-2)] no-underline transition-colors hover:text-[var(--text)]">
+          <ArrowLeft size={15} aria-hidden="true" /> {tp.back}
+        </Link>
+
+        {project.draft && SHOW_DRAFTS && (
+          <p className="mt-6 rounded-lg border border-dashed border-amber-400/50 bg-amber-400/5 px-3 py-2 text-xs text-amber-300">
+            {tp.draft}
+          </p>
+        )}
+
+        {/* Header */}
+        <motion.header variants={{ show: { transition: { staggerChildren: 0.08 } } }} initial="hidden" animate="show" className="mt-8">
+          <motion.p variants={fadeUp} className="section-label m-0 mb-3">
+            {project.type[lang]} · {project.year}
+          </motion.p>
+          <motion.h1 variants={fadeUp} className="m-0 font-display text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.05] font-bold tracking-[-0.03em] text-[var(--text)]">
+            {project.name}
+          </motion.h1>
+          <motion.p variants={fadeUp} className="mt-5 max-w-[720px] text-[1.05rem] leading-[1.7] text-[var(--text-2)]">
+            {project.summary[lang]}
+          </motion.p>
+
+          {full && (
+            <motion.dl variants={fadeUp} className="mt-8 grid gap-5 sm:grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
+              {[
+                [tp.role, project.role[lang]],
+                [tp.client, project.client[lang]],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
+                  <dt className="text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-3)] uppercase">{label}</dt>
+                  <dd className="m-0 mt-1.5 text-[0.92rem] leading-[1.6] text-[var(--text)]">{value}</dd>
+                </div>
+              ))}
+            </motion.dl>
+          )}
+
+          <motion.ul variants={fadeUp} aria-label={tp.stack} className="m-0 mt-6 flex list-none flex-wrap gap-2 p-0">
+            {project.stack.map((s) => (
+              <li key={s} className="rounded-full border border-[var(--border-accent)] bg-[rgba(139,92,246,0.08)] px-3 py-1 text-xs font-medium text-[var(--accent-light)]">
+                {s}
+              </li>
+            ))}
+          </motion.ul>
+
+          {(project.url || project.repos.length > 0) && (
+            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
+              {project.url && (
+                <ButtonLink href={project.url} primary>
+                  {tp[project.linkLabel] ?? tp.visit}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </ButtonLink>
+              )}
+              {project.repos.map((repo) => (
+                <ButtonLink key={repo.url} href={repo.url}>
+                  <Github size={15} aria-hidden="true" />
+                  {project.repos.length > 1 ? `${tp.code} · ${repo.label}` : tp.code}
+                </ButtonLink>
+              ))}
+            </motion.div>
+          )}
+        </motion.header>
+
+        {/* Main screenshot */}
+        <motion.div variants={fadeUp} initial="hidden" animate="show" className={`mt-12 ${project.cover.kind === 'mobile' ? 'mx-auto max-w-[280px]' : ''}`}>
+          <ProjectShot shot={project.cover} alt={`${project.name} — ${project.cover.label[lang]}`} url={hostname(project.url)} eager />
+        </motion.div>
+
+        <div className="max-w-[760px] text-[1rem] leading-[1.75] text-[var(--text-2)]">
+          {full && (
+            <>
+              <Section title={tp.context}>
+                <p className="m-0">{project.context[lang]}</p>
+              </Section>
+
+              <Section title={tp.built}>
+                <ul className="m-0 list-disc space-y-1.5 pl-5 marker:text-[var(--accent)]">
+                  {project.built[lang].map((item) => <li key={item}>{item}</li>)}
+                </ul>
+                {project.quality && (
+                  <>
+                    <h3 className="mt-7 mb-3 font-display text-base font-semibold text-[var(--text)]">{tp.quality}</h3>
+                    <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+                      {project.quality[lang].map((item) => (
+                        <li key={item} className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-sm">{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </Section>
+            </>
+          )}
+
+          {full && project.challenges.length > 0 && (
+            <Section title={tp.challenges}>
+              <div className="flex flex-col gap-4">
+                {project.challenges.map((c) => (
+                  <div key={c.title.en} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+                    <h3 className="m-0 font-display text-lg font-semibold text-[var(--text)]">{c.title[lang]}</h3>
+                    <p className="m-0 mt-2 text-[0.95rem]">{c.text[lang]}</p>
+                  </div>
+                ))}
+              </div>
+            </Section>
+          )}
+        </div>
+
+        {/* Gallery: desktop shots two by two, phone shots side by side */}
+        <Section title={tp.gallery}>
+          {desktopShots.length > 0 && (
+            <div className="grid gap-6 md:grid-cols-2">
+              {desktopShots.map((shot) => (
+                <figure key={shot.src} className="m-0">
+                  <ProjectShot shot={shot} alt={`${project.name} — ${shot.label[lang]}`} url={hostname(project.url)} />
+                  <figcaption className="mt-2 text-center text-xs text-[var(--text-2)]">{shot.label[lang]}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+          {mobileShots.length > 0 && (
+            <div className={`grid grid-cols-2 gap-4 sm:grid-cols-4 ${desktopShots.length > 0 ? 'mt-8' : ''}`}>
+              {mobileShots.map((shot) => (
+                <figure key={shot.src} className="m-0">
+                  <ProjectShot shot={shot} alt={`${project.name} — ${shot.label[lang]}`} />
+                  <figcaption className="mt-2 text-center text-xs text-[var(--text-2)]">{shot.label[lang]}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+        </Section>
+
+        {full && (
+          <div className="max-w-[760px] text-[1rem] leading-[1.75] text-[var(--text-2)]">
+            <Section title={tp.result}>
+              <p className="m-0 text-[var(--text)]">{project.result[lang]}</p>
+            </Section>
+          </div>
+        )}
+      </div>
+    </article>
+  );
+};
+
+export default CaseStudyPage;
