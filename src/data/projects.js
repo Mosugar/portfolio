@@ -279,4 +279,74 @@ export const projects = [
       shot('eljamai-couture', 'connexion', 'desktop', 'Connexion et création de compte', 'Sign-in and sign-up'),
     ],
   },
+  {
+    slug: 'pristine-dental',
+    name: 'Pristine Dental',
+    featured: true,
+    draft: true,
+    year: '2025',
+    url: 'https://pristinedentalcenter.vercel.app/',
+    repos: [],
+    type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
+    summary: {
+      fr: 'Site d’un cabinet dentaire à Kénitra : présentation de la praticienne et des soins, FAQ et prise de contact directe par téléphone ou WhatsApp.',
+      en: 'Website for a dental practice in Kénitra: the dentist and her treatments, an FAQ and direct contact by phone or WhatsApp.',
+    },
+    client: { fr: 'Cabinet dentaire à Kénitra (Maroc)', en: 'Dental practice in Kénitra (Morocco)' },
+    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    stack: ['Next.js 14', 'React', 'Tailwind CSS', 'Lucide', 'Vercel'],
+    context: {
+      fr: 'Un cabinet dentaire veut présenter sa praticienne et ses soins, rassurer les futurs patients avant leur première visite et leur permettre de prendre rendez-vous facilement.',
+      en: 'A dental practice wants to introduce its dentist and treatments, reassure future patients before their first visit and make it easy for them to book an appointment.',
+    },
+    built: {
+      fr: [
+        'Présentation de la praticienne',
+        '6 soins : orthodontie, soins dentaires, blanchiment, implantologie, parodontologie, dentisterie esthétique',
+        'Avis de patients et section Instagram avec vidéos',
+        'Conseils et FAQ de 7 questions',
+        'Bouton WhatsApp avec message pré-rempli et numéros cliquables',
+        'Formulaire de contact et carte Google Maps',
+      ],
+      en: [
+        "The dentist's profile",
+        '6 treatments: orthodontics, dental care, whitening, implants, periodontics, cosmetic dentistry',
+        'Patient reviews and an Instagram section with videos',
+        'Advice and a 7-question FAQ',
+        'WhatsApp button with a pre-filled message and tap-to-call numbers',
+        'Contact form and Google Maps',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Prendre rendez-vous en un geste', en: 'Booking in one tap' },
+        text: {
+          fr: "Sur mobile, un patient veut appeler ou écrire tout de suite. Le bouton WhatsApp ouvre une conversation avec un message déjà rédigé pour la praticienne, les numéros sont en liens tel: et l'appel à « Prendre rendez-vous » revient dans l'en-tête et dans les sections clés.",
+          en: 'On mobile, a patient wants to call or write right away. The WhatsApp button opens a chat with a message already written to the dentist, phone numbers are tel: links, and the “Book an appointment” call to action appears in the header and key sections.',
+        },
+      },
+      {
+        title: { fr: 'Être trouvé localement', en: 'Getting found locally' },
+        text: {
+          fr: "Le titre et la description de la page (API metadata de Next.js) ciblent la recherche « dentiste Kénitra » et reprennent le nom de la praticienne, les soins principaux et le numéro du cabinet.",
+          en: "The page title and description (Next.js metadata API) target the “dentist Kénitra” search and include the dentist's name, the main treatments and the practice's phone number.",
+        },
+      },
+      {
+        title: { fr: 'Une page longue qui reste lisible sur mobile', en: 'A long page that stays readable on mobile' },
+        text: {
+          fr: "La page d'accueil enchaîne huit sections. Les réponses de la FAQ sont repliées en accordéon, et la mise en page passe en une colonne sur mobile sans aucun défilement horizontal à 375 px.",
+          en: 'The home page runs through eight sections. FAQ answers are collapsed in an accordion, and the layout switches to a single column on mobile with no horizontal scrolling at 375 px.',
+        },
+      },
+    ],
+    result: { fr: 'Site en ligne.', en: 'Site live.' },
+    cover: shot('pristine-dental', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('pristine-dental', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('pristine-dental', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('pristine-dental', 'soins', 'desktop', 'Les soins', 'Treatments'),
+      shot('pristine-dental', 'contact', 'desktop', 'Contact', 'Contact'),
+    ],
+  },
 ];
