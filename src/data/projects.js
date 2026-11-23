@@ -335,8 +335,8 @@ export const projects = [
       {
         title: { fr: 'Une page longue qui reste lisible sur mobile', en: 'A long page that stays readable on mobile' },
         text: {
-          fr: "La page d'accueil enchaîne huit sections. Les réponses de la FAQ sont repliées en accordéon, et la mise en page passe en une colonne sur mobile sans aucun défilement horizontal à 375 px.",
-          en: 'The home page runs through eight sections. FAQ answers are collapsed in an accordion, and the layout switches to a single column on mobile with no horizontal scrolling at 375 px.',
+          fr: "Tout tient sur une seule page (soins, avis, Instagram, FAQ, contact). Les réponses de la FAQ sont repliées en accordéon, et la mise en page passe en une colonne sur mobile sans aucun défilement horizontal à 375 px.",
+          en: 'Everything sits on one page (treatments, reviews, Instagram, FAQ, contact). FAQ answers are collapsed in an accordion, and the layout switches to a single column on mobile with no horizontal scrolling at 375 px.',
         },
       },
     ],
