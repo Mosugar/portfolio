@@ -362,7 +362,7 @@ export const projects = [
   {
     slug: 'pristine-dental',
     name: 'Pristine Dental',
-    featured: true,
+    featured: false,
     draft: true,
     year: '2025',
     url: 'https://pristinedentalcenter.vercel.app/',
