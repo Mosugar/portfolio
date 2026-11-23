@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/useLanguage';
+import { projectCount } from '../data/stats';
 
 const TOUR_SECTIONS = [null, 'home', 'about', 'skills', 'experience', 'resume', 'works', 'contact'];
 
@@ -91,7 +92,11 @@ const cursorBlink = 'text-[#8b5cf6]';
 const TourGuide = () => {
   const { t } = useLanguage();
   const TOUR_STEPS = useMemo(
-    () => t.tour.steps.map((step, i) => ({ ...step, section: TOUR_SECTIONS[i] })),
+    () => t.tour.steps.map((step, i) => ({
+      ...step,
+      text: step.text.replace('{projects}', projectCount),
+      section: TOUR_SECTIONS[i],
+    })),
     [t]
   );
 
