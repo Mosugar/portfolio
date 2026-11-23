@@ -49,7 +49,7 @@ const projects = [
     alt: 'Wardd Music platform',
     title: 'Wardd Music',
     subtitle: 'Music · Full-Stack',
-    url: 'https://www.warddmusic.com/',
+    url: 'https://warddstudio.ma/#tracks',
   },
   {
     id: 7,
