@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from 'lucide-react';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/useLanguage';
 import Link from '../router/Link';
+import { projectPath } from '../router/navigation';
 import ProjectShot from '../components/ProjectFrame';
 
 // Drafts (texts not yet reviewed) are shown in full in dev only. In production a draft
@@ -50,9 +51,38 @@ const NotFound = ({ t }) => (
   </div>
 );
 
+// Previous / next project, looping around the list
+const ProjectPager = ({ index, t, lang }) => {
+  const at = (offset) => projects[(index + offset + projects.length) % projects.length];
+  const links = [
+    { project: at(-1), label: t.project.previous, Icon: ArrowLeft, align: 'items-start text-left' },
+    { project: at(1), label: t.project.next, Icon: ArrowRight, align: 'items-end text-right' },
+  ];
+  return (
+    <nav aria-label={`${t.project.previous} / ${t.project.next}`} className="mt-20 grid gap-4 border-t border-[var(--border)] pt-10 sm:grid-cols-2">
+      {links.map(({ project, label, Icon, align }) => (
+        <Link
+          key={label}
+          to={projectPath(project.slug)}
+          className={`group flex flex-col gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 no-underline transition-colors hover:border-[var(--border-accent)] ${align}`}
+        >
+          <span className="inline-flex items-center gap-1.5 text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-3)] uppercase">
+            {Icon === ArrowLeft && <Icon size={13} aria-hidden="true" />}
+            {label}
+            {Icon === ArrowRight && <Icon size={13} aria-hidden="true" />}
+          </span>
+          <span className="font-display text-lg font-bold text-[var(--text)] transition-colors group-hover:text-[var(--accent-light)]">{project.name}</span>
+          <span className="text-xs text-[var(--text-2)]">{project.type[lang]}</span>
+        </Link>
+      ))}
+    </nav>
+  );
+};
+
 const CaseStudyPage = ({ slug }) => {
   const { t, lang } = useLanguage();
-  const project = projects.find((p) => p.slug === slug);
+  const index = projects.findIndex((p) => p.slug === slug);
+  const project = projects[index];
   if (!project) return <NotFound t={t} />;
 
   const full = !project.draft || SHOW_DRAFTS;
@@ -202,6 +232,12 @@ const CaseStudyPage = ({ slug }) => {
             </Section>
           </div>
         )}
+
+        <ProjectPager index={index} t={t} lang={lang} />
+
+        <Link to="/#works" className="mt-8 inline-flex items-center gap-2 text-sm text-[var(--text-2)] no-underline transition-colors hover:text-[var(--text)]">
+          <ArrowLeft size={15} aria-hidden="true" /> {tp.back}
+        </Link>
       </div>
     </article>
   );
