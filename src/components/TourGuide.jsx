@@ -10,6 +10,9 @@ const HINT_KEY = 'sugar-hint-seen';
 const HINT_DELAY = 8000;
 const HINT_DURATION = 6000;
 
+// Height of the corner Sugar sits in: when the projects section passes behind it, Sugar steps aside
+const CORNER_HEIGHT = 180;
+
 const SugarBot = ({ blinking, talking, sleeping }) => (
   <svg
     aria-hidden="true"
@@ -114,6 +117,7 @@ const TourGuide = () => {
   const [sleeping, setSleeping]       = useState(false);
   const [easterEggText, setEasterEggText] = useState(null);
   const [hint, setHint] = useState(false);
+  const [overProjects, setOverProjects] = useState(false);
 
   const [typedTitle, setTypedTitle] = useState('');
   const [typedText,  setTypedText]  = useState('');
@@ -154,6 +158,25 @@ const TourGuide = () => {
     const timer = setTimeout(() => setHint(false), HINT_DURATION);
     return () => clearTimeout(timer);
   }, [hint]);
+
+  // #works loads lazily, so it's looked up on every check rather than once on mount
+  useEffect(() => {
+    let frame = null;
+    const check = () => {
+      frame = null;
+      const rect = document.getElementById('works')?.getBoundingClientRect();
+      setOverProjects(Boolean(rect) && rect.top < window.innerHeight && rect.bottom > window.innerHeight - CORNER_HEIGHT);
+    };
+    const onScroll = () => { if (frame === null) frame = requestAnimationFrame(check); };
+    check();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
 
   const resetIdleTimer = () => {
     clearTimeout(idleTimerRef.current);
@@ -262,9 +285,17 @@ const TourGuide = () => {
   const bubbleVisible = easterEggText || visible;
   const bubbleMode    = easterEggText ? 'easter' : 'tour';
   const isAngry       = bubbleMode === 'easter';
+  // Never cover the projects, unless the visitor is in the middle of the tour they started
+  const hidden = overProjects && !(tourStarted && visible);
 
   return (
-    <div className="pointer-events-none fixed right-6 bottom-6 z-[999] flex flex-col items-end gap-3">
+    <div
+      inert={hidden}
+      aria-hidden={hidden || undefined}
+      className={`pointer-events-none fixed right-6 bottom-6 z-[999] flex flex-col items-end gap-3 transition-[opacity,translate] duration-300 ${
+        hidden ? 'translate-y-3 opacity-0' : 'opacity-100'
+      }`}
+    >
       {/* Speech bubble */}
       <AnimatePresence mode="wait">
         {bubbleVisible && (
