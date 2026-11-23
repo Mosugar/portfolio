@@ -280,6 +280,86 @@ export const projects = [
     ],
   },
   {
+    slug: 'nexly',
+    name: 'Nexly',
+    featured: true,
+    draft: true,
+    year: '2026',
+    url: 'https://nexly.nexlychat.workers.dev/',
+    repos: [],
+    type: { fr: 'Application web · Chat vidéo en temps réel', en: 'Web app · Real-time video chat' },
+    summary: {
+      fr: 'Chat aléatoire en vidéo ou en texte, alternative à Omegle : mise en relation en temps réel, floutage anti-nudité sur l’appareil et modération, sans compte.',
+      en: 'Random video or text chat, an Omegle alternative: real-time matching, on-device nudity blurring and moderation, no account needed.',
+    },
+    client: { fr: 'Projet personnel', en: 'Personal project' },
+    role: { fr: 'Conception et développement complet.', en: 'Designed and built end to end.' },
+    stack: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'Supabase (Postgres, Realtime)', 'WebRTC', 'TensorFlow.js', 'nsfwjs', 'next-intl', 'Cloudflare Workers', 'OpenNext'],
+    context: {
+      fr: "Les sites de chat aléatoire mettent en relation des inconnus en quelques secondes, mais posent de vrais problèmes de sécurité. Nexly reprend le principe d'Omegle avec la sécurité au centre : 18 ans et plus, aucune vidéo enregistrée, pas de compte, et des protections qui fonctionnent dès la première seconde.",
+      en: "Random chat sites connect strangers in seconds, but come with real safety problems. Nexly takes Omegle's idea with safety at its core: 18+, no video ever recorded, no account, and protections that work from the very first second.",
+    },
+    built: {
+      fr: [
+        'Chat vidéo (caméra + micro) ou texte seulement, avec un bouton « Suivant »',
+        "Mise en relation par centres d'intérêt, langue et pays (facultatifs)",
+        "Vérification de l'âge (18+) avant le premier chat",
+        'Floutage automatique de la nudité, analysé sur l’appareil de celui qui regarde',
+        'Signalement, bannissement automatique et panneau d’administration',
+        'Filtre des messages : liens, numéros de téléphone et insultes',
+        'Site en français, anglais et arabe (RTL), avec des pages SEO dédiées',
+      ],
+      en: [
+        'Video chat (camera + mic) or text only, with a “Next” button',
+        'Matching by interests, language and country (optional)',
+        'Age check (18+) before the first chat',
+        "Automatic nudity blurring, analysed on the viewer's device",
+        'Reporting, automatic bans and an admin panel',
+        'Message filter: links, phone numbers and insults',
+        'Site in French, English and Arabic (RTL), with dedicated SEO pages',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Une mise en relation fiable, sans « fantômes »', en: 'Reliable matching, without “ghosts”' },
+        text: {
+          fr: "La file d'attente vit dans Postgres et la mise en relation est une fonction SQL. Elle verrouille les lignes avec FOR UPDATE SKIP LOCKED, pour que deux personnes ne soient jamais associées au même partenaire en même temps. Chaque client signale sa présence environ toutes les secondes : seuls ceux vus dans les 6 dernières secondes sont associés, donc un onglet fermé ne devient jamais un partenaire « fantôme ». La fonction privilégie les centres d'intérêt communs, puis la langue et le pays, et évite de remettre ensemble deux personnes qui viennent de se quitter.",
+          en: "The waiting queue lives in Postgres and matching is a SQL function. It locks rows with FOR UPDATE SKIP LOCKED, so two people are never paired with the same partner at once. Each client checks in about every second: only those seen in the last 6 seconds get matched, so a closed tab never becomes a “ghost” partner. The function favours shared interests, then language and country, and avoids pairing two people who just left each other.",
+        },
+      },
+      {
+        title: { fr: 'De la vidéo en pair-à-pair', en: 'Peer-to-peer video' },
+        text: {
+          fr: "La vidéo passe directement entre les deux navigateurs (WebRTC) et ne transite par aucun serveur, d'où l'absence d'enregistrement. La négociation de la connexion, les messages, l'indicateur « en train d'écrire » et l'état de la caméra passent par un canal Supabase Realtime privé, propre à chaque conversation. Pour les réseaux qui bloquent le pair-à-pair, une route serveur délivre des identifiants TURN temporaires, jamais inclus dans le code envoyé au navigateur.",
+          en: 'Video goes straight between the two browsers (WebRTC) and never through a server, which is why nothing is recorded. Connection setup, messages, the “typing” indicator and camera state go through a private Supabase Realtime channel for each conversation. For networks that block peer-to-peer, a server route hands out short-lived TURN credentials, never shipped in the browser code.',
+        },
+      },
+      {
+        title: { fr: 'Une modération qui ne dépend pas de celui qui envoie', en: "Moderation that doesn't depend on the sender" },
+        text: {
+          fr: "La détection de nudité (nsfwjs sur TensorFlow.js) tourne sur l'appareil de celui qui regarde : celui qui envoie ne peut donc pas la contourner. Le modèle n'est téléchargé qu'au lancement d'un chat vidéo. Côté signalements, les règles sont en base : un compte n'est banni automatiquement qu'après les signalements de plusieurs personnes différentes, les signalements du détecteur ne bannissent jamais seuls, et chaque utilisateur a une limite de signalements par heure pour éviter les abus.",
+          en: "Nudity detection (nsfwjs on TensorFlow.js) runs on the viewer's device, so the sender can't get around it. The model is only downloaded when a video chat starts. For reports, the rules live in the database: an account is only banned automatically after reports from several different people, detector reports never ban on their own, and each user has an hourly report limit to prevent abuse.",
+        },
+      },
+      {
+        title: { fr: 'Next.js sur Cloudflare Workers', en: 'Next.js on Cloudflare Workers' },
+        text: {
+          fr: "L'application Next.js est déployée sur Cloudflare Workers grâce à OpenNext. Les secrets serveur restent dans les secrets Cloudflare (Wrangler) et ne sont jamais placés dans les fichiers .env, qu'OpenNext intègre au Worker.",
+          en: 'The Next.js app is deployed to Cloudflare Workers through OpenNext. Server secrets stay in Cloudflare secrets (Wrangler) and are never put in .env files, which OpenNext bundles into the Worker.',
+        },
+      },
+    ],
+    result: { fr: 'En ligne.', en: 'Live.' },
+    cover: shot('nexly', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('nexly', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('nexly', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('nexly', 'fonctionnalites', 'desktop', 'Fonctionnalités', 'Features'),
+      shot('nexly', 'securite', 'desktop', 'Page Sécurité', 'Safety page'),
+      shot('nexly', 'arabe', 'desktop', 'Version arabe (RTL)', 'Arabic version (RTL)'),
+    ],
+  },
+  {
     slug: 'pristine-dental',
     name: 'Pristine Dental',
     featured: true,
