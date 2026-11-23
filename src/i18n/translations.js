@@ -208,20 +208,6 @@ const translations = {
       },
     },
 
-    intro: {
-      soundPrompt: "Tu préfères que je parle ou juste que j'écrive ?",
-      soundYes: "🔊 Parle !",
-      soundNo: "✍️ Juste écrire",
-      greetingMorning:   "Bonjour ! Je m'appelle Sugar. ☀️",
-      greetingAfternoon: "Bon après-midi ! Je m'appelle Sugar. 🌤️",
-      greetingEvening:   "Bonsoir ! Je m'appelle Sugar. 🌙",
-      greetingNight:     "Encore debout ? Je m'appelle Sugar. 🦉",
-      line1: "Salut ! Je m'appelle Sugar. 👋",
-      line2: "Bienvenue dans le portfolio de Mohamed.",
-      enter: "Explorer le portfolio →",
-      skip: "Passer",
-    },
-
     tour: {
       steps: [
         { title: "Salut, je suis Sugar ! 👋", text: "Le guide de Mohamed. Tu veux une visite guidée ?", isIntro: true },
@@ -462,20 +448,6 @@ const translations = {
         success: 'Message sent! I\'ll get back to you shortly.',
         error: 'Oops, something went wrong. Please try again.',
       },
-    },
-
-    intro: {
-      soundPrompt: "Would you like me to speak or just write?",
-      soundYes: "🔊 Speak!",
-      soundNo: "✍️ Just write",
-      greetingMorning:   "Good morning! I'm Sugar. ☀️",
-      greetingAfternoon: "Good afternoon! I'm Sugar. 🌤️",
-      greetingEvening:   "Good evening! I'm Sugar. 🌙",
-      greetingNight:     "Still up? I'm Sugar. 🦉",
-      line1: "Hey! I'm Sugar. 👋",
-      line2: "Welcome to Mohamed's portfolio.",
-      enter: "Explore the portfolio →",
-      skip: "Skip",
     },
 
     tour: {
