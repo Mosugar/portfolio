@@ -478,4 +478,72 @@ export const projects = [
       shot('wardd-music', 'artistes', 'desktop', 'Artistes', 'Artists'),
     ],
   },
+  {
+    slug: 'csba-law-firm',
+    name: 'CSBA Law Firm',
+    featured: false,
+    draft: true,
+    year: '2024',
+    url: 'https://lawyer-sulaiman.vercel.app/',
+    repos: [],
+    type: { fr: 'Site vitrine · Next.js · Arabe (RTL)', en: 'Showcase website · Next.js · Arabic (RTL)' },
+    summary: {
+      fr: "Site en arabe d'un cabinet d'avocats et de notaires en Arabie saoudite : services juridiques, équipe, FAQ et demande de rendez-vous.",
+      en: 'Arabic website for a law and notary firm in Saudi Arabia: legal services, team, FAQ and appointment requests.',
+    },
+    client: { fr: "Cabinet d'avocats en Arabie saoudite", en: 'Law firm in Saudi Arabia' },
+    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    stack: ['Next.js', 'React', 'next/image', 'Vercel'],
+    context: {
+      fr: "Un cabinet d'avocats veut inspirer confiance, présenter clairement ses domaines d'intervention et son équipe, et permettre aux clients de demander un rendez-vous, le tout en arabe.",
+      en: 'A law firm wants to inspire trust, clearly present its practice areas and its team, and let clients request an appointment, all in Arabic.',
+    },
+    built: {
+      fr: [
+        '6 services juridiques : conseil, création de sociétés, boutiques en ligne, droit du travail, contentieux, recouvrement',
+        'Section des réalisations du cabinet',
+        "Présentation de l'équipe",
+        'Formulaire de demande de rendez-vous et FAQ',
+        'Carte Google Maps, WhatsApp et réseaux sociaux',
+      ],
+      en: [
+        '6 legal services: advice, company formation, online stores, employment law, litigation, debt recovery',
+        "The firm's achievements section",
+        'Team presentation',
+        'Appointment request form and FAQ',
+        'Google Maps, WhatsApp and social links',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Un site entièrement en arabe, de droite à gauche', en: 'A fully Arabic, right-to-left site' },
+        text: {
+          fr: "La page est déclarée en arabe (lang=\"ar\", dir=\"rtl\") : toute la mise en page se lit de droite à gauche, du menu aux formulaires. La police Cairo a été choisie pour sa bonne lisibilité en arabe, aux petites comme aux grandes tailles.",
+          en: 'The page is declared as Arabic (lang="ar", dir="rtl"): the whole layout reads right to left, from the menu to the forms. The Cairo font was chosen for how readable it is in Arabic, at small and large sizes.',
+        },
+      },
+      {
+        title: { fr: 'Des visuels lourds qui chargent vite', en: 'Heavy visuals that still load fast' },
+        text: {
+          fr: "Les grandes photos du site passent par next/image, qui les sert redimensionnées et dans un format moderne selon l'écran du visiteur.",
+          en: "The site's large photos go through next/image, which serves them resized and in a modern format for each visitor's screen.",
+        },
+      },
+      {
+        title: { fr: 'Le même site sur mobile', en: 'The same site on mobile' },
+        text: {
+          fr: 'Sur mobile, la navigation passe dans un menu burger et les sections se réorganisent en une colonne, sans défilement horizontal à 375 px.',
+          en: 'On mobile, navigation moves into a burger menu and sections stack into a single column, with no horizontal scrolling at 375 px.',
+        },
+      },
+    ],
+    result: { fr: 'Site en ligne.', en: 'Site live.' },
+    cover: shot('csba-law-firm', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('csba-law-firm', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('csba-law-firm', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('csba-law-firm', 'services', 'desktop', 'Services juridiques', 'Legal services'),
+      shot('csba-law-firm', 'rendez-vous', 'desktop', 'Demande de rendez-vous', 'Appointment request'),
+    ],
+  },
 ];
