@@ -51,6 +51,17 @@ const PROJECTS = {
       { name: 'artistes', vp: 'desktop', section: '#artists' },
     ],
   },
+  // Landing pages only: starting a chat asks for the camera, which a screenshot must never do
+  nexly: {
+    url: 'https://nexly.nexlychat.workers.dev',
+    shots: [
+      { name: 'accueil', vp: 'desktop', path: '/fr' },
+      { name: 'accueil-mobile', vp: 'mobile', path: '/fr' },
+      { name: 'fonctionnalites', vp: 'desktop', path: '/fr', section: '#features-title' },
+      { name: 'securite', vp: 'desktop', path: '/fr/safety' },
+      { name: 'arabe', vp: 'desktop', path: '/ar' },
+    ],
+  },
   'pristine-dental': {
     url: 'https://pristinedentalcenter.vercel.app',
     shots: [
