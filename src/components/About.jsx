@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/useLanguage';
+import { projectCount, sectorCount } from '../data/stats';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -109,8 +110,8 @@ const About = () => {
             <div className="grid grid-cols-[repeat(3,1fr)] gap-4">
               {[
                 { value: '3+', label: t.about.stat1 },
-                { value: '8+', label: t.about.stat2 },
-                { value: '3', label: t.about.stat3 },
+                { value: String(projectCount), label: t.about.stat2 },
+                { value: String(sectorCount), label: t.about.stat3 },
               ].map(({ value, label }) => (
                 <div
                   key={label}
