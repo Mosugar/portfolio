@@ -121,13 +121,9 @@ const TourGuide = () => {
   const reactedSections  = useRef(new Set());
   const overrideTimerRef = useRef(null);
 
+  // The bubble only opens when the visitor clicks Sugar; the bot itself stays alive (blinks, naps)
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 3500);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    if (!visible || dismissed || sleeping) return;
+    if (dismissed || sleeping) return;
     const schedule = () => {
       blinkTimerRef.current = setTimeout(() => {
         setBlinking(true);
@@ -136,7 +132,7 @@ const TourGuide = () => {
     };
     schedule();
     return () => clearTimeout(blinkTimerRef.current);
-  }, [visible, dismissed, sleeping]);
+  }, [dismissed, sleeping]);
 
   const resetIdleTimer = () => {
     clearTimeout(idleTimerRef.current);
@@ -145,10 +141,10 @@ const TourGuide = () => {
   };
 
   useEffect(() => {
-    if (!visible || dismissed) return;
+    if (dismissed) return;
     resetIdleTimer();
     return () => clearTimeout(idleTimerRef.current);
-  }, [visible, dismissed]);
+  }, [dismissed]);
 
   useEffect(() => {
     if (!visible || dismissed) return;
