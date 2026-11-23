@@ -5,7 +5,7 @@
 // by Mohamed (see REVUE_ETUDES_DE_CAS.md). Never put invented numbers or client results here.
 //
 // featured   big card on the home page; the others go in the compact "Autres projets" list
-// url        live site · linkLabel: translation key when the link isn't the live site (e.g. Behance)
+// url        live site (null when there is none) · linkLabel: translation key when the link isn't the live site (e.g. Behance)
 // repos      public repositories only ("Code" buttons)
 // cover      main screenshot · gallery: { src, kind: 'desktop' | 'mobile', label }
 // built      what was built · quality: SEO / quality checklist (optional)
@@ -177,6 +177,57 @@ export const projects = [
       shot('wardd-studio', 'reservation', 'desktop', 'Réservation de session', 'Session booking'),
       { src: '/images/wardd/story.webp', kind: 'desktop', label: { fr: 'Notre histoire', en: 'Our story' } },
       { src: '/images/wardd/packs.webp', kind: 'desktop', label: { fr: 'Packs', en: 'Packs' } },
+    ],
+  },
+  {
+    slug: 'recur',
+    name: 'Recur',
+    featured: true,
+    draft: false,
+    year: '2026',
+    url: null,
+    repos: [
+      { label: 'recur', url: 'https://github.com/Mosugar/recur' },
+      { label: 'recur-api', url: 'https://github.com/Mosugar/recur-api' },
+    ],
+    type: { fr: 'Application mobile · Expo · React Native', en: 'Mobile app · Expo · React Native' },
+    summary: {
+      fr: "Application mobile de suivi d'abonnements : totaux, paiements à venir et rappels, 100 % hors ligne et sans compte.",
+      en: 'Subscription tracker mobile app: totals, upcoming payments and reminders, fully offline with no account.',
+    },
+    client: { fr: 'Projet personnel', en: 'Personal project' },
+    role: {
+      fr: 'Projet personnel conçu et développé de bout en bout : architecture, UI, logique métier et tests.',
+      en: 'Personal project, designed and built end to end: architecture, UI, business logic and tests.',
+    },
+    stack: ['Expo', 'React Native', 'TypeScript (strict)', 'Expo Router', 'NativeWind', 'Reanimated', 'expo-sqlite', 'Zustand', 'expo-notifications', 'i18next', 'Jest'],
+    context: {
+      fr: "Les abonnements s'accumulent et les renouvellements arrivent par surprise. Recur montre ce que l'on paie, et quand.",
+      en: 'Subscriptions pile up and renewals come as a surprise. Recur shows what you pay, and when.',
+    },
+    built: {
+      fr: ['Totaux mensuels et annuels', 'Paiements des 7 prochains jours', 'Rappel la veille de chaque paiement', 'Statistiques par catégorie (donut SVG animé)', 'Mode sombre', 'FR / EN', '100 % hors ligne, sans compte'],
+      en: ['Monthly & yearly totals', 'Payments due in the next 7 days', 'Reminder the day before each payment', 'Spending by category (animated SVG donut)', 'Dark mode', 'FR / EN', '100% offline, no account'],
+    },
+    challenges: [
+      {
+        title: { fr: "Des calculs de dates et d'argent fiables", en: 'Reliable date and money math' },
+        text: {
+          fr: "Les prix sont stockés en centimes (entiers) pour éviter les erreurs de virgule flottante. La prochaine date de paiement n'est jamais stockée : elle est calculée à partir de la première date et du cycle, et les fins de mois sont gérées (un abonnement du 31 janvier se renouvelle le 28/29 février). Cette logique vit dans des fonctions pures, séparées de l'UI et testées avec Jest.",
+          en: "Prices are stored in cents (integers) to avoid floating-point errors. The next payment date is never stored: it's computed from the first payment date and the billing cycle, and month-end edge cases are handled (a subscription billed on Jan 31 renews on Feb 28/29). This logic lives in pure functions, separated from the UI and unit-tested with Jest.",
+        },
+      },
+    ],
+    result: {
+      fr: 'En cours de test, pas encore publié sur les stores. Le code source est public sur GitHub.',
+      en: 'In testing, not yet published on the stores. The source code is public on GitHub.',
+    },
+    cover: { src: '/images/recur/home.webp', kind: 'mobile', label: { fr: 'Accueil', en: 'Home' } },
+    gallery: [
+      { src: '/images/recur/home.webp', kind: 'mobile', label: { fr: 'Accueil', en: 'Home' } },
+      { src: '/images/recur/add.webp', kind: 'mobile', label: { fr: 'Ajout', en: 'Add subscription' } },
+      { src: '/images/recur/stats.webp', kind: 'mobile', label: { fr: 'Statistiques', en: 'Stats' } },
+      { src: '/images/recur/settings.webp', kind: 'mobile', label: { fr: 'Réglages', en: 'Settings' } },
     ],
   },
 ];
