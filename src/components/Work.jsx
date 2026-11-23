@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '../data/projects';
+import { projectCount } from '../data/stats';
 import { useLanguage } from '../context/useLanguage';
 import FeaturedProjectCard from './FeaturedProjectCard';
 import OtherProjects from './OtherProjects';
@@ -58,7 +59,7 @@ const Works = () => {
             variants={fadeUp}
             className="m-0 text-[0.78rem] tracking-[0.12em] text-[var(--text-3)] uppercase"
           >
-            {t.works.count.replace('{n}', projects.length)}
+            {t.works.count.replace('{n}', projectCount)}
           </motion.p>
         </div>
 
