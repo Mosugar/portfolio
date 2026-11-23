@@ -179,6 +179,26 @@ const translations = {
       },
     },
 
+    project: {
+      back: 'Retour aux projets',
+      year: 'Année',
+      role: 'Mon rôle',
+      client: 'Client',
+      stack: 'Stack',
+      context: 'Contexte et besoin',
+      built: "Ce que j'ai construit",
+      quality: 'SEO et qualité',
+      challenges: 'Défis techniques et solutions',
+      gallery: 'Captures desktop et mobile',
+      result: 'Résultat',
+      visit: 'Voir le site',
+      visitBehance: 'Voir sur Behance',
+      code: 'Code',
+      draft: 'Brouillon : texte à relire (visible en dev uniquement)',
+      notFound: 'Projet introuvable',
+      notFoundText: "Ce projet n'existe pas ou a changé d'adresse.",
+    },
+
     footer: {
       label: 'Travaillons ensemble',
       h2a: 'Un projet',
@@ -424,6 +444,26 @@ const translations = {
         visitBehance: 'View on Behance',
         close: 'Close case study',
       },
+    },
+
+    project: {
+      back: 'Back to projects',
+      year: 'Year',
+      role: 'My role',
+      client: 'Client',
+      stack: 'Stack',
+      context: 'Context and need',
+      built: 'What I built',
+      quality: 'SEO and quality',
+      challenges: 'Technical challenges and solutions',
+      gallery: 'Desktop and mobile screenshots',
+      result: 'Result',
+      visit: 'Visit the site',
+      visitBehance: 'View on Behance',
+      code: 'Code',
+      draft: 'Draft: text to review (only visible in dev)',
+      notFound: 'Project not found',
+      notFoundText: "This project doesn't exist or has moved.",
     },
 
     footer: {
