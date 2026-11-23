@@ -71,17 +71,6 @@ const translations = {
       visit: 'Voir',
       entries: [
         {
-          title: 'Développeur Full Stack',
-          company: 'ScoreLift (L\'École du Tigre)',
-          location: 'Télétravail',
-          period: 'Avr. 2026 – Présent',
-          year: '2026',
-          type: 'current',
-          description: 'Développement d\'une app mobile sportive et communautaire avec React Native pour iOS et Android : profils d\'athlètes, fil d\'actualité, suivi des performances, classements et tournois. Intégration d\'APIs REST avec l\'équipe backend Java.',
-          tech: ['React Native', 'TypeScript', 'REST API', 'Java'],
-          link: 'https://scorelift.fr/',
-        },
-        {
           title: 'Développeur Full Stack – Programme CDA',
           company: 'SCHOLIA',
           location: 'Thiais, France',
@@ -230,7 +219,7 @@ const translations = {
         { title: "Accueil", text: "Développeur full-stack, Paris, disponible en alternance. Voilà le pitch." },
         { title: "À propos", text: "24 ans, 3+ ans à construire de vrais produits pour de vrais clients." },
         { title: "Compétences", text: "27 outils — React, Laravel, React Native, Docker et plus encore." },
-        { title: "Parcours", text: "8 expériences entre startups, agences et stages." },
+        { title: "Parcours", text: "7 expériences entre startups, agences et stages." },
         { title: "CV", text: "CV complet à télécharger — alternance disponible dès 2026." },
         { title: "Projets", text: "9 projets livrés. Fais tourner le carrousel pour explorer." },
         { title: "Et voilà ! 🎉", text: "C'est la fin de la visite. Mohamed est dispo pour une alternance dès 2026. Je dis ça, je dis rien... 😉", isLast: true },
@@ -328,17 +317,6 @@ const translations = {
       past: 'Past',
       visit: 'Visit',
       entries: [
-        {
-          title: 'Full Stack Developer',
-          company: 'ScoreLift (L\'École du Tigre)',
-          location: 'Remote',
-          period: 'Apr 2026 – Present',
-          year: '2026',
-          type: 'current',
-          description: 'Building a sports and community mobile app with React Native for iOS and Android: athlete profiles, news feed, performance tracking, rankings and tournaments. Integrating REST APIs with the Java backend team.',
-          tech: ['React Native', 'TypeScript', 'REST API', 'Java'],
-          link: 'https://scorelift.fr/',
-        },
         {
           title: 'Full Stack Developer – CDA Program',
           company: 'SCHOLIA',
@@ -488,7 +466,7 @@ const translations = {
         { title: "Welcome", text: "Full-stack dev, Paris-based, looking for alternance. That's the pitch." },
         { title: "About", text: "24 y/o, 3+ years building real products for real clients." },
         { title: "Skills", text: "27 tools — React, Laravel, React Native, Docker and more." },
-        { title: "Career", text: "8 roles across startups, agencies and internships." },
+        { title: "Career", text: "7 roles across startups, agencies and internships." },
         { title: "Resume", text: "Full CV ready to download — alternance starting 2026." },
         { title: "Projects", text: "9 shipped projects. Spin the carousel to explore." },
         { title: "That's the tour! 🎉", text: "Mohamed's open for alternance starting 2026. Just putting that out there... 😉", isLast: true },
