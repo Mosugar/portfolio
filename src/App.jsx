@@ -5,7 +5,6 @@ import GlobalBackground from './components/Layout.jsx';
 import Navigation from './components/CyberpunkNavigation.jsx';
 import About from './components/About.jsx';
 import SEO from './components/SEO.jsx';
-import IntroAnimation from './components/IntroAnimation.jsx';
 import { LanguageProvider } from './context/LanguageContext.jsx';
 import { useLanguage } from './context/useLanguage';
 import Cursor from './components/Cursor.jsx';
@@ -28,10 +27,6 @@ const SkipLink = () => {
 function App() {
   const [visible, setVisible] = useState(false);
   const slug = projectSlugFrom(usePathname());
-  // The intro only greets visitors who land on the home page, not on a shared project link
-  const [showIntro] = useState(() => !projectSlugFrom(window.location.pathname));
-  // While the intro overlay is up, the page behind it must not be reachable with Tab
-  const [introOpen, setIntroOpen] = useState(showIntro);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#09090f';
@@ -45,8 +40,7 @@ function App() {
     <LanguageProvider>
       <MotionConfig reducedMotion="user">
       <Cursor />
-      {showIntro && <IntroAnimation onClose={() => setIntroOpen(false)} />}
-      <div className={`app-container ${visible ? 'visible' : ''}`} inert={introOpen}>
+      <div className={`app-container ${visible ? 'visible' : ''}`}>
         <SkipLink />
         {/* Project pages set their own title, description and preview image */}
         {!slug && <SEO />}
