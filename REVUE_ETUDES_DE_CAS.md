@@ -11,7 +11,7 @@ Sources utilisées : le site en ligne (pages, sections, balises, langue, respons
 
 ## ⚠️ À savoir avant tout
 
-- **Formulaires qui n'envoient rien** : sur **Pristine Dental** (`components/Contact.jsx` affiche juste une `alert`) et **TL Global** (`Contact.jsx` simule un délai de 2 s puis affiche « succès »), les messages des visiteurs ne partent nulle part. Les études de cas ne disent pas « formulaire fonctionnel », mais les clients perdent peut-être des demandes.
+- **Formulaires qui n'envoient rien** : sur **Pristine Dental** (`components/Contact.jsx` affiche juste une `alert`) et **TL Global** (`Contact.jsx` simule un délai de 2 s puis affiche « succès »), les messages des visiteurs ne partent nulle part. Les clients perdent peut-être des demandes. À ta demande, le portfolio ne parle pas de ces formulaires du tout (retirés des textes de ces deux projets).
 - **Pristine Dental** : erreurs React d'hydratation dans la console du site en ligne (#418, #423, #425).
 - **Stretched Web** : la page `/work` de l'agence présente **Lawyer Sulaiman (CSBA), Smiley, Gourmet Grove et Wardd Studio** comme ses propres réalisations. Si CSBA et Gourmet & Grove ont été faits pendant ton poste chez Stretched Web, ton rôle sur ces projets est peut-être différent de « Conception et développement du site ».
 
@@ -22,7 +22,7 @@ Sources utilisées : le site en ligne (pages, sections, balises, langue, respons
 Seuls les **résumés en 1 phrase** (`summary`) et les **types** (`type`) ont été écrits par Claude. Les traductions anglaises de Repère RH aussi.
 
 - **Repère RH** : vérifier la traduction anglaise. « Contexte et besoin » a été reformulé à partir de ton résumé.
-- **Wardd Studio** : la stack indique « Spotify Web API », mais le code (`lib/spotify.js`) utilise l'oEmbed et la page d'intégration de Spotify, pas l'API Web (pas de clé ni d'OAuth). À corriger ? Le défi a été découpé en deux (bilingue RTL / assistant IA), texte inchangé.
+- **Wardd Studio** : stack corrigée en « Spotify oEmbed » (le code n'utilise pas l'API Web). Le défi a été découpé en deux (bilingue RTL / assistant IA), texte inchangé.
 - **Recur** : `recur-api` est ajouté en 2ᵉ bouton « Code », mais l'étude de cas dit « 100 % hors ligne, sans compte ». À expliquer en une phrase (à quoi sert l'API ?) ou à retirer.
 - **ElJamai Couture** : les captures viennent de ton projet Behance (le site est hors ligne). On y voit aussi une version arabe, une connexion Google / Apple et des filtres taille / prix : à ajouter à « Ce que j'ai construit » si c'est toi qui les as faits.
 
@@ -51,7 +51,6 @@ Seuls les **résumés en 1 phrase** (`summary`) et les **types** (`type`) ont é
 | Stack | React 19, Create React App, CSS, Vercel | `package.json` |
 | Défi 1 | Filtre des réalisations par catégorie (état React) | Vérifié (`Projects.jsx`) |
 | Défi 2 | Animations 100 % CSS (`@keyframes`, aucune bibliothèque) | Vérifié |
-| Défi 3 | Formulaire qualifiant (type de projet, budget en MAD) | Les champs existent, **mais le formulaire n'envoie rien** (voir plus haut) |
 | Autre | Le site est déclaré `lang="en"` alors que le contenu est en français, et la section contact a des titres en anglais (« Get in touch ») | À corriger côté client ? |
 | Résultat | « Site en ligne. » | L'URL est un sous-domaine `vercel.app` : le client a-t-il son propre domaine ? |
 
