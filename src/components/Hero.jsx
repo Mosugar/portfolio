@@ -103,13 +103,10 @@ const Hero = () => {
           <span className="text-[var(--accent-light)]">Sekkar.</span>
         </motion.h1>
 
-        {/* Tagline */}
-        <motion.p
-          variants={item}
-          className="mb-10 max-w-[520px] text-[clamp(1rem,2vw,1.2rem)] leading-[1.65] text-[var(--text-2)]"
-        >
+        {/* Tagline: shown at once, no fade, since it's the page's largest text (LCP) */}
+        <p className="mb-10 max-w-[520px] text-[clamp(1rem,2vw,1.2rem)] leading-[1.65] text-[var(--text-2)]">
           {t.hero.tagline}
-        </motion.p>
+        </p>
 
         {/* CTAs */}
         <motion.div variants={item} className="flex flex-wrap gap-4">
