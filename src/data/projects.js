@@ -5,6 +5,7 @@
 // by Mohamed (see REVUE_ETUDES_DE_CAS.md). Never put invented numbers or client results here.
 //
 // featured   big card on the home page; the others go in the compact "Autres projets" list
+// sector     client's sector, counted in About's "Secteurs couverts" (null: personal project or not counted)
 // url        live site (null when there is none) · linkLabel: translation key when the link isn't the live site (e.g. Behance)
 // repos      public repositories only ("Code" buttons)
 // cover      main screenshot · gallery: { src, kind: 'desktop' | 'mobile', label }
@@ -24,6 +25,7 @@ export const projects = [
     featured: true,
     draft: false,
     year: '2026',
+    sector: 'formation-recrutement',
     url: 'https://repererh.com',
     repos: [],
     type: { fr: 'Site vitrine · Laravel', en: 'Showcase website · Laravel' },
@@ -106,6 +108,7 @@ export const projects = [
     featured: true,
     draft: false,
     year: '2026',
+    sector: 'musique',
     url: 'https://warddstudio.ma/',
     repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
     type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
@@ -185,6 +188,7 @@ export const projects = [
     featured: true,
     draft: false,
     year: '2026',
+    sector: null,
     url: null,
     repos: [
       { label: 'recur', url: 'https://github.com/Mosugar/recur' },
@@ -236,6 +240,7 @@ export const projects = [
     featured: true,
     draft: false,
     year: '2024 – 2025',
+    sector: 'mode',
     // The client has replaced the site, so the work now lives on Behance
     url: 'https://www.behance.net/gallery/228344479/Eljamaicoutureae',
     linkLabel: 'visitBehance',
@@ -285,6 +290,7 @@ export const projects = [
     featured: true,
     draft: true,
     year: '2026',
+    sector: null,
     url: 'https://nexly.nexlychat.workers.dev/',
     repos: [],
     type: { fr: 'Application web · Chat vidéo en temps réel', en: 'Web app · Real-time video chat' },
@@ -365,6 +371,7 @@ export const projects = [
     featured: false,
     draft: true,
     year: '2025',
+    sector: 'sante',
     url: 'https://pristinedentalcenter.vercel.app/',
     repos: [],
     type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
@@ -435,6 +442,7 @@ export const projects = [
     featured: false,
     draft: true,
     year: '2025',
+    sector: 'amenagement-interieur',
     url: 'https://toufaiq.vercel.app/',
     repos: [],
     type: { fr: 'Site vitrine · React', en: 'Showcase website · React' },
@@ -494,6 +502,7 @@ export const projects = [
     featured: false,
     draft: true,
     year: '2026',
+    sector: 'musique',
     url: 'https://warddstudio.ma/#tracks',
     repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
     type: { fr: 'Musique · Next.js', en: 'Music · Next.js' },
@@ -555,6 +564,7 @@ export const projects = [
     featured: false,
     draft: true,
     year: '2024',
+    sector: 'juridique',
     url: 'https://lawyer-sulaiman.vercel.app/',
     repos: [],
     type: { fr: 'Site vitrine · Next.js · Arabe (RTL)', en: 'Showcase website · Next.js · Arabic (RTL)' },
@@ -623,6 +633,7 @@ export const projects = [
     featured: false,
     draft: true,
     year: '2024',
+    sector: 'restauration',
     url: 'https://gourmet-grove.vercel.app/',
     repos: [],
     type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
@@ -684,6 +695,7 @@ export const projects = [
     featured: false,
     draft: true,
     year: '2023',
+    sector: null,
     url: 'https://stretched-web.vercel.app/',
     repos: [],
     type: { fr: "Site d'agence · Next.js · GSAP", en: 'Agency website · Next.js · GSAP' },
