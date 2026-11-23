@@ -1,6 +1,10 @@
 // A project screenshot inside a browser window (desktop shots) or a phone (mobile shots).
 // Screenshots are top-anchored so a crop never hides a page's header.
 
+const hostname = (url) => {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+};
+
 const BrowserFrame = ({ url, children }) => (
   <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface-2)] shadow-[0_20px_60px_-25px_rgba(0,0,0,0.8)]">
     <div className="flex items-center gap-3 border-b border-[var(--border)] px-3 py-2" aria-hidden="true">
@@ -11,7 +15,7 @@ const BrowserFrame = ({ url, children }) => (
       </span>
       {url && (
         <span className="min-w-0 flex-1 truncate rounded-md bg-white/[0.04] px-3 py-0.5 text-center text-[0.68rem] text-[var(--text-2)]">
-          {url}
+          {hostname(url)}
         </span>
       )}
     </div>
@@ -26,6 +30,7 @@ const PhoneFrame = ({ children }) => (
   </div>
 );
 
+// url: the project's site, shown as its hostname in the browser bar
 // eager: for the one screenshot that is the page's main image (largest paint), everything else lazy-loads
 const ProjectShot = ({ shot, alt, url, eager = false }) => {
   const mobile = shot.kind === 'mobile';

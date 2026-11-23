@@ -18,10 +18,6 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const hostname = (url) => {
-  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
-};
-
 const Section = ({ title, children }) => (
   <motion.section variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }} className="mt-16">
     <h2 className="section-label m-0 mb-5">{title}</h2>
@@ -170,7 +166,7 @@ const CaseStudyPage = ({ slug }) => {
 
         {/* Main screenshot */}
         <motion.div variants={fadeUp} initial="hidden" animate="show" className={`mt-12 ${project.cover.kind === 'mobile' ? 'mx-auto max-w-[280px]' : ''}`}>
-          <ProjectShot shot={project.cover} alt={`${project.name} — ${project.cover.label[lang]}`} url={hostname(project.url)} eager />
+          <ProjectShot shot={project.cover} alt={`${project.name} — ${project.cover.label[lang]}`} url={project.url} eager />
         </motion.div>
 
         <div className="max-w-[760px] text-[1rem] leading-[1.75] text-[var(--text-2)]">
@@ -218,7 +214,7 @@ const CaseStudyPage = ({ slug }) => {
             <div className="grid gap-6 md:grid-cols-2">
               {desktopShots.map((shot) => (
                 <figure key={shot.src} className="m-0">
-                  <ProjectShot shot={shot} alt={`${project.name} — ${shot.label[lang]}`} url={hostname(project.url)} />
+                  <ProjectShot shot={shot} alt={`${project.name} — ${shot.label[lang]}`} url={project.url} />
                   <figcaption className="mt-2 text-center text-xs text-[var(--text-2)]">{shot.label[lang]}</figcaption>
                 </figure>
               ))}

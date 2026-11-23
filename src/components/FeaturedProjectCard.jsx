@@ -6,10 +6,6 @@ import ProjectShot from './ProjectFrame';
 
 const MAX_BADGES = 5;
 
-const hostname = (url) => {
-  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
-};
-
 // The whole card is clickable through the case study link's ::after overlay,
 // so keyboard users still get a single, clearly labelled tab stop
 const FeaturedProjectCard = ({ project }) => {
@@ -26,7 +22,7 @@ const FeaturedProjectCard = ({ project }) => {
             cover.kind === 'mobile' ? 'mx-auto w-[44%] max-w-[210px] pt-6' : 'px-[7%] pt-[6%]'
           }`}
         >
-          <ProjectShot shot={cover} alt="" url={hostname(project.url)} />
+          <ProjectShot shot={cover} alt="" url={project.url} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--surface)] to-transparent" />
       </div>
