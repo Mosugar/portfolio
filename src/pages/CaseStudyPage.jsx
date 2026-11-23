@@ -101,7 +101,7 @@ const CaseStudyPage = ({ slug }) => {
       <SEO
         title={`${project.name} — ${project.type[lang]} | Mohamed Sekkar`}
         description={project.summary[lang]}
-        image={SITE_URL + project.cover.src}
+        image={`${SITE_URL}/images/projets/${project.slug}/og.jpg`}
         url={SITE_URL + projectPath(project.slug)}
         type="article"
       />
