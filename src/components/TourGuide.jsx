@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/useLanguage';
-import { projectCount } from '../data/stats';
+import { projectCount, toolCount } from '../data/stats';
 
 const TOUR_SECTIONS = [null, 'home', 'about', 'skills', 'experience', 'resume', 'works', 'contact'];
 
@@ -94,7 +94,7 @@ const TourGuide = () => {
   const TOUR_STEPS = useMemo(
     () => t.tour.steps.map((step, i) => ({
       ...step,
-      text: step.text.replace('{projects}', projectCount),
+      text: step.text.replace('{projects}', projectCount).replace('{tools}', toolCount),
       section: TOUR_SECTIONS[i],
     })),
     [t]
