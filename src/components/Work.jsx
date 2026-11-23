@@ -7,15 +7,6 @@ import { useLanguage } from '../context/useLanguage';
 
 const projects = [
   {
-    id: 1,
-    name: 'ScoreLift',
-    src: '/images/scorelift.png',
-    alt: 'ScoreLift sports community app',
-    title: 'ScoreLift',
-    subtitle: 'Mobile App · React Native',
-    url: 'https://scorelift.fr/',
-  },
-  {
     id: 2,
     name: 'TL Global',
     src: 'https://res.cloudinary.com/dylpck2et/image/upload/v1752879892/TL_GLOBAL_lxew7e.jpg',
