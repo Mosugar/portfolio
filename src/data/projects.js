@@ -306,7 +306,7 @@ export const projects = [
         'Avis de patients et section Instagram avec vidéos',
         'Conseils et FAQ de 7 questions',
         'Bouton WhatsApp avec message pré-rempli et numéros cliquables',
-        'Formulaire de contact et carte Google Maps',
+        'Carte Google Maps',
       ],
       en: [
         "The dentist's profile",
@@ -314,7 +314,7 @@ export const projects = [
         'Patient reviews and an Instagram section with videos',
         'Advice and a 7-question FAQ',
         'WhatsApp button with a pre-filled message and tap-to-call numbers',
-        'Contact form and Google Maps',
+        'Google Maps',
       ],
     },
     challenges: [
@@ -359,29 +359,27 @@ export const projects = [
     repos: [],
     type: { fr: 'Site vitrine · React', en: 'Showcase website · React' },
     summary: {
-      fr: "Site d'une entreprise d'aménagement intérieur et de rénovation au Maroc : services, réalisations filtrables et demande de projet.",
-      en: 'Website for an interior design and renovation company in Morocco: services, filterable projects and a project request form.',
+      fr: "Site d'une entreprise d'aménagement intérieur et de rénovation au Maroc : services, réalisations filtrables et contact direct par WhatsApp.",
+      en: 'Website for an interior design and renovation company in Morocco: services, filterable projects and direct contact through WhatsApp.',
     },
     client: { fr: "Entreprise d'aménagement intérieur et de rénovation (Maroc)", en: 'Interior design and renovation company (Morocco)' },
     role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
     stack: ['React 19', 'Create React App', 'CSS', 'Vercel'],
     context: {
-      fr: "Une entreprise d'aménagement intérieur veut montrer la qualité de ses réalisations, présenter ses services et recevoir des demandes de projet déjà qualifiées (type de travaux, budget).",
-      en: 'An interior design company wants to show the quality of its work, present its services and receive project requests that are already qualified (type of work, budget).',
+      fr: "Une entreprise d'aménagement intérieur veut montrer la qualité de ses réalisations, présenter ses services et être facile à contacter.",
+      en: 'An interior design company wants to show the quality of its work, present its services and be easy to reach.',
     },
     built: {
       fr: [
         '6 services : aménagement intérieur, rénovation, design, mobilier sur mesure, finitions, gestion de projet',
         "Présentation de l'entreprise et de l'équipe",
         '6 réalisations filtrables par catégorie (résidentiel, commercial, rénovation)',
-        'Formulaire de demande de projet avec type de projet et budget estimé en MAD',
         'Bouton WhatsApp et carte Google Maps',
       ],
       en: [
         '6 services: interior fit-out, renovation, design, custom furniture, finishes, project management',
         'Company and team presentation',
         '6 projects filterable by category (residential, commercial, renovation)',
-        'Project request form with project type and estimated budget in MAD',
         'WhatsApp button and Google Maps',
       ],
     },
@@ -400,13 +398,6 @@ export const projects = [
           en: 'Every animation (reveals, hover effects, floating elements) is written in CSS with @keyframes, with no animation library, which keeps the JavaScript light.',
         },
       },
-      {
-        title: { fr: 'Des demandes déjà qualifiées', en: 'Requests that arrive qualified' },
-        text: {
-          fr: "Le formulaire demande le type de projet et une fourchette de budget en dirhams, pour que l'entreprise sache tout de suite à quel type de chantier elle a affaire.",
-          en: 'The form asks for the project type and a budget range in dirhams, so the company knows right away what kind of job it is dealing with.',
-        },
-      },
     ],
     result: { fr: 'Site en ligne.', en: 'Site live.' },
     cover: shot('tl-global', 'accueil', 'desktop', 'Accueil', 'Home page'),
@@ -414,7 +405,7 @@ export const projects = [
       shot('tl-global', 'accueil', 'desktop', 'Accueil', 'Home page'),
       shot('tl-global', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
       shot('tl-global', 'realisations', 'desktop', 'Réalisations filtrables', 'Filterable projects'),
-      shot('tl-global', 'contact', 'desktop', 'Demande de projet', 'Project request'),
+      shot('tl-global', 'contact', 'desktop', 'Contact', 'Contact'),
     ],
   },
   {
