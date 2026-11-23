@@ -100,4 +100,83 @@ export const projects = [
       shot('repere-rh', 'devis-mobile', 'mobile', 'Demande de devis sur mobile', 'Quote request on mobile'),
     ],
   },
+  {
+    slug: 'wardd-studio',
+    name: 'Wardd Studio',
+    featured: true,
+    draft: false,
+    year: '2026',
+    url: 'https://warddstudio.ma/',
+    repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
+    type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
+    summary: {
+      fr: "Site d'un studio d'enregistrement : histoire, packs, réservation de sessions et assistant IA, en français et en arabe.",
+      en: "Website for a recording studio: story, packs, session booking and an AI assistant, in French and Arabic.",
+    },
+    client: {
+      fr: "Wardd Studios, studio d'enregistrement que j'ai cofondé",
+      en: 'Wardd Studios, the recording studio I co-founded',
+    },
+    role: {
+      fr: 'Conception et développement de cette version du site, seul : UI, intégration, réservation, assistant IA et bilingue FR/AR. Ali Yara, cofondateur de Wardd Studios, avait contribué aux versions précédentes.',
+      en: 'Designed and built this version of the site on my own: UI, front-end build, booking, AI assistant and the bilingual FR/AR setup. Ali Yara, co-founder of Wardd Studios, contributed to earlier versions.',
+    },
+    // From the site's package.json and README (WARDD-V3)
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify Web API', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
+    context: {
+      fr: "Un studio d'enregistrement avait besoin d'un site pour présenter le studio, son histoire (de 2016 à aujourd'hui), son travail et les projets qu'il a produits, et permettre aux clients de réserver des sessions.",
+      en: 'A recording studio needed a website to present the studio, its story (2016 to today), its work and the projects it produced, and to let clients book sessions.',
+    },
+    built: {
+      fr: [
+        'Présentation du studio et frise de son histoire',
+        'Services et packs (Étudiant, Pro, Premium)',
+        'Sorties et clips vidéo',
+        'Artistes',
+        'Demandes de réservation traitées par e-mail',
+        'Assistant IA (« Assistant Wardd ») intégré via une API pour aider les clients',
+        'Bilingue français / arabe (RTL)',
+        'UI/UX moderne et simple',
+      ],
+      en: [
+        'Studio presentation and history timeline',
+        'Services and packs (Étudiant, Pro, Premium)',
+        'Releases and music videos',
+        'Artists',
+        'Booking requests handled by email',
+        'AI assistant (“Assistant Wardd”) integrated through an API to help clients',
+        'Bilingual French / Arabic (RTL)',
+        'Modern, simple UI/UX',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Un seul site en français et en arabe', en: 'One site in French and Arabic' },
+        text: {
+          fr: "La langue vient de l'URL (/ et /ar, via l'i18n de Next.js) et fixe lang et dir sur la page : la mise en page passe en RTL, les flèches et icônes directionnelles sont inversées (variantes rtl: de Tailwind), et les carrousels qui dépendent du sens de défilement restent volontairement en LTR. L'arabe utilise IBM Plex Sans Arabic, le latin Inter. Les champs du formulaire et du chat sont en dir=\"auto\" pour gérer le texte mixte, tandis que l'e-mail et le téléphone restent en LTR.",
+          en: "The language comes from the URL (/ and /ar, through Next.js i18n) and sets lang and dir on the page: the layout switches to RTL, directional arrows and icons are mirrored (Tailwind rtl: variants), and carousels that depend on scroll direction deliberately stay LTR. Arabic uses IBM Plex Sans Arabic, Latin text uses Inter. Form and chat inputs use dir=\"auto\" to handle mixed-direction text, while email and phone fields stay LTR.",
+        },
+      },
+      {
+        title: { fr: 'Un assistant IA sûr et toujours disponible', en: 'A safe, always-available AI assistant' },
+        text: {
+          fr: "L'assistant IA passe par une route API côté serveur, la clé n'est donc jamais exposée au navigateur. Son prompt est construit à partir d'un seul fichier de connaissances (services, packs, horaires, réservation), partagé avec un mode hors ligne qui répond si l'API n'est pas disponible. L'historique envoyé est limité et chaque IP a un nombre de requêtes par minute plafonné.",
+          en: "The AI assistant goes through a server-side API route, so the key is never exposed to the browser. Its prompt is built from a single knowledge file (services, packs, opening hours, booking), shared with an offline mode that answers when the API isn't available. The history sent is capped and each IP has a per-minute request limit.",
+        },
+      },
+    ],
+    result: {
+      fr: 'Mis en ligne en novembre 2026. Dès la première semaine, environ 6 clients ont pris contact via le site.',
+      en: 'Launched in November 2026. In the first week, around 6 clients got in touch through the site.',
+    },
+    cover: shot('wardd-studio', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('wardd-studio', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('wardd-studio', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('wardd-studio', 'arabe', 'desktop', 'Version arabe (RTL)', 'Arabic version (RTL)'),
+      shot('wardd-studio', 'reservation', 'desktop', 'Réservation de session', 'Session booking'),
+      { src: '/images/wardd/story.webp', kind: 'desktop', label: { fr: 'Notre histoire', en: 'Our story' } },
+      { src: '/images/wardd/packs.webp', kind: 'desktop', label: { fr: 'Packs', en: 'Packs' } },
+    ],
+  },
 ];
