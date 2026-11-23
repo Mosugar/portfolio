@@ -21,7 +21,7 @@ const OtherProjects = ({ projects }) => {
               </span>
               <span className="truncate text-[0.8rem] text-[var(--text-2)]">{project.type[lang]}</span>
             </span>
-            <span className="shrink-0 text-[0.75rem] text-[var(--text-3)] tabular-nums">{project.year}</span>
+            <span className="shrink-0 text-[0.75rem] text-[var(--text-2)] tabular-nums">{project.year}</span>
             <ArrowRight
               size={16}
               aria-hidden="true"

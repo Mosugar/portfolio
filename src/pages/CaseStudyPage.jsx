@@ -66,7 +66,7 @@ const ProjectPager = ({ index, t, lang }) => {
           to={projectPath(project.slug)}
           className={`group flex flex-col gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 no-underline transition-colors hover:border-[var(--border-accent)] ${align}`}
         >
-          <span className="inline-flex items-center gap-1.5 text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-3)] uppercase">
+          <span className="inline-flex items-center gap-1.5 text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-2)] uppercase">
             {Icon === ArrowLeft && <Icon size={13} aria-hidden="true" />}
             {label}
             {Icon === ArrowRight && <Icon size={13} aria-hidden="true" />}
@@ -133,7 +133,7 @@ const CaseStudyPage = ({ slug }) => {
                 [tp.client, project.client[lang]],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
-                  <dt className="text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-3)] uppercase">{label}</dt>
+                  <dt className="text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-2)] uppercase">{label}</dt>
                   <dd className="m-0 mt-1.5 text-[0.92rem] leading-[1.6] text-[var(--text)]">{value}</dd>
                 </div>
               ))}
