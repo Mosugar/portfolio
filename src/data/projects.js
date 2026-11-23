@@ -5,6 +5,7 @@
 // by Mohamed (see REVUE_ETUDES_DE_CAS.md). Never put invented numbers or client results here.
 //
 // featured   big card on the home page; the others go in the compact "Autres projets" list
+// status     'in-progress' shows an "En cours" badge on the card (live, still being improved)
 // sector     client's sector, counted in About's "Secteurs couverts" (null: personal project or not counted)
 // url        live site (null when there is none) · linkLabel: translation key when the link isn't the live site (e.g. Behance)
 // repos      public repositories only ("Code" buttons)
@@ -289,6 +290,7 @@ export const projects = [
     name: 'Nexly',
     featured: true,
     draft: true,
+    status: 'in-progress',
     year: '2026',
     sector: null,
     url: 'https://nexly.nexlychat.workers.dev/',
