@@ -31,6 +31,12 @@ const FeaturedProjectCard = ({ project, wide = false }) => {
           <ProjectShot shot={cover} alt="" url={project.linkLabel ? null : project.url} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--surface)] to-transparent" />
+        {project.status === 'in-progress' && (
+          <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-[rgba(34,197,94,0.3)] bg-[rgba(9,9,15,0.85)] px-2.5 py-1 text-[0.68rem] font-medium text-[#86efac] backdrop-blur-[8px]">
+            <span aria-hidden="true" className="inline-block size-1.5 animate-[status-pulse_2s_infinite] rounded-full bg-[#22c55e] shadow-[0_0_6px_#22c55e]" />
+            {t.works.inProgress}
+          </span>
+        )}
       </div>
 
       <div className={`flex flex-1 flex-col gap-3 p-6 sm:p-7 ${wide ? 'md:justify-center md:py-10' : ''}`}>
