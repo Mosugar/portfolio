@@ -9,7 +9,7 @@ import IntroAnimation from './components/IntroAnimation.jsx';
 import { LanguageProvider } from './context/LanguageContext.jsx';
 import { useLanguage } from './context/useLanguage';
 import Cursor from './components/Cursor.jsx';
-import { usePathname, projectSlugFrom } from './router/navigation';
+import { usePathname, projectSlugFrom, scrollToId } from './router/navigation';
 
 // Below-the-fold sections (gsap, carousel, contact form…) load in their own chunks
 const Skills = lazy(() => import('./components/Skills.jsx'));
@@ -37,6 +37,8 @@ function App() {
     document.body.style.backgroundColor = '#09090f';
     document.documentElement.style.backgroundColor = '#09090f';
     requestAnimationFrame(() => setVisible(true));
+    // Sections load lazily, so the browser can't jump to a shared /#works or /#contact link on its own
+    if (window.location.hash) scrollToId(window.location.hash.slice(1), 'instant');
   }, []);
 
   return (
