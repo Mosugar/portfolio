@@ -45,4 +45,12 @@ for (const project of projects) {
   writeFileSync(join(dir, 'index.html'), html);
 }
 
-console.log(`prerender: ${projects.length} pages projets générées dans dist/projets/`);
+// List the project pages in the sitemap copied from public/
+const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
+const today = new Date().toISOString().slice(0, 10);
+const entries = projects
+  .map((p) => `  <url>\n    <loc>${SITE_URL}/projets/${p.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`)
+  .join('');
+writeFileSync('dist/sitemap.xml', setTag(sitemap, /<\/urlset>/, `${entries}</urlset>`));
+
+console.log(`prerender: ${projects.length} pages projets générées dans dist/projets/ et ajoutées au sitemap`);
