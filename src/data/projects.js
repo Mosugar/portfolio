@@ -109,7 +109,7 @@ export const projects = [
     featured: true,
     draft: false,
     year: '2026',
-    sector: 'musique',
+    sector: 'marketing-communication',
     url: 'https://warddstudio.ma/',
     repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
     type: { fr: 'Agence marketing 360° · Mon agence (cofondateur)', en: '360° marketing agency · My agency (co-founder)' },
