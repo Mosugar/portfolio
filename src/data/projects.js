@@ -637,7 +637,7 @@ export const projects = [
     slug: 'tirryaq',
     name: 'Tirryaq',
     featured: false,
-    draft: true,
+    draft: false,
     year: '2025',
     sector: 'livres',
     url: 'https://www.tirryaq.com/',
