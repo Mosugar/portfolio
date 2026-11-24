@@ -621,6 +621,71 @@ export const projects = [
     ],
   },
   {
+    slug: 'smiley-dentist',
+    name: 'Smiley Dentist',
+    featured: false,
+    draft: true,
+    year: '2024',
+    sector: 'sante',
+    url: 'https://smiley-dentist.vercel.app/',
+    repos: [],
+    type: { fr: 'Site vitrine · Next.js · Arabe (RTL)', en: 'Showcase website · Next.js · Arabic (RTL)' },
+    summary: {
+      fr: "Site en arabe d'un cabinet dentaire en Arabie saoudite : soins, conseils, équipe, avis de patients et FAQ, avec des animations au défilement.",
+      en: 'Arabic website for a dental practice in Saudi Arabia: treatments, advice, team, patient reviews and FAQ, with scroll animations.',
+    },
+    client: { fr: 'Cabinet dentaire en Arabie saoudite', en: 'Dental practice in Saudi Arabia' },
+    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    stack: ['Next.js 14', 'React', 'CSS Modules', 'Tailwind CSS', 'GSAP', 'ScrollTrigger', 'next/image', 'Vercel'],
+    context: {
+      fr: "Un cabinet dentaire veut présenter ses soins et son équipe en arabe, rassurer les futurs patients avec des conseils et des avis, et répondre à leurs questions avant le premier rendez-vous.",
+      en: 'A dental practice wants to present its treatments and team in Arabic, reassure future patients with advice and reviews, and answer their questions before the first appointment.',
+    },
+    built: {
+      fr: [
+        '6 soins : couronnes en céramique, traitements de canal, contrôles réguliers, obturations blanches, soins dentaires, implants',
+        'Section de conseils pour la santé bucco-dentaire',
+        "Présentation de l'équipe",
+        'Carrousel des avis de patients',
+        'FAQ de 5 questions en accordéon',
+        'Coordonnées, numéros cliquables et carte Google Maps',
+      ],
+      en: [
+        '6 treatments: ceramic crowns, root canals, check-ups, white fillings, dental care, implants',
+        'Oral health advice section',
+        'Team presentation',
+        'Patient review carousel',
+        '5-question FAQ in an accordion',
+        'Contact details, tap-to-call numbers and Google Maps',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Un site entièrement en arabe, de droite à gauche', en: 'A fully Arabic, right-to-left site' },
+        text: {
+          fr: 'Le document est déclaré en arabe (lang="ar", dir="rtl") : toute la mise en page se lit de droite à gauche. Deux polices arabes, Cairo et Expo Arabic, sont hébergées avec le site.',
+          en: 'The document is declared as Arabic (lang="ar", dir="rtl"): the whole layout reads right to left. Two Arabic fonts, Cairo and Expo Arabic, are hosted with the site.',
+        },
+      },
+      {
+        title: { fr: 'Des animations au défilement', en: 'Scroll animations' },
+        text: {
+          fr: "Les titres et les sections (soins, conseils, équipe, avis) apparaissent au fil du défilement grâce à GSAP et ScrollTrigger, et les photos passent par next/image pour être servies à la bonne taille.",
+          en: 'Headings and sections (treatments, advice, team, reviews) appear as you scroll thanks to GSAP and ScrollTrigger, and photos go through next/image to be served at the right size.',
+        },
+      },
+    ],
+    result: { fr: 'Site en ligne.', en: 'Site live.' },
+    cover: shot('smiley-dentist', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('smiley-dentist', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('smiley-dentist', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('smiley-dentist', 'soins', 'desktop', 'Les soins', 'Treatments'),
+      shot('smiley-dentist', 'equipe', 'desktop', "L'équipe", 'The team'),
+      shot('smiley-dentist', 'faq', 'desktop', 'FAQ', 'FAQ'),
+    ],
+  },
+  {
     slug: 'gourmet-grove',
     name: 'Gourmet & Grove',
     featured: false,
