@@ -82,7 +82,7 @@ const addSectionStructuredData = (section, title, description, url) => {
           "@type": "Person",
           "name": "Mohamed Sekkar",
           "jobTitle": "Full-Stack Developer",
-          "description": "24-year-old Full-Stack Developer based in Paris, Île-de-France"
+          "description": "25-year-old Full-Stack Developer based in Paris, Île-de-France"
         }
       };
       break;
