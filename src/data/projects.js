@@ -634,6 +634,76 @@ export const projects = [
     ],
   },
   {
+    slug: 'tirryaq',
+    name: 'Tirryaq',
+    featured: false,
+    draft: true,
+    year: '2025',
+    sector: 'livres',
+    url: 'https://www.tirryaq.com/',
+    repos: [],
+    type: { fr: 'UI/UX design · Freelance', en: 'UI/UX design · Freelance' },
+    summary: {
+      fr: "Design UI/UX d'une librairie en ligne en arabe, conçu dans Figma : accueil, fiche produit et tunnel de commande en 3 étapes.",
+      en: 'UI/UX design for an Arabic online bookstore, made in Figma: home page, product page and a 3-step checkout.',
+    },
+    client: { fr: 'Librairie en ligne en arabe', en: 'Arabic online bookstore' },
+    role: {
+      fr: "Projet freelance : UI/UX design de tout le site. Je n'ai pas réalisé le développement.",
+      en: "Freelance project: UI/UX design of the whole site. I didn't build it.",
+    },
+    stack: ['Figma', 'UI design', 'UX design'],
+    context: {
+      fr: "Une librairie en ligne en arabe voulait une interface claire pour parcourir un grand catalogue, comprendre un livre avant de l'acheter et commander sans se perdre, le tout de droite à gauche.",
+      en: 'An Arabic online bookstore wanted a clear interface to browse a large catalogue, understand a book before buying it and check out without getting lost, all right to left.',
+    },
+    built: {
+      fr: [
+        "En-tête : recherche, catégories, choix de la langue et de la devise, panier et favoris",
+        'Accueil : bannière, rubriques populaires en vignettes rondes et carrousels de produits',
+        'Fiche produit : prix et stock, quantité, « Ajouter au panier » et « Acheter maintenant », fiche technique, produits liés et avis',
+        'Tunnel de commande en 3 étapes : panier, adresse de livraison, paiement',
+        "Toute l'interface pensée de droite à gauche (RTL)",
+      ],
+      en: [
+        'Header: search, categories, language and currency switch, cart and wishlist',
+        'Home page: banner, popular categories as round thumbnails and product carousels',
+        'Product page: price and stock, quantity, “Add to cart” and “Buy now”, specs, related products and reviews',
+        '3-step checkout: cart, delivery address, payment',
+        'The whole interface designed right to left (RTL)',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Guider la commande pas à pas', en: 'Guiding checkout step by step' },
+        text: {
+          fr: "La commande est découpée en 3 étapes (panier, adresse, paiement), avec un indicateur de progression en haut de page et un récapitulatif de la commande qui reste à côté du formulaire : on sait toujours où on en est et combien on va payer.",
+          en: 'Checkout is split into 3 steps (cart, address, payment), with a progress indicator at the top and an order summary that stays next to the form: you always know where you are and how much you will pay.',
+        },
+      },
+      {
+        title: { fr: 'Une fiche produit qui répond avant l’achat', en: 'A product page that answers before you buy' },
+        text: {
+          fr: "Le prix, le stock et les boutons d'achat sont regroupés dans un même encadré. Les informations qu'un lecteur cherche (pages, langue, ISBN, éditeur, date de publication) sont alignées en icônes sous la description, et les avis sont en bas de page.",
+          en: 'Price, stock and buy buttons are grouped in one box. The details a reader looks for (pages, language, ISBN, publisher, publication date) sit as icons under the description, and reviews are at the bottom of the page.',
+        },
+      },
+    ],
+    result: {
+      fr: 'Maquettes livrées au client. Le site en ligne a été développé séparément (WordPress, WooCommerce) et ne reprend pas toutes les maquettes.',
+      en: "Mockups delivered to the client. The live site was built separately (WordPress, WooCommerce) and doesn't follow every mockup.",
+    },
+    cover: shot('tirryaq', 'maquette-accueil', 'desktop', 'Maquette · Accueil', 'Mockup · Home page'),
+    gallery: [
+      shot('tirryaq', 'maquette-accueil', 'desktop', 'Maquette · Accueil', 'Mockup · Home page'),
+      shot('tirryaq', 'maquette-produit', 'desktop', 'Maquette · Fiche produit', 'Mockup · Product page'),
+      shot('tirryaq', 'maquette-panier', 'desktop', 'Maquette · Commande, étape 1 (panier)', 'Mockup · Checkout, step 1 (cart)'),
+      shot('tirryaq', 'maquette-paiement', 'desktop', 'Maquette · Commande, étape 3 (paiement)', 'Mockup · Checkout, step 3 (payment)'),
+      shot('tirryaq', 'accueil', 'desktop', 'Site en ligne (développé séparément)', 'Live site (built separately)'),
+      shot('tirryaq', 'accueil-mobile', 'mobile', 'Site en ligne sur mobile', 'Live site on mobile'),
+    ],
+  },
+  {
     slug: 'stretched-web',
     name: 'Stretched Web',
     featured: false,
