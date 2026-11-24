@@ -76,6 +76,15 @@ const PROJECTS = {
       { name: 'faq', vp: 'desktop', section: '#faq' },
     ],
   },
+  // UI/UX design project: the live site is shown next to the Figma mockups (those come from Behance)
+  tirryaq: {
+    url: 'https://www.tirryaq.com',
+    wait: 3500,
+    shots: [
+      { name: 'accueil', vp: 'desktop' },
+      { name: 'accueil-mobile', vp: 'mobile' },
+    ],
+  },
   'tl-global': {
     url: 'https://toufaiq.vercel.app',
     shots: [
