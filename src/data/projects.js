@@ -365,128 +365,6 @@ export const projects = [
     ],
   },
   {
-    slug: 'pristine-dental',
-    name: 'Pristine Dental',
-    featured: false,
-    draft: true,
-    year: '2025',
-    sector: null, // learning project, not a client
-    url: 'https://pristinedentalcenter.vercel.app/',
-    repos: [],
-    type: { fr: 'Projet personnel · Apprentissage', en: 'Personal project · Learning' },
-    summary: {
-      fr: "Site vitrine de cabinet dentaire réalisé pour m'exercer : une longue page de contenu (soins, avis, Instagram, FAQ) rendue lisible sur tous les écrans.",
-      en: 'Dental practice website built for practice: a long content page (treatments, reviews, Instagram, FAQ) made readable on every screen.',
-    },
-    client: null,
-    role: { fr: "Conception et développement, en projet personnel d'apprentissage.", en: 'Designed and built as a personal learning project.' },
-    stack: ['Next.js 14', 'React', 'Tailwind CSS', 'Lucide', 'Vercel'],
-    context: {
-      fr: "Projet fait pour pratiquer l'UI et le responsive avec Next.js (App Router) et Tailwind CSS, sur un cas concret : le site vitrine d'un cabinet dentaire, avec beaucoup de contenu à organiser et à garder lisible du mobile au grand écran.",
-      en: 'A project to practise UI and responsive design with Next.js (App Router) and Tailwind CSS, on a concrete case: a dental practice website, with a lot of content to organise and keep readable from phone to large screen.',
-    },
-    built: {
-      fr: [
-        'Une page unique en sections : présentation, 6 soins, avis, Instagram avec vidéos, conseils et FAQ',
-        'FAQ de 7 questions en accordéon',
-        'Composants React séparés par section, mis en forme avec Tailwind CSS',
-        'Icônes Lucide',
-        'Mise en page responsive, du mobile au grand écran',
-      ],
-      en: [
-        'A single page in sections: introduction, 6 treatments, reviews, Instagram with videos, advice and FAQ',
-        '7-question FAQ in an accordion',
-        'One React component per section, styled with Tailwind CSS',
-        'Lucide icons',
-        'Responsive layout, from phone to large screen',
-      ],
-    },
-    challenges: [
-      {
-        title: { fr: 'Une page longue qui reste lisible sur mobile', en: 'A long page that stays readable on mobile' },
-        text: {
-          fr: "Tout tient sur une seule page. Les réponses de la FAQ sont repliées en accordéon, et la mise en page passe en une colonne sur mobile sans aucun défilement horizontal à 375 px.",
-          en: 'Everything sits on one page. FAQ answers are collapsed in an accordion, and the layout switches to a single column on mobile with no horizontal scrolling at 375 px.',
-        },
-      },
-      {
-        title: { fr: 'Les métadonnées avec Next.js', en: 'Metadata with Next.js' },
-        text: {
-          fr: "Le titre et la description de la page sont déclarés avec l'API metadata de l'App Router de Next.js, plutôt qu'à la main dans le HTML.",
-          en: "The page title and description are declared with the Next.js App Router metadata API, rather than by hand in the HTML.",
-        },
-      },
-    ],
-    result: { fr: "Projet d'apprentissage, en ligne sur Vercel.", en: 'Learning project, live on Vercel.' },
-    cover: shot('pristine-dental', 'accueil', 'desktop', 'Accueil', 'Home page'),
-    gallery: [
-      shot('pristine-dental', 'accueil', 'desktop', 'Accueil', 'Home page'),
-      shot('pristine-dental', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
-      shot('pristine-dental', 'soins', 'desktop', 'Les soins', 'Treatments'),
-    ],
-  },
-  {
-    slug: 'tl-global',
-    name: 'TL Global',
-    featured: false,
-    draft: true,
-    year: '2025',
-    sector: null, // learning project, not a client
-    url: 'https://toufaiq.vercel.app/',
-    repos: [],
-    type: { fr: 'Projet personnel · Apprentissage', en: 'Personal project · Learning' },
-    summary: {
-      fr: "Site vitrine d'entreprise d'aménagement intérieur réalisé pour m'exercer : réalisations filtrables et animations écrites entièrement en CSS.",
-      en: 'Interior design company website built for practice: filterable projects and animations written entirely in CSS.',
-    },
-    client: null,
-    role: { fr: "Conception et développement, en projet personnel d'apprentissage.", en: 'Designed and built as a personal learning project.' },
-    stack: ['React 19', 'Create React App', 'CSS', 'Vercel'],
-    context: {
-      fr: "Projet fait pour pratiquer l'UI et le responsive avec React, sans framework CSS ni bibliothèque d'animation : le site vitrine d'une entreprise d'aménagement intérieur, avec ses services et une galerie de réalisations.",
-      en: 'A project to practise UI and responsive design with React, with no CSS framework or animation library: an interior design company website, with its services and a gallery of projects.',
-    },
-    built: {
-      fr: [
-        '6 services : aménagement intérieur, rénovation, design, mobilier sur mesure, finitions, gestion de projet',
-        "Présentation de l'entreprise et de l'équipe",
-        '6 réalisations filtrables par catégorie (résidentiel, commercial, rénovation)',
-        'Animations en CSS pur (@keyframes)',
-        'Mise en page responsive',
-      ],
-      en: [
-        '6 services: interior fit-out, renovation, design, custom furniture, finishes, project management',
-        'Company and team presentation',
-        '6 projects filterable by category (residential, commercial, renovation)',
-        'Pure CSS animations (@keyframes)',
-        'Responsive layout',
-      ],
-    },
-    challenges: [
-      {
-        title: { fr: 'Des réalisations faciles à parcourir', en: 'Projects that are easy to browse' },
-        text: {
-          fr: 'Les réalisations se filtrent par catégorie sans rechargement de page : le filtre actif est un simple état React, et la grille se met à jour instantanément.',
-          en: 'Projects can be filtered by category without reloading the page: the active filter is plain React state, and the grid updates instantly.',
-        },
-      },
-      {
-        title: { fr: 'Des animations sans bibliothèque', en: 'Animations without a library' },
-        text: {
-          fr: "Toutes les animations (apparitions, effets de survol, flottements) sont écrites en CSS avec des @keyframes, sans bibliothèque d'animation, ce qui garde le JavaScript léger.",
-          en: 'Every animation (reveals, hover effects, floating elements) is written in CSS with @keyframes, with no animation library, which keeps the JavaScript light.',
-        },
-      },
-    ],
-    result: { fr: "Projet d'apprentissage, en ligne sur Vercel.", en: 'Learning project, live on Vercel.' },
-    cover: shot('tl-global', 'accueil', 'desktop', 'Accueil', 'Home page'),
-    gallery: [
-      shot('tl-global', 'accueil', 'desktop', 'Accueil', 'Home page'),
-      shot('tl-global', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
-      shot('tl-global', 'realisations', 'desktop', 'Réalisations filtrables', 'Filterable projects'),
-    ],
-  },
-  {
     slug: 'wardd-music',
     name: 'Wardd Music',
     featured: false,
@@ -801,6 +679,128 @@ export const projects = [
       shot('stretched-web', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
       shot('stretched-web', 'realisations', 'desktop', 'Réalisations', 'Work'),
       shot('stretched-web', 'services', 'desktop', 'Services', 'Services'),
+    ],
+  },
+  {
+    slug: 'pristine-dental',
+    name: 'Pristine Dental',
+    featured: false,
+    draft: true,
+    year: '2025',
+    sector: null, // learning project, not a client
+    url: 'https://pristinedentalcenter.vercel.app/',
+    repos: [],
+    type: { fr: 'Projet personnel · Apprentissage', en: 'Personal project · Learning' },
+    summary: {
+      fr: "Site vitrine de cabinet dentaire réalisé pour m'exercer : une longue page de contenu (soins, avis, Instagram, FAQ) rendue lisible sur tous les écrans.",
+      en: 'Dental practice website built for practice: a long content page (treatments, reviews, Instagram, FAQ) made readable on every screen.',
+    },
+    client: null,
+    role: { fr: "Conception et développement, en projet personnel d'apprentissage.", en: 'Designed and built as a personal learning project.' },
+    stack: ['Next.js 14', 'React', 'Tailwind CSS', 'Lucide', 'Vercel'],
+    context: {
+      fr: "Projet fait pour pratiquer l'UI et le responsive avec Next.js (App Router) et Tailwind CSS, sur un cas concret : le site vitrine d'un cabinet dentaire, avec beaucoup de contenu à organiser et à garder lisible du mobile au grand écran.",
+      en: 'A project to practise UI and responsive design with Next.js (App Router) and Tailwind CSS, on a concrete case: a dental practice website, with a lot of content to organise and keep readable from phone to large screen.',
+    },
+    built: {
+      fr: [
+        'Une page unique en sections : présentation, 6 soins, avis, Instagram avec vidéos, conseils et FAQ',
+        'FAQ de 7 questions en accordéon',
+        'Composants React séparés par section, mis en forme avec Tailwind CSS',
+        'Icônes Lucide',
+        'Mise en page responsive, du mobile au grand écran',
+      ],
+      en: [
+        'A single page in sections: introduction, 6 treatments, reviews, Instagram with videos, advice and FAQ',
+        '7-question FAQ in an accordion',
+        'One React component per section, styled with Tailwind CSS',
+        'Lucide icons',
+        'Responsive layout, from phone to large screen',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Une page longue qui reste lisible sur mobile', en: 'A long page that stays readable on mobile' },
+        text: {
+          fr: "Tout tient sur une seule page. Les réponses de la FAQ sont repliées en accordéon, et la mise en page passe en une colonne sur mobile sans aucun défilement horizontal à 375 px.",
+          en: 'Everything sits on one page. FAQ answers are collapsed in an accordion, and the layout switches to a single column on mobile with no horizontal scrolling at 375 px.',
+        },
+      },
+      {
+        title: { fr: 'Les métadonnées avec Next.js', en: 'Metadata with Next.js' },
+        text: {
+          fr: "Le titre et la description de la page sont déclarés avec l'API metadata de l'App Router de Next.js, plutôt qu'à la main dans le HTML.",
+          en: "The page title and description are declared with the Next.js App Router metadata API, rather than by hand in the HTML.",
+        },
+      },
+    ],
+    result: { fr: "Projet d'apprentissage, en ligne sur Vercel.", en: 'Learning project, live on Vercel.' },
+    cover: shot('pristine-dental', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('pristine-dental', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('pristine-dental', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('pristine-dental', 'soins', 'desktop', 'Les soins', 'Treatments'),
+    ],
+  },
+  {
+    slug: 'tl-global',
+    name: 'TL Global',
+    featured: false,
+    draft: true,
+    year: '2025',
+    sector: null, // learning project, not a client
+    url: 'https://toufaiq.vercel.app/',
+    repos: [],
+    type: { fr: 'Projet personnel · Apprentissage', en: 'Personal project · Learning' },
+    summary: {
+      fr: "Site vitrine d'entreprise d'aménagement intérieur réalisé pour m'exercer : réalisations filtrables et animations écrites entièrement en CSS.",
+      en: 'Interior design company website built for practice: filterable projects and animations written entirely in CSS.',
+    },
+    client: null,
+    role: { fr: "Conception et développement, en projet personnel d'apprentissage.", en: 'Designed and built as a personal learning project.' },
+    stack: ['React 19', 'Create React App', 'CSS', 'Vercel'],
+    context: {
+      fr: "Projet fait pour pratiquer l'UI et le responsive avec React, sans framework CSS ni bibliothèque d'animation : le site vitrine d'une entreprise d'aménagement intérieur, avec ses services et une galerie de réalisations.",
+      en: 'A project to practise UI and responsive design with React, with no CSS framework or animation library: an interior design company website, with its services and a gallery of projects.',
+    },
+    built: {
+      fr: [
+        '6 services : aménagement intérieur, rénovation, design, mobilier sur mesure, finitions, gestion de projet',
+        "Présentation de l'entreprise et de l'équipe",
+        '6 réalisations filtrables par catégorie (résidentiel, commercial, rénovation)',
+        'Animations en CSS pur (@keyframes)',
+        'Mise en page responsive',
+      ],
+      en: [
+        '6 services: interior fit-out, renovation, design, custom furniture, finishes, project management',
+        'Company and team presentation',
+        '6 projects filterable by category (residential, commercial, renovation)',
+        'Pure CSS animations (@keyframes)',
+        'Responsive layout',
+      ],
+    },
+    challenges: [
+      {
+        title: { fr: 'Des réalisations faciles à parcourir', en: 'Projects that are easy to browse' },
+        text: {
+          fr: 'Les réalisations se filtrent par catégorie sans rechargement de page : le filtre actif est un simple état React, et la grille se met à jour instantanément.',
+          en: 'Projects can be filtered by category without reloading the page: the active filter is plain React state, and the grid updates instantly.',
+        },
+      },
+      {
+        title: { fr: 'Des animations sans bibliothèque', en: 'Animations without a library' },
+        text: {
+          fr: "Toutes les animations (apparitions, effets de survol, flottements) sont écrites en CSS avec des @keyframes, sans bibliothèque d'animation, ce qui garde le JavaScript léger.",
+          en: 'Every animation (reveals, hover effects, floating elements) is written in CSS with @keyframes, with no animation library, which keeps the JavaScript light.',
+        },
+      },
+    ],
+    result: { fr: "Projet d'apprentissage, en ligne sur Vercel.", en: 'Learning project, live on Vercel.' },
+    cover: shot('tl-global', 'accueil', 'desktop', 'Accueil', 'Home page'),
+    gallery: [
+      shot('tl-global', 'accueil', 'desktop', 'Accueil', 'Home page'),
+      shot('tl-global', 'accueil-mobile', 'mobile', 'Accueil sur mobile', 'Home page on mobile'),
+      shot('tl-global', 'realisations', 'desktop', 'Réalisations filtrables', 'Filterable projects'),
     ],
   },
 ];
