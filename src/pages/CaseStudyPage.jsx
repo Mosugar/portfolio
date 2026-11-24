@@ -88,6 +88,8 @@ const CaseStudyPage = ({ slug }) => {
   const full = !project.draft || SHOW_DRAFTS;
   // A Behance link isn't the site's address, so screenshots don't show it in their browser bar
   const siteUrl = project.linkLabel ? null : project.url;
+  // Design-only projects talk about the process and UX decisions, not what was built
+  const design = project.discipline === 'design';
   const tp = t.project;
   // The cover is already shown above, so the gallery skips it
   const shots = project.gallery.filter((s) => s.src !== project.cover.src);
@@ -179,7 +181,7 @@ const CaseStudyPage = ({ slug }) => {
                 <p className="m-0">{project.context[lang]}</p>
               </Section>
 
-              <Section title={tp.built}>
+              <Section title={design ? tp.process : tp.built}>
                 <ul className="m-0 list-disc space-y-1.5 pl-5 marker:text-[var(--accent)]">
                   {project.built[lang].map((item) => <li key={item}>{item}</li>)}
                 </ul>
@@ -198,7 +200,7 @@ const CaseStudyPage = ({ slug }) => {
           )}
 
           {full && project.challenges.length > 0 && (
-            <Section title={tp.challenges}>
+            <Section title={design ? tp.uxChoices : tp.challenges}>
               <div className="flex flex-col gap-4">
                 {project.challenges.map((c) => (
                   <div key={c.title.en} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
