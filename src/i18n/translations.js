@@ -80,7 +80,7 @@ const translations = {
           tech: ['Java', 'Spring Boot', 'React', 'SQL'],
         },
         {
-          title: 'Responsable Développement & Cofondateur',
+          title: 'Cofondateur & Responsable Développement',
           company: 'Wardd Studios',
           location: 'Kénitra, Maroc',
           period: 'Sep. 2024 – Oct. 2025',
@@ -315,7 +315,7 @@ const translations = {
           tech: ['Java', 'Spring Boot', 'React', 'SQL'],
         },
         {
-          title: 'Head of Development & Co-founder',
+          title: 'Co-founder & Head of Development',
           company: 'Wardd Studios',
           location: 'Kénitra, Morocco',
           period: 'Sep 2024 – Oct 2025',
