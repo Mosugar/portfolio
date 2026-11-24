@@ -130,8 +130,9 @@ const CaseStudyPage = ({ slug }) => {
             <motion.dl variants={fadeUp} className="mt-8 grid gap-5 sm:grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
               {[
                 [tp.role, project.role[lang]],
-                [tp.client, project.client[lang]],
-              ].map(([label, value]) => (
+                // Personal and learning projects have no client
+                project.client && [tp.client, project.client[lang]],
+              ].filter(Boolean).map(([label, value]) => (
                 <div key={label} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
                   <dt className="text-[0.7rem] font-semibold tracking-[0.12em] text-[var(--text-2)] uppercase">{label}</dt>
                   <dd className="m-0 mt-1.5 text-[0.92rem] leading-[1.6] text-[var(--text)]">{value}</dd>
