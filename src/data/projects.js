@@ -250,8 +250,8 @@ export const projects = [
     },
     client: { fr: 'Maison de couture · Wardd Studios', en: 'Couture fashion house · Wardd Studios' },
     role: {
-      fr: "Projet réalisé avec Ali Yara au sein de Wardd Studios, l'agence créative que nous avons cofondée : frontend, backend, paiements et SEO de la boutique.",
-      en: 'Built with Ali Yara at Wardd Studios, the creative agency we co-founded: frontend, backend, payments and SEO for the store.',
+      fr: "Réalisé avec Wardd Studios, l'agence de marketing 360° que j'ai cofondée, avec Ali Yara : frontend, backend, paiements et SEO de la boutique.",
+      en: 'Built with Wardd Studios, the 360° marketing agency I co-founded, with Ali Yara: frontend, backend, payments and SEO for the store.',
     },
     stack: ['React', 'Laravel (PHP)', 'MySQL', 'Stripe', 'Apple Pay'],
     context: {
