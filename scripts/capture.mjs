@@ -94,7 +94,6 @@ const PROJECTS = {
       { name: 'accueil', vp: 'desktop' },
       { name: 'accueil-mobile', vp: 'mobile' },
       { name: 'services', vp: 'desktop', section: '#services' },
-      { name: 'rendez-vous', vp: 'desktop', section: '#booking' },
     ],
   },
   'gourmet-grove': {
