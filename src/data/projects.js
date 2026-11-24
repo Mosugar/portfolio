@@ -347,7 +347,7 @@ export const projects = [
     slug: 'wardd-music',
     name: 'Wardd Music',
     featured: false,
-    draft: true,
+    draft: false,
     year: '2026',
     sector: 'musique',
     url: 'https://warddstudio.ma/',
