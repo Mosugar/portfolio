@@ -114,8 +114,8 @@ export const projects = [
     repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
     type: { fr: 'Agence marketing 360° · Mon agence (cofondateur)', en: '360° marketing agency · My agency (co-founder)' },
     summary: {
-      fr: "Site d'un studio d'enregistrement : histoire, packs, réservation de sessions et assistant IA, en français et en arabe.",
-      en: "Website for a recording studio: story, packs, session booking and an AI assistant, in French and Arabic.",
+      fr: "Le site vitrine de Wardd Studios, l'agence de marketing 360° que j'ai cofondée : histoire, services, packs, réservation de sessions et assistant IA, en français et en arabe.",
+      en: 'The showcase website of Wardd Studios, the 360° marketing agency I co-founded: story, services, packs, session booking and an AI assistant, in French and Arabic.',
     },
     client: null, // my own agency, not a client
     role: {
@@ -125,8 +125,8 @@ export const projects = [
     // From the site's package.json and README (WARDD-V3)
     stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify oEmbed', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
     context: {
-      fr: "Un studio d'enregistrement avait besoin d'un site pour présenter le studio, son histoire (de 2016 à aujourd'hui), son travail et les projets qu'il a produits, et permettre aux clients de réserver des sessions.",
-      en: 'A recording studio needed a website to present the studio, its story (2016 to today), its work and the projects it produced, and to let clients book sessions.',
+      fr: "Le site vitrine de notre propre agence : présenter Wardd Studios, son histoire (de 2016 à aujourd'hui), ses services et les projets produits, et permettre aux clients de réserver des sessions.",
+      en: 'The showcase website of our own agency: presenting Wardd Studios, its story (2016 to today), its services and the projects it produced, and letting clients book sessions.',
     },
     built: {
       fr: [
