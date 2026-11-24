@@ -86,7 +86,6 @@ const PROJECTS = {
       { name: 'accueil', vp: 'desktop' },
       { name: 'accueil-mobile', vp: 'mobile' },
       { name: 'realisations', vp: 'desktop', section: '#projects' },
-      { name: 'contact', vp: 'desktop', section: '#contact' },
     ],
   },
   'csba-law-firm': {
