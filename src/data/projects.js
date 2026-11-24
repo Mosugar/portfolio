@@ -112,18 +112,15 @@ export const projects = [
     sector: 'musique',
     url: 'https://warddstudio.ma/',
     repos: [{ label: 'WARDD-V3', url: 'https://github.com/Mosugar/WARDD-V3' }],
-    type: { fr: 'Site vitrine · Next.js', en: 'Showcase website · Next.js' },
+    type: { fr: 'Agence marketing 360° · Mon agence (cofondateur)', en: '360° marketing agency · My agency (co-founder)' },
     summary: {
       fr: "Site d'un studio d'enregistrement : histoire, packs, réservation de sessions et assistant IA, en français et en arabe.",
       en: "Website for a recording studio: story, packs, session booking and an AI assistant, in French and Arabic.",
     },
-    client: {
-      fr: "Wardd Studios, studio d'enregistrement que j'ai cofondé",
-      en: 'Wardd Studios, the recording studio I co-founded',
-    },
+    client: null, // my own agency, not a client
     role: {
-      fr: 'Conception et développement de cette version du site, seul : UI, intégration, réservation, assistant IA et bilingue FR/AR. Ali Yara, cofondateur de Wardd Studios, avait contribué aux versions précédentes.',
-      en: 'Designed and built this version of the site on my own: UI, front-end build, booking, AI assistant and the bilingual FR/AR setup. Ali Yara, co-founder of Wardd Studios, contributed to earlier versions.',
+      fr: 'Cofondateur & Responsable Développement. Conception et développement de cette version du site, seul : UI, intégration, réservation, assistant IA et bilingue FR/AR. Ali Yara, cofondateur de Wardd Studios, avait contribué aux versions précédentes.',
+      en: 'Co-founder & Head of Development. Designed and built this version of the site on my own: UI, front-end build, booking, AI assistant and the bilingual FR/AR setup. Ali Yara, co-founder of Wardd Studios, contributed to earlier versions.',
     },
     // From the site's package.json and README (WARDD-V3)
     stack: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Motion', 'Anthropic API', 'Spotify oEmbed', 'YouTube oEmbed', 'FormSubmit', 'Vercel'],
