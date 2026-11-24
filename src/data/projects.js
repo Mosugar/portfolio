@@ -689,10 +689,7 @@ export const projects = [
         },
       },
     ],
-    result: {
-      fr: 'Maquettes livrées au client. Le site en ligne a été développé séparément (WordPress, WooCommerce) et ne reprend pas toutes les maquettes.',
-      en: "Mockups delivered to the client. The live site was built separately (WordPress, WooCommerce) and doesn't follow every mockup.",
-    },
+    result: { fr: 'Site en ligne, utilisé par le client.', en: 'Site live and in use by the client.' },
     cover: shot('tirryaq', 'maquette-accueil', 'desktop', 'Maquette · Accueil', 'Mockup · Home page'),
     gallery: [
       shot('tirryaq', 'maquette-accueil', 'desktop', 'Maquette · Accueil', 'Mockup · Home page'),
