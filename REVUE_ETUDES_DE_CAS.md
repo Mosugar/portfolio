@@ -5,15 +5,27 @@ Quand un projet est validé, passe son `draft` à `false` et supprime sa section
 
 Règle suivie : aucun chiffre, statistique, résultat business ou témoignage inventé. Les résultats se limitent à « Site en ligne » quand rien d'autre n'est vérifiable.
 
-Sources utilisées : le site en ligne (pages, sections, balises, langue, responsive à 375 px), et le code quand il était accessible (repos `hiba`, `toufaiq`, `WARDD-V3`, `Stretched_web`, `STRETCHEDLAST`).
+Sources utilisées : le site en ligne (pages, sections, balises, langue, responsive à 375 px), et le code quand il était accessible (repos `hiba`, `toufaiq`, `WARDD-V3`, `Stretched_web`, `STRETCHEDLAST`, `nexly`, `dentist`).
+
+## Statut de chaque projet (confirmé par toi le 24/11/2026)
+
+| Statut | Projets | Dans le portfolio |
+|---|---|---|
+| Vrais clients | Repère RH, Wardd Studio, ElJamai Couture, Wardd Music, CSBA Law Firm, Gourmet & Grove, Smiley Dentist | Champ « Client » affiché, comptés dans « Secteurs couverts » |
+| Employeur | Stretched Web (poste de Développeur Frontend) | Pas compté dans « Secteurs couverts » |
+| Projets personnels | Recur, Nexly | « Projet personnel », pas de secteur |
+| Projets d'apprentissage | Pristine Dental, TL Global | Type « Projet personnel · Apprentissage », pas de champ client, aucun formulaire ni prise de rendez-vous présentés, pas de secteur |
+
+Chiffres calculés : **12 projets réalisés**, **6 secteurs couverts** (formation et recrutement, musique, mode, juridique, santé, restauration).
 
 ---
 
 ## ⚠️ À savoir avant tout
 
-- **Formulaires qui n'envoient rien** : sur **Pristine Dental** (`components/Contact.jsx` affiche juste une `alert`) et **TL Global** (`Contact.jsx` simule un délai de 2 s puis affiche « succès »), les messages des visiteurs ne partent nulle part. Les clients perdent peut-être des demandes. À ta demande, le portfolio ne parle pas de ces formulaires du tout (retirés des textes de ces deux projets).
-- **Pristine Dental** : erreurs React d'hydratation dans la console du site en ligne (#418, #423, #425).
-- **Stretched Web** : la page `/work` de l'agence présente **Lawyer Sulaiman (CSBA), Smiley, Gourmet Grove et Wardd Studio** comme ses propres réalisations. Si CSBA et Gourmet & Grove ont été faits pendant ton poste chez Stretched Web, ton rôle sur ces projets est peut-être différent de « Conception et développement du site ».
+- **Smiley Dentist (vrai client) : le formulaire « استشرنا » n'envoie rien.** Dans le code (`components/Contact.jsx`, repo `dentist`) comme en ligne : `<form action="">` sans gestionnaire d'envoi, et les champs nom et téléphone n'ont pas d'attribut `name`. Un envoi recharge simplement la page. Vérifié sans soumettre le formulaire. Le cabinet perd peut-être des demandes de patients. Le portfolio ne présente pas ce formulaire.
+- **Formulaires de Pristine Dental et TL Global** : ils n'envoient rien non plus (`alert` / délai simulé). Ce sont des projets d'apprentissage, et le portfolio n'en parle pas.
+- **Pristine Dental (projet d'apprentissage)** : le site en ligne affiche un vrai nom de praticienne (« Dr. Hiba Guelida »), un numéro de téléphone et le titre « Dentiste Kenitra ». Un patient pourrait le prendre pour le site officiel d'un cabinet. À vérifier : est-ce voulu ? Faut-il ajouter une mention « projet de démonstration » ou retirer ces informations ? Le site a aussi des erreurs React d'hydratation dans la console (#418, #423, #425).
+- **Stretched Web** : la page `/work` de l'agence présente **Lawyer Sulaiman (CSBA), Smiley, Gourmet Grove et Wardd Studio** comme ses propres réalisations. Ce sont bien tes vrais clients, mais si CSBA, Smiley et Gourmet & Grove ont été faits pendant ton poste chez Stretched Web, ton rôle exact reste à préciser (tout le site, seul ou en équipe ?).
 
 ---
 
@@ -44,31 +56,29 @@ Repo `Mosugar/nexly` **privé** : pas de bouton « Code ». Le code a été lu p
 | Résultat | « En ligne depuis novembre 2026, en développement actif. » + badge « En cours » sur la carte | Ta consigne. Aucun chiffre d'utilisation cité. Domaine personnalisé : **pas pour l'instant** (`workers.dev`) |
 | Captures | Accueil (desktop et mobile), fonctionnalités, page Sécurité, version arabe | Uniquement les pages publiques : aucun chat lancé, ni caméra ni vérification de l'âge |
 
-## Pristine Dental (autres projets, brouillon)
+## Pristine Dental (projet d'apprentissage, brouillon)
 
 | Point | Ce que j'ai écrit | Source / à vérifier |
 |---|---|---|
+| Type | Projet personnel · Apprentissage | Ta consigne. Pas de champ client, pas de secteur |
 | Année | 2025 | Repo `hiba` créé le 21/08/2025 |
-| Client | Cabinet dentaire à Kénitra | Site en ligne. **Vrai client ou démo ? Freelance ou Wardd Studios ?** |
-| Rôle | Conception et développement du site | Valeur par défaut demandée |
-| Stack | Next.js 14, React, Tailwind CSS, Lucide, Vercel | `package.json` |
-| Défi 1 | WhatsApp pré-rempli, liens `tel:`, CTA répétés | Vérifié dans le code et le site |
-| Défi 2 | SEO local via l'API metadata de Next.js | Vérifié (title/description). Pas d'image Open Graph ni de JSON-LD sur le site |
-| Défi 3 | FAQ en accordéon, aucun débordement à 375 px | Vérifié |
-| Résultat | « Site en ligne. » | — |
+| Contexte | Projet fait pour pratiquer l'UI et le responsive avec Next.js (App Router) et Tailwind CSS | Ta consigne |
+| Retiré | WhatsApp pré-rempli, prise de rendez-vous, SEO local « dentiste Kénitra », carte, capture du formulaire | Rien qui fasse croire à un vrai cabinet |
+| Défi 1 | Page longue lisible sur mobile, FAQ en accordéon, aucun débordement à 375 px | Vérifié |
+| Défi 2 | Métadonnées avec l'API metadata de l'App Router | Vérifié (`export const metadata`) |
+| Résultat | « Projet d'apprentissage, en ligne sur Vercel. » | — |
 
-## TL Global (brouillon)
+## TL Global (projet d'apprentissage, brouillon)
 
 | Point | Ce que j'ai écrit | Source / à vérifier |
 |---|---|---|
+| Type | Projet personnel · Apprentissage | Ta consigne. Pas de champ client, pas de secteur |
 | Année | 2025 | Repo `toufaiq` créé le 18/07/2025 |
-| Client | Entreprise d'aménagement intérieur et de rénovation (Maroc) | Site en ligne. **Vrai client ou démo ?** |
-| Rôle | Conception et développement du site | Valeur par défaut |
-| Stack | React 19, Create React App, CSS, Vercel | `package.json` |
+| Contexte | Projet fait pour pratiquer l'UI et le responsive avec React, sans framework CSS ni bibliothèque d'animation | Ta consigne + `package.json` |
+| Retiré | Bouton WhatsApp, carte, contact, capture du formulaire | — |
 | Défi 1 | Filtre des réalisations par catégorie (état React) | Vérifié (`Projects.jsx`) |
 | Défi 2 | Animations 100 % CSS (`@keyframes`, aucune bibliothèque) | Vérifié |
-| Autre | Le site est déclaré `lang="en"` alors que le contenu est en français, et la section contact a des titres en anglais (« Get in touch ») | À corriger côté client ? |
-| Résultat | « Site en ligne. » | L'URL est un sous-domaine `vercel.app` : le client a-t-il son propre domaine ? |
+| Résultat | « Projet d'apprentissage, en ligne sur Vercel. » | — |
 
 ## Wardd Music (brouillon)
 
@@ -82,32 +92,45 @@ Repo `Mosugar/nexly` **privé** : pas de bouton « Code ». Le code a été lu p
 | Défi 2 | ISR toutes les 12 h, délai max de 8 s et repli si Spotify/YouTube ne répond pas | Vérifié (`revalidate`, `TIMEOUT_MS`) |
 | Doublon | Wardd Studio présente aussi « Sorties et clips » et « Artistes » | Garder les deux ou alléger l'un ? |
 
-## CSBA Law Firm (brouillon)
+## CSBA Law Firm (vrai client, brouillon)
 
 | Point | Ce que j'ai écrit | Source / à vérifier |
 |---|---|---|
 | Année | 2024 | **Supposée** (listé par Stretched Web, dont le site affiche © 2024) |
-| Client | Cabinet d'avocats en Arabie saoudite | Site en ligne (« le plus fiable en Arabie saoudite »). **Vrai client ?** |
-| Rôle | Conception et développement du site | **Fait chez Stretched Web ? Seul ou en équipe ?** |
+| Client | Cabinet d'avocats en Arabie saoudite | Vrai client (ta confirmation) |
+| Rôle | Conception et développement du site | **À confirmer : fait chez Stretched Web ? Seul ou en équipe ?** |
 | Stack | Next.js, React, next/image, Vercel | Détectée sur le site (pas de code accessible) |
 | Défi 1 | Arabe RTL (`lang="ar"`, `dir="rtl"`), police Cairo | Vérifié. « Choisie pour sa lisibilité » est une supposition |
 | Défi 2 | Images via next/image | Vérifié |
 | Défi 3 | Menu burger, aucun débordement à 375 px | Vérifié |
 | Non repris | Les chiffres du site (12 ans, 3 300 actes, 500 affaires…) | Ce sont les chiffres du cabinet, pas un résultat du projet |
 
-## Gourmet & Grove (brouillon)
+## Smiley Dentist (vrai client, brouillon)
+
+| Point | Ce que j'ai écrit | Source / à vérifier |
+|---|---|---|
+| Année | 2024 | **Supposée** : repo `dentist` créé le 21/05/2024, et projet listé par Stretched Web |
+| Client | Cabinet dentaire en Arabie saoudite | Vrai client (ta confirmation). Pays déduit des numéros en +966 ; ville non indiquée |
+| Rôle | Conception et développement du site | **À confirmer : fait chez Stretched Web ? Seul ou en équipe ?** |
+| Stack | Next.js 14 (Pages Router), React, CSS Modules, Tailwind CSS, GSAP, ScrollTrigger, next/image, Vercel | `package.json` et code. Tailwind est chargé mais peu utilisé (~40 classes contre ~105 usages de CSS Modules) |
+| Défi 1 | Arabe RTL (`lang="ar"`, `dir="rtl"`), polices Cairo et Expo Arabic hébergées avec le site | Vérifié (`_document.js`, dossier `fonts`) |
+| Défi 2 | Animations au défilement GSAP + ScrollTrigger, images via next/image | Vérifié (composants `home/*`) |
+| Non présenté | Le formulaire de consultation | **Il n'envoie rien** (voir en haut) |
+| Résultat | « Site en ligne. » | — |
+
+## Gourmet & Grove (vrai client, brouillon)
 
 | Point | Ce que j'ai écrit | Source / à vérifier |
 |---|---|---|
 | Année | 2024 | **Supposée** (listé par Stretched Web) |
-| Client | Brasserie à Rabat | Site en ligne. **Vrai client ou démo ?** |
-| Rôle | Conception et développement du site | **Fait chez Stretched Web ?** |
+| Client | Brasserie à Rabat | Vrai client (ta confirmation) |
+| Rôle | Conception et développement du site | **À confirmer : fait chez Stretched Web ? Seul ou en équipe ?** |
 | Stack | Next.js, React, next/image, Vercel | Détectée sur le site |
 | Défi 1 | Vidéo plein écran + écran « Bienvenue » pendant le chargement | L'écran existe. « Pour ne jamais voir une page à moitié chargée » est une supposition : est-il lié au chargement de la vidéo ou à un minuteur ? |
 | Défi 2 | Carte par catégories, menu burger, aucun débordement à 375 px | Vérifié |
-| Autre | Le site est déclaré `lang="en"` alors que le contenu est en français | À corriger (`lang="fr"`) si c'est un vrai client |
+| Autre | Le site est déclaré `lang="en"` alors que le contenu est en français | **À corriger sur le site du client** (`lang="fr"`) |
 
-## Stretched Web (brouillon)
+## Stretched Web (employeur, brouillon)
 
 | Point | Ce que j'ai écrit | Source / à vérifier |
 |---|---|---|
