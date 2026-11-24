@@ -5,6 +5,7 @@
 // by Mohamed (see REVUE_ETUDES_DE_CAS.md). Never put invented numbers or client results here.
 //
 // featured   big card on the home page; the others go in the compact "Autres projets" list
+// discipline 'design' for UI/UX-only work: sections read "Ma démarche" / "Choix UX"
 // status     'in-progress' shows an "En cours" badge on the card (live, still being improved)
 // sector     client's sector, counted in About's "Secteurs couverts" (null: personal project or not counted)
 // url        live site (null when there is none) · linkLabel: translation key when the link isn't the live site (e.g. Behance)
@@ -638,6 +639,7 @@ export const projects = [
     name: 'Tirryaq',
     featured: false,
     draft: false,
+    discipline: 'design',
     year: '2025',
     sector: 'livres',
     url: 'https://www.tirryaq.com/',
