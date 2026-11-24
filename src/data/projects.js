@@ -679,8 +679,8 @@ export const projects = [
       {
         title: { fr: 'Une page par réalisation', en: 'One page per project' },
         text: {
-          fr: 'Chaque réalisation a sa propre URL (/work/crib, /work/smiley…), construite sur le même gabarit : ajouter un projet ne demande pas de créer une nouvelle page à la main.',
-          en: 'Every project has its own URL (/work/crib, /work/smiley…), built on the same template: adding a project doesn’t mean hand-building a new page.',
+          fr: 'Chaque réalisation a sa propre URL (par exemple /work/crib), construite sur le même gabarit : ajouter un projet ne demande pas de créer une nouvelle page à la main.',
+          en: 'Every project has its own URL (for example /work/crib), built on the same template: adding a project doesn’t mean hand-building a new page.',
         },
       },
     ],
