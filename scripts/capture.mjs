@@ -68,7 +68,6 @@ const PROJECTS = {
       { name: 'accueil', vp: 'desktop' },
       { name: 'accueil-mobile', vp: 'mobile' },
       { name: 'soins', vp: 'desktop', section: '#services' },
-      { name: 'contact', vp: 'desktop', section: '#contact' },
     ],
   },
   'smiley-dentist': {
