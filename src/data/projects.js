@@ -453,7 +453,7 @@ export const projects = [
       en: 'Arabic website for a law and notary firm in Saudi Arabia: legal services, achievements, team and FAQ.',
     },
     client: { fr: "Cabinet d'avocats en Arabie saoudite", en: 'Law firm in Saudi Arabia' },
-    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    role: { fr: 'Projet freelance, à mon compte : conception et développement du site.', en: 'Freelance project, on my own account: designed and built the website.' },
     stack: ['Next.js', 'React', 'next/image', 'Vercel'],
     context: {
       fr: "Un cabinet d'avocats veut inspirer confiance, présenter clairement ses domaines d'intervention et son équipe, et répondre aux questions fréquentes, le tout en arabe.",
@@ -521,7 +521,7 @@ export const projects = [
       en: 'Arabic website for a dental practice in Saudi Arabia: treatments, advice, team, patient reviews and FAQ, with scroll animations.',
     },
     client: { fr: 'Cabinet dentaire en Arabie saoudite', en: 'Dental practice in Saudi Arabia' },
-    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    role: { fr: 'Projet freelance, à mon compte : conception et développement du site.', en: 'Freelance project, on my own account: designed and built the website.' },
     stack: ['Next.js 14', 'React', 'CSS Modules', 'Tailwind CSS', 'GSAP', 'ScrollTrigger', 'next/image', 'Vercel'],
     context: {
       fr: "Un cabinet dentaire veut présenter ses soins et son équipe en arabe, rassurer les futurs patients avec des conseils et des avis, et répondre à leurs questions avant le premier rendez-vous.",
@@ -586,7 +586,7 @@ export const projects = [
       en: 'Website for a Parisian-style brasserie in Rabat: video atmosphere, online menu, gallery and booking by phone or email.',
     },
     client: { fr: 'Brasserie à Rabat (Maroc)', en: 'Brasserie in Rabat (Morocco)' },
-    role: { fr: 'Conception et développement du site.', en: 'Designed and built the website.' },
+    role: { fr: 'Projet freelance, à mon compte : conception et développement du site.', en: 'Freelance project, on my own account: designed and built the website.' },
     stack: ['Next.js', 'React', 'next/image', 'Vercel'],
     context: {
       fr: "Un restaurant veut faire ressentir son ambiance avant même la visite, montrer sa carte et ses plats, et faciliter la réservation.",
