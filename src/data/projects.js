@@ -500,8 +500,8 @@ export const projects = [
       fr: 'La partie musique du site Wardd : dernières sorties avec lecteur Spotify, clips YouTube et artistes passés au studio.',
       en: 'The music side of the Wardd website: latest releases with a Spotify player, YouTube music videos and artists who recorded at the studio.',
     },
-    client: { fr: 'Wardd Studios · label et studio musical', en: 'Wardd Studios · music label and studio' },
-    role: { fr: 'Conception et développement de la partie musique du site.', en: 'Designed and built the music side of the website.' },
+    client: { fr: 'Wardd Music · label musical', en: 'Wardd Music · music label' },
+    role: { fr: 'Réalisé avec Wardd Studios : conception et développement de la partie musique du site.', en: 'Built with Wardd Studios: designed and built the music side of the website.' },
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Spotify oEmbed', 'YouTube oEmbed', 'Vercel'],
     context: {
       fr: 'Le studio produit des titres et des clips pour ses artistes. Il voulait les mettre en avant sur son site et donner envie de les écouter, sans quitter la page.',
