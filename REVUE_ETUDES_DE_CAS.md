@@ -23,6 +23,7 @@ Chiffres calculés : **12 projets réalisés**, **6 secteurs couverts** (formati
 ## ⚠️ À savoir avant tout
 
 - **Smiley Dentist (vrai client) : le formulaire « استشرنا » n'envoie rien.** Dans le code (`components/Contact.jsx`, repo `dentist`) comme en ligne : `<form action="">` sans gestionnaire d'envoi, et les champs nom et téléphone n'ont pas d'attribut `name`. Un envoi recharge simplement la page. Vérifié sans soumettre le formulaire. Le cabinet perd peut-être des demandes de patients. Le portfolio ne présente pas ce formulaire.
+- **CSBA Law Firm (vrai client) : le formulaire de rendez-vous n'envoie rien non plus**, avec le même code que Smiley. Le cabinet perd peut-être des demandes. Le portfolio ne le présente plus.
 - **Formulaires de Pristine Dental et TL Global** : ils n'envoient rien non plus (`alert` / délai simulé). Ce sont des projets d'apprentissage, et le portfolio n'en parle pas.
 - **Pristine Dental (projet d'apprentissage)** : le site en ligne affiche un vrai nom de praticienne (« Dr. Hiba Guelida »), un numéro de téléphone et le titre « Dentiste Kenitra ». Un patient pourrait le prendre pour le site officiel d'un cabinet. À vérifier : est-ce voulu ? Faut-il ajouter une mention « projet de démonstration » ou retirer ces informations ? Le site a aussi des erreurs React d'hydratation dans la console (#418, #423, #425).
 - **Stretched Web** : la page `/work` de l'agence présente **Lawyer Sulaiman (CSBA), Smiley, Gourmet Grove et Wardd Studio** comme ses propres réalisations. Ce sont bien tes vrais clients, mais si CSBA, Smiley et Gourmet & Grove ont été faits pendant ton poste chez Stretched Web, ton rôle exact reste à préciser (tout le site, seul ou en équipe ?).
@@ -104,6 +105,7 @@ Repo `Mosugar/nexly` **privé** : pas de bouton « Code ». Le code a été lu p
 | Défi 2 | Images via next/image | Vérifié |
 | Défi 3 | Menu burger, aucun débordement à 375 px | Vérifié |
 | Non repris | Les chiffres du site (12 ans, 3 300 actes, 500 affaires…) | Ce sont les chiffres du cabinet, pas un résultat du projet |
+| Non présenté | Le formulaire de demande de rendez-vous | **Il n'envoie rien** : même défaut que Smiley (`action=""`, aucun gestionnaire d'envoi, champs sans `name`), vérifié en ligne sans soumettre. Retiré du résumé, du contexte, des fonctionnalités et de la galerie |
 
 ## Smiley Dentist (vrai client, brouillon)
 
