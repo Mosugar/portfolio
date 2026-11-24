@@ -11,12 +11,13 @@ Sources utilisées : le site en ligne (pages, sections, balises, langue, respons
 
 | Statut | Projets | Dans le portfolio |
 |---|---|---|
-| Vrais clients | Repère RH, Wardd Studio, ElJamai Couture, Wardd Music, CSBA Law Firm, Gourmet & Grove, Smiley Dentist | Champ « Client » affiché, comptés dans « Secteurs couverts » |
+| Mon agence (cofondateur) | Wardd Studio : agence de marketing 360°, où tu étais Cofondateur & Responsable Développement (2024-2025) | Pas de champ client, secteur « Marketing & communication » |
+| Vrais clients | Repère RH, ElJamai Couture (avec Wardd Studios), Wardd Music (avec Wardd Studios), CSBA Law Firm, Gourmet & Grove, Smiley Dentist | Champ « Client » affiché, comptés dans « Secteurs couverts » |
 | Employeur | Stretched Web (poste de Développeur Frontend) | Pas compté dans « Secteurs couverts » |
 | Projets personnels | Recur, Nexly | « Projet personnel », pas de secteur |
 | Projets d'apprentissage | Pristine Dental, TL Global | Type « Projet personnel · Apprentissage », pas de champ client, aucun formulaire ni prise de rendez-vous présentés, pas de secteur |
 
-Chiffres calculés : **12 projets réalisés**, **6 secteurs couverts** (formation et recrutement, musique, mode, juridique, santé, restauration).
+Chiffres calculés : **12 projets réalisés**, **7 secteurs couverts** (formation et recrutement, marketing et communication, mode, musique, juridique, santé, restauration).
 
 ---
 
@@ -24,6 +25,7 @@ Chiffres calculés : **12 projets réalisés**, **6 secteurs couverts** (formati
 
 - **Smiley Dentist (vrai client) : le formulaire « استشرنا » n'envoie rien.** Dans le code (`components/Contact.jsx`, repo `dentist`) comme en ligne : `<form action="">` sans gestionnaire d'envoi, et les champs nom et téléphone n'ont pas d'attribut `name`. Un envoi recharge simplement la page. Vérifié sans soumettre le formulaire. Le cabinet perd peut-être des demandes de patients. Le portfolio ne présente pas ce formulaire.
 - **CSBA Law Firm (vrai client) : le formulaire de rendez-vous n'envoie rien non plus**, avec le même code que Smiley. Le cabinet perd peut-être des demandes. Le portfolio ne le présente plus.
+- **Projets faits avec Wardd Studios** : ElJamai Couture et Wardd Music l'indiquent. Ton parcours dit aussi que Wardd Studios avait des clients « dans le médical et le juridique ». **CSBA, Smiley et Gourmet & Grove ont-ils été faits avec Wardd Studios ou chez Stretched Web ?** Je n'ai rien ajouté tant que ce n'est pas confirmé.
 - **Formulaires de Pristine Dental et TL Global** : ils n'envoient rien non plus (`alert` / délai simulé). Ce sont des projets d'apprentissage, et le portfolio n'en parle pas.
 - **Pristine Dental (projet d'apprentissage)** : le site en ligne affiche un vrai nom de praticienne (« Dr. Hiba Guelida »), un numéro de téléphone et le titre « Dentiste Kenitra ». Un patient pourrait le prendre pour le site officiel d'un cabinet. À vérifier : est-ce voulu ? Faut-il ajouter une mention « projet de démonstration » ou retirer ces informations ? Le site a aussi des erreurs React d'hydratation dans la console (#418, #423, #425).
 - **Stretched Web** : la page `/work` de l'agence présente **Lawyer Sulaiman (CSBA), Smiley, Gourmet Grove et Wardd Studio** comme ses propres réalisations. Ce sont bien tes vrais clients, mais si CSBA, Smiley et Gourmet & Grove ont été faits pendant ton poste chez Stretched Web, ton rôle exact reste à préciser (tout le site, seul ou en équipe ?).
@@ -35,7 +37,10 @@ Chiffres calculés : **12 projets réalisés**, **6 secteurs couverts** (formati
 Seuls les **résumés en 1 phrase** (`summary`) et les **types** (`type`) ont été écrits par Claude. Les traductions anglaises de Repère RH aussi.
 
 - **Repère RH** : vérifier la traduction anglaise. « Contexte et besoin » a été reformulé à partir de ton résumé.
-- **Wardd Studio** : stack corrigée en « Spotify oEmbed » (le code n'utilise pas l'API Web). Le défi a été découpé en deux (bilingue RTL / assistant IA), texte inchangé.
+- **Wardd Studio** (ton agence) : type « Agence marketing 360° · Mon agence (cofondateur) », rôle « Cofondateur & Responsable Développement », pas de champ client, contexte réécrit (le site de notre propre agence), stack corrigée en « Spotify oEmbed ». **À vérifier** :
+  - le site en ligne se décrit comme un « hub créatif d'enregistrement et de production musicale à Salé » (enregistrement, mixage, mastering…), et non comme une agence de marketing 360°. Le portfolio et le site racontent-ils la même histoire ?
+  - cette version du site date de novembre 2026, après ta période de Responsable Développement (sept. 2024 – oct. 2025). Le rôle affiché combine les deux : à formuler autrement ?
+- **ElJamai Couture** : rôle reformulé en « Réalisé avec Wardd Studios, l'agence de marketing 360° que j'ai cofondée, avec Ali Yara ».
 - **Recur** : `recur-api` est ajouté en 2ᵉ bouton « Code », mais l'étude de cas dit « 100 % hors ligne, sans compte ». À expliquer en une phrase (à quoi sert l'API ?) ou à retirer.
 - **ElJamai Couture** : les captures viennent de ton projet Behance (le site est hors ligne). On y voit aussi une version arabe, une connexion Google / Apple et des filtres taille / prix : à ajouter à « Ce que j'ai construit » si c'est toi qui les as faits.
 
@@ -87,7 +92,7 @@ Repo `Mosugar/nexly` **privé** : pas de bouton « Code ». Le code a été lu p
 |---|---|---|
 | Ce que c'est | La partie musique de warddstudio.ma (sorties, clips, artistes) | Pas de page dédiée : lien vers `warddstudio.ma/#tracks`. **Est-ce bien ce que tu veux montrer, ou l'ancien site warddmusic.com (hors ligne) ?** |
 | Année | 2026 | Même code que Wardd Studio (`WARDD-V3`). **À changer si c'est l'ancien site** |
-| Client | Wardd Studios · label et studio musical | **Wardd Music = le label de Wardd Studios ?** |
+| Client | Wardd Music · label musical, rôle « Réalisé avec Wardd Studios » | Vrai client (ta confirmation). **Incohérence à régler** : l'étude de cas décrit la partie musique de warddstudio.ma (le site de ton agence, code `WARDD-V3`, 2026), pas un site réalisé pour le client Wardd Music. Faut-il plutôt décrire l'ancien site warddmusic.com (hors ligne) ? |
 | Rôle | Conception et développement de la partie musique | Déduit |
 | Défi 1 | Données récupérées côté serveur (getStaticProps), un seul lecteur Spotify chargé | Vérifié (`lib/spotify.js`, `pages/index.jsx`) |
 | Défi 2 | ISR toutes les 12 h, délai max de 8 s et repli si Spotify/YouTube ne répond pas | Vérifié (`revalidate`, `TIMEOUT_MS`) |
