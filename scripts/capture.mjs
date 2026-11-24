@@ -30,21 +30,17 @@ const PROJECTS = {
       { name: 'devis-mobile', vp: 'mobile', path: '/contact', section: '#devis' },
     ],
   },
-  'wardd-studio': {
-    url: 'https://warddstudio.ma',
-    wait: 3000,
-    shots: [
-      { name: 'accueil', vp: 'desktop' },
-      { name: 'accueil-mobile', vp: 'mobile' },
-      { name: 'reservation', vp: 'desktop', path: '/booking' },
-      { name: 'arabe', vp: 'desktop', path: '/ar' },
-    ],
-  },
+  // warddstudio.ma is the Wardd Music studio's site (repo WARDD-V3). The Wardd Studio agency's
+  // old site is offline, so its screenshots come from Behance instead (not captured here).
   'wardd-music': {
     url: 'https://warddstudio.ma',
     wait: 3000,
     reducedMotion: 'reduce',
     shots: [
+      { name: 'accueil', vp: 'desktop' },
+      { name: 'accueil-mobile', vp: 'mobile' },
+      { name: 'reservation', vp: 'desktop', path: '/booking' },
+      { name: 'arabe', vp: 'desktop', path: '/ar' },
       { name: 'sorties', vp: 'desktop', section: '#tracks' },
       { name: 'sorties-mobile', vp: 'mobile', section: '#tracks' },
       { name: 'clips', vp: 'desktop', section: '#clips' },
