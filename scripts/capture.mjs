@@ -71,6 +71,16 @@ const PROJECTS = {
       { name: 'contact', vp: 'desktop', section: '#contact' },
     ],
   },
+  'smiley-dentist': {
+    url: 'https://smiley-dentist.vercel.app',
+    shots: [
+      { name: 'accueil', vp: 'desktop' },
+      { name: 'accueil-mobile', vp: 'mobile' },
+      { name: 'soins', vp: 'desktop', section: '#services' },
+      { name: 'equipe', vp: 'desktop', section: '#team' },
+      { name: 'faq', vp: 'desktop', section: '#faq' },
+    ],
+  },
   'tl-global': {
     url: 'https://toufaiq.vercel.app',
     shots: [
