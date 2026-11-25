@@ -469,7 +469,7 @@ const translations = {
         { title: "Welcome", text: "Full-stack dev, Paris-based, looking for alternance. That's the pitch." },
         { title: "About", text: "25 y/o, 3+ years building real products for real clients." },
         { title: "Skills", text: "{tools} tools — React, Laravel, React Native, Docker and more." },
-        { title: "Journey", text: "3 degrees and 4 roles: freelance, agency, startup and internship." },
+        { title: "Career", text: "3 degrees and 4 roles: freelance, agency, startup and internship." },
         { title: "Resume", text: "Full CV ready to download — alternance starting 2026." },
         { title: "Projects", text: "{projects} projects built. Click one to read its case study." },
         { title: "That's the tour! 🎉", text: "Mohamed's open for alternance starting 2026. Just putting that out there... 😉", isLast: true },
