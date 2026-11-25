@@ -68,10 +68,12 @@ const translations = {
       completed: 'Terminé',
       past: 'Passé',
       visit: 'Voir',
+      kinds: { education: 'Formation', experience: 'Expérience' },
       entries: [
         {
           title: 'Développeur Full Stack – Programme CDA',
           company: 'SCHOLIA',
+          kind: 'education',
           location: 'Thiais, France',
           period: '2026 – 2027',
           year: '2026',
@@ -82,6 +84,7 @@ const translations = {
         {
           title: 'Développeur Full-Stack Freelance',
           company: 'Indépendant',
+          kind: 'experience',
           location: 'Télétravail',
           period: '2021 – Aujourd\'hui',
           year: '2021',
@@ -92,6 +95,7 @@ const translations = {
         {
           title: 'Cofondateur & Responsable Développement',
           company: 'Wardd Studios',
+          kind: 'experience',
           location: 'Kénitra, Maroc',
           period: 'Sep. 2024 – Oct. 2025',
           year: '2024',
@@ -103,6 +107,7 @@ const translations = {
         {
           title: 'Ingénierie Informatique et Numérisation',
           company: 'ENSA Kénitra',
+          kind: 'education',
           location: 'Kénitra, Maroc',
           period: '2024 – 2025',
           year: '2024',
@@ -113,6 +118,7 @@ const translations = {
         {
           title: 'Spécialiste Développement IT & Réseau',
           company: 'Miage',
+          kind: 'education',
           location: 'Sur site',
           period: 'Sep. 2023 – Fév. 2025',
           year: '2023',
@@ -123,6 +129,7 @@ const translations = {
         {
           title: 'Développeur Frontend',
           company: 'Stretched Web',
+          kind: 'experience',
           location: 'Télétravail',
           period: 'Juin 2023 – Août 2023',
           year: '2023',
@@ -134,6 +141,7 @@ const translations = {
         {
           title: 'Développeur Full Stack Stagiaire (PFE)',
           company: 'VPI Info',
+          kind: 'experience',
           location: 'Kénitra, Maroc',
           period: 'Mai 2023 – Juil. 2023',
           year: '2023',
@@ -305,10 +313,12 @@ const translations = {
       completed: 'Completed',
       past: 'Past',
       visit: 'Visit',
+      kinds: { education: 'Education', experience: 'Experience' },
       entries: [
         {
           title: 'Full Stack Developer – CDA Program',
           company: 'SCHOLIA',
+          kind: 'education',
           location: 'Thiais, France',
           period: '2026 – 2027',
           year: '2026',
@@ -319,6 +329,7 @@ const translations = {
         {
           title: 'Freelance Full-Stack Developer',
           company: 'Independent',
+          kind: 'experience',
           location: 'Remote',
           period: '2021 – Present',
           year: '2021',
@@ -329,6 +340,7 @@ const translations = {
         {
           title: 'Co-founder & Head of Development',
           company: 'Wardd Studios',
+          kind: 'experience',
           location: 'Kénitra, Morocco',
           period: 'Sep 2024 – Oct 2025',
           year: '2024',
@@ -340,6 +352,7 @@ const translations = {
         {
           title: 'Computer Engineering & Digitalization',
           company: 'ENSA Kénitra',
+          kind: 'education',
           location: 'Kénitra, Morocco',
           period: '2024 – 2025',
           year: '2024',
@@ -350,6 +363,7 @@ const translations = {
         {
           title: 'IT Development & Network Specialist',
           company: 'Miage',
+          kind: 'education',
           location: 'On-site',
           period: 'Sep 2023 – Feb 2025',
           year: '2023',
@@ -360,6 +374,7 @@ const translations = {
         {
           title: 'Frontend Developer',
           company: 'Stretched Web',
+          kind: 'experience',
           location: 'Remote',
           period: 'Jun 2023 – Aug 2023',
           year: '2023',
@@ -371,6 +386,7 @@ const translations = {
         {
           title: 'Full Stack Developer Intern (Final-Year Project)',
           company: 'VPI Info',
+          kind: 'experience',
           location: 'Kénitra, Morocco',
           period: 'May 2023 – Jul 2023',
           year: '2023',
