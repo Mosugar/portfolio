@@ -12,6 +12,17 @@ const statusDot = {
   recent: 'bg-[#8b5cf6]',
 };
 
+const kindBadge = {
+  education: 'border-[rgba(255,255,255,0.12)] text-[var(--text-2)]',
+  experience: 'border-[rgba(139,92,246,0.3)] bg-[rgba(139,92,246,0.08)] text-[var(--accent-light)]',
+};
+
+const KindBadge = ({ kind, label }) => (
+  <span className={`inline-block rounded-full border px-[0.45rem] py-[0.1rem] text-[0.6rem] leading-[1.4] font-semibold tracking-[0.06em] uppercase ${kindBadge[kind]}`}>
+    {label}
+  </span>
+);
+
 const ExperienceHistory = () => {
   const { t } = useLanguage();
   const experiences = t.experience.entries;
@@ -90,8 +101,11 @@ const ExperienceHistory = () => {
                       {item.title}
                     </div>
                   </div>
-                  <div className={`shrink-0 text-[0.68rem] tabular-nums [transition:color_0.2s] ${active === i ? 'text-[var(--accent-light)]' : 'text-[var(--text-3)]'}`}>
-                    {item.year}
+                  <div className="flex shrink-0 flex-col items-end gap-1">
+                    <KindBadge kind={item.kind} label={t.experience.kinds[item.kind]} />
+                    <div className={`text-[0.68rem] tabular-nums [transition:color_0.2s] ${active === i ? 'text-[var(--accent-light)]' : 'text-[var(--text-3)]'}`}>
+                      {item.year}
+                    </div>
                   </div>
                 </div>
                 {/* Active indicator bar */}
@@ -133,9 +147,12 @@ const ExperienceHistory = () => {
                     {/* Title row */}
                     <div className="mb-5 flex items-start justify-between gap-4">
                       <div>
-                        <p className="m-0 mb-[0.4rem] text-[0.68rem] font-semibold tracking-[0.15em] text-[var(--accent)] uppercase">
-                          {exp.type === 'current' ? t.experience.current : exp.type === 'completed' ? t.experience.completed : t.experience.past}
-                        </p>
+                        <div className="mb-[0.4rem] flex flex-wrap items-center gap-2">
+                          <KindBadge kind={exp.kind} label={t.experience.kinds[exp.kind]} />
+                          <p className="m-0 text-[0.68rem] font-semibold tracking-[0.15em] text-[var(--accent)] uppercase">
+                            {exp.type === 'current' ? t.experience.current : exp.type === 'completed' ? t.experience.completed : t.experience.past}
+                          </p>
+                        </div>
                         <h3 className="m-0 font-display text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.2] font-bold tracking-[-0.02em] text-[var(--text)]">
                           {exp.title}
                         </h3>
