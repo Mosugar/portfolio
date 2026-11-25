@@ -62,16 +62,18 @@ const translations = {
 
     experience: {
       label: 'Parcours',
-      h2a: 'Là où',
-      h2b: "j'ai travaillé.",
+      h2a: 'Mon',
+      h2b: 'parcours.',
       current: '● En cours',
       completed: 'Terminé',
       past: 'Passé',
       visit: 'Voir',
+      kinds: { education: 'Formation', experience: 'Expérience' },
       entries: [
         {
           title: 'Développeur Full Stack – Programme CDA',
           company: 'SCHOLIA',
+          kind: 'education',
           location: 'Thiais, France',
           period: '2026 – 2027',
           year: '2026',
@@ -82,6 +84,7 @@ const translations = {
         {
           title: 'Développeur Full-Stack Freelance',
           company: 'Indépendant',
+          kind: 'experience',
           location: 'Télétravail',
           period: '2021 – Aujourd\'hui',
           year: '2021',
@@ -92,6 +95,7 @@ const translations = {
         {
           title: 'Cofondateur & Responsable Développement',
           company: 'Wardd Studios',
+          kind: 'experience',
           location: 'Kénitra, Maroc',
           period: 'Sep. 2024 – Oct. 2025',
           year: '2024',
@@ -103,6 +107,7 @@ const translations = {
         {
           title: 'Ingénierie Informatique et Numérisation',
           company: 'ENSA Kénitra',
+          kind: 'education',
           location: 'Kénitra, Maroc',
           period: '2024 – 2025',
           year: '2024',
@@ -113,6 +118,7 @@ const translations = {
         {
           title: 'Spécialiste Développement IT & Réseau',
           company: 'Miage',
+          kind: 'education',
           location: 'Sur site',
           period: 'Sep. 2023 – Fév. 2025',
           year: '2023',
@@ -123,6 +129,7 @@ const translations = {
         {
           title: 'Développeur Frontend',
           company: 'Stretched Web',
+          kind: 'experience',
           location: 'Télétravail',
           period: 'Juin 2023 – Août 2023',
           year: '2023',
@@ -134,6 +141,7 @@ const translations = {
         {
           title: 'Développeur Full Stack Stagiaire (PFE)',
           company: 'VPI Info',
+          kind: 'experience',
           location: 'Kénitra, Maroc',
           period: 'Mai 2023 – Juil. 2023',
           year: '2023',
@@ -216,7 +224,7 @@ const translations = {
         { title: "Accueil", text: "Développeur full-stack, Paris, disponible en alternance. Voilà le pitch." },
         { title: "À propos", text: "25 ans, 3+ ans à construire de vrais produits pour de vrais clients." },
         { title: "Compétences", text: "{tools} outils — React, Laravel, React Native, Docker et plus encore." },
-        { title: "Parcours", text: "7 expériences entre startups, agences et stages." },
+        { title: "Parcours", text: "3 formations et 4 expériences, du stage au freelance." },
         { title: "CV", text: "CV complet à télécharger — alternance disponible dès 2026." },
         { title: "Projets", text: "{projects} projets réalisés. Clique sur un projet pour lire son étude de cas." },
         { title: "Et voilà ! 🎉", text: "C'est la fin de la visite. Mohamed est dispo pour une alternance dès 2026. Je dis ça, je dis rien... 😉", isLast: true },
@@ -299,16 +307,18 @@ const translations = {
 
     experience: {
       label: 'Career',
-      h2a: 'Where I\'ve',
-      h2b: 'been.',
+      h2a: 'My',
+      h2b: 'journey.',
       current: '● In progress',
       completed: 'Completed',
       past: 'Past',
       visit: 'Visit',
+      kinds: { education: 'Education', experience: 'Experience' },
       entries: [
         {
           title: 'Full Stack Developer – CDA Program',
           company: 'SCHOLIA',
+          kind: 'education',
           location: 'Thiais, France',
           period: '2026 – 2027',
           year: '2026',
@@ -319,6 +329,7 @@ const translations = {
         {
           title: 'Freelance Full-Stack Developer',
           company: 'Independent',
+          kind: 'experience',
           location: 'Remote',
           period: '2021 – Present',
           year: '2021',
@@ -329,6 +340,7 @@ const translations = {
         {
           title: 'Co-founder & Head of Development',
           company: 'Wardd Studios',
+          kind: 'experience',
           location: 'Kénitra, Morocco',
           period: 'Sep 2024 – Oct 2025',
           year: '2024',
@@ -340,6 +352,7 @@ const translations = {
         {
           title: 'Computer Engineering & Digitalization',
           company: 'ENSA Kénitra',
+          kind: 'education',
           location: 'Kénitra, Morocco',
           period: '2024 – 2025',
           year: '2024',
@@ -350,6 +363,7 @@ const translations = {
         {
           title: 'IT Development & Network Specialist',
           company: 'Miage',
+          kind: 'education',
           location: 'On-site',
           period: 'Sep 2023 – Feb 2025',
           year: '2023',
@@ -360,6 +374,7 @@ const translations = {
         {
           title: 'Frontend Developer',
           company: 'Stretched Web',
+          kind: 'experience',
           location: 'Remote',
           period: 'Jun 2023 – Aug 2023',
           year: '2023',
@@ -371,6 +386,7 @@ const translations = {
         {
           title: 'Full Stack Developer Intern (Final-Year Project)',
           company: 'VPI Info',
+          kind: 'experience',
           location: 'Kénitra, Morocco',
           period: 'May 2023 – Jul 2023',
           year: '2023',
@@ -453,7 +469,7 @@ const translations = {
         { title: "Welcome", text: "Full-stack dev, Paris-based, looking for alternance. That's the pitch." },
         { title: "About", text: "25 y/o, 3+ years building real products for real clients." },
         { title: "Skills", text: "{tools} tools — React, Laravel, React Native, Docker and more." },
-        { title: "Career", text: "7 roles across startups, agencies and internships." },
+        { title: "Career", text: "3 programs and 4 roles, from internship to freelance." },
         { title: "Resume", text: "Full CV ready to download — alternance starting 2026." },
         { title: "Projects", text: "{projects} projects built. Click one to read its case study." },
         { title: "That's the tour! 🎉", text: "Mohamed's open for alternance starting 2026. Just putting that out there... 😉", isLast: true },
