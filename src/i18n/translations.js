@@ -62,8 +62,8 @@ const translations = {
 
     experience: {
       label: 'Parcours',
-      h2a: 'Là où',
-      h2b: "j'ai travaillé.",
+      h2a: 'Mon',
+      h2b: 'parcours.',
       current: '● En cours',
       completed: 'Terminé',
       past: 'Passé',
@@ -299,8 +299,8 @@ const translations = {
 
     experience: {
       label: 'Career',
-      h2a: 'Where I\'ve',
-      h2b: 'been.',
+      h2a: 'My',
+      h2b: 'journey.',
       current: '● In progress',
       completed: 'Completed',
       past: 'Past',
