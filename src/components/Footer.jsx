@@ -152,16 +152,16 @@ const Footer = () => {
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="flex cursor-pointer items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-5 py-4 no-underline [transition:all_0.2s] hover:-translate-y-[2px] hover:border-[var(--border-accent)]"
+                  className="group flex cursor-pointer items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-5 py-4 no-underline [transition:border-color_0.2s,background-color_0.2s,transform_0.2s] hover:-translate-y-[2px] hover:border-[rgba(139,92,246,0.5)] hover:bg-[rgba(139,92,246,0.06)] focus-visible:border-[rgba(139,92,246,0.5)]"
                 >
-                  <div className="flex size-9 items-center justify-center rounded-lg border border-[var(--border-accent)] bg-[rgba(139,92,246,0.1)]">
-                    <Icon size={16} className="text-[var(--accent-light)]" aria-hidden="true" />
+                  <div className="flex size-9 items-center justify-center rounded-lg border border-[var(--border-accent)] bg-[rgba(139,92,246,0.1)] text-[var(--accent-light)] [transition:background-color_0.2s,color_0.2s] group-hover:bg-[var(--accent)] group-hover:text-white group-focus-visible:bg-[var(--accent)] group-focus-visible:text-white">
+                    <Icon size={16} aria-hidden="true" />
                   </div>
                   <div>
                     <div className="text-[0.9rem] font-medium text-[var(--text)]">{label}</div>
                     <div className="text-[0.78rem] text-[var(--text-3)]">{sub}</div>
                   </div>
-                  <ArrowUpRight size={14} className="ml-auto text-[var(--text-3)]" aria-hidden="true" />
+                  <ArrowUpRight size={14} className="ml-auto text-[var(--text-3)] [transition:color_0.2s,transform_0.2s] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-[var(--accent-light)]" aria-hidden="true" />
                 </a>
               ))}
             </motion.div>
