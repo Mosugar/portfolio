@@ -52,11 +52,6 @@ const About = () => {
                   className="h-full w-full object-cover object-top"
                 />
               </div>
-              {/* Status dot */}
-              <div className="absolute right-4 bottom-4 flex items-center gap-[0.4rem] rounded-full border border-[rgba(34,197,94,0.3)] bg-[rgba(9,9,15,0.85)] px-3 py-[0.35rem] backdrop-blur-[8px]">
-                <span className="inline-block size-[7px] animate-[status-pulse_2s_infinite] rounded-full bg-[#22c55e] shadow-[0_0_8px_#22c55e]" />
-                <span className="text-[0.7rem] font-medium text-[#86efac]">{t.about.available}</span>
-              </div>
             </div>
 
             {/* Meta info */}
