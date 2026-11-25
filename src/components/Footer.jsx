@@ -161,6 +161,7 @@ const Footer = () => {
                     <div className="text-[0.9rem] font-medium text-[var(--text)]">{label}</div>
                     <div className="text-[0.78rem] text-[var(--text-3)]">{sub}</div>
                   </div>
+                  {href.startsWith('http') && <span className="sr-only">({t.a11y.newTab})</span>}
                   <ArrowUpRight size={14} className="ml-auto text-[var(--text-3)] [transition:color_0.2s,transform_0.2s] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-[var(--accent-light)]" aria-hidden="true" />
                 </a>
               ))}
