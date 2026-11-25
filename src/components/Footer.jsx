@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import GithubIcon from './GithubIcon';
 import { useForm, ValidationError } from '@formspree/react';
 import { useLanguage } from '../context/useLanguage';
 
@@ -142,7 +143,7 @@ const Footer = () => {
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-col gap-3">
               {[
-                { href: 'https://github.com/Mosugar', label: 'GitHub', sub: 'github.com/Mosugar', icon: Github },
+                { href: 'https://github.com/Mosugar', label: 'GitHub', sub: 'github.com/Mosugar', icon: GithubIcon },
                 { href: 'https://www.linkedin.com/in/mohamedsekkar/', label: 'LinkedIn', sub: 'in/mohamedsekkar', icon: Linkedin },
                 { href: 'mailto:mohamedsekkar1110@gmail.com', label: 'Email', sub: 'mohamedsekkar1110@gmail.com', icon: Mail },
               ].map(({ href, label, sub, icon: Icon }) => (
@@ -151,16 +152,17 @@ const Footer = () => {
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="flex cursor-pointer items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-5 py-4 no-underline [transition:all_0.2s] hover:-translate-y-[2px] hover:border-[var(--border-accent)]"
+                  className="group flex cursor-pointer items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface-2)] px-5 py-4 no-underline [transition:border-color_0.2s,background-color_0.2s,transform_0.2s] hover:-translate-y-[2px] hover:border-[rgba(139,92,246,0.5)] hover:bg-[rgba(139,92,246,0.06)] focus-visible:border-[rgba(139,92,246,0.5)]"
                 >
-                  <div className="flex size-9 items-center justify-center rounded-lg border border-[var(--border-accent)] bg-[rgba(139,92,246,0.1)]">
-                    <Icon size={16} className="text-[var(--accent-light)]" aria-hidden="true" />
+                  <div className="flex size-9 items-center justify-center rounded-lg border border-[var(--border-accent)] bg-[rgba(139,92,246,0.1)] text-[var(--accent-light)] [transition:background-color_0.2s,color_0.2s] group-hover:bg-[var(--accent)] group-hover:text-white group-focus-visible:bg-[var(--accent)] group-focus-visible:text-white">
+                    <Icon size={16} aria-hidden="true" />
                   </div>
                   <div>
                     <div className="text-[0.9rem] font-medium text-[var(--text)]">{label}</div>
                     <div className="text-[0.78rem] text-[var(--text-3)]">{sub}</div>
                   </div>
-                  <ArrowUpRight size={14} className="ml-auto text-[var(--text-3)]" aria-hidden="true" />
+                  {href.startsWith('http') && <span className="sr-only">({t.a11y.newTab})</span>}
+                  <ArrowUpRight size={14} className="ml-auto text-[var(--text-3)] [transition:color_0.2s,transform_0.2s] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-[var(--accent-light)]" aria-hidden="true" />
                 </a>
               ))}
             </motion.div>
@@ -174,8 +176,13 @@ const Footer = () => {
         >
           {/* Top row: logo + copyright */}
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <a href="#" aria-label={t.a11y.backToTop} onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-              <MoSugarLogo className="cursor-pointer text-[var(--text-3)] [transition:color_0.2s] hover:text-[var(--text)]" />
+            <a
+              href="#"
+              aria-label={t.a11y.backToTop}
+              onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="cursor-pointer rounded-md text-[var(--text-3)] [transition:color_0.2s,transform_0.2s] hover:-translate-y-[1px] hover:text-[var(--accent-light)] focus-visible:text-[var(--accent-light)]"
+            >
+              <MoSugarLogo />
             </a>
             <p className="m-0 text-[0.8rem] text-[var(--text-3)]">
               © {new Date().getFullYear()} Mohamed Sekkar · {t.footer.copyright}

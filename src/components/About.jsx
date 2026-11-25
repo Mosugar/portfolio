@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Mail, MapPin } from 'lucide-react';
+import GithubIcon from './GithubIcon';
 import { useLanguage } from '../context/useLanguage';
 import { projectCount, sectorCount } from '../data/stats';
 
@@ -69,7 +70,7 @@ const About = () => {
             {/* Social */}
             <div className="flex gap-3">
               {[
-                { href: 'https://github.com/Mosugar', icon: Github, label: 'GitHub' },
+                { href: 'https://github.com/Mosugar', icon: GithubIcon, label: 'GitHub' },
                 { href: 'https://www.linkedin.com/in/mohamedsekkar/', icon: Linkedin, label: 'LinkedIn' },
                 { href: 'mailto:mohamedsekkar1110@gmail.com', icon: Mail, label: 'Email' },
               ].map(({ href, icon: Icon, label }) => (
@@ -79,8 +80,8 @@ const About = () => {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   title={label}
-                  aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-[10px] border border-[var(--border)] text-[var(--text-2)] no-underline [transition:all_0.2s] hover:border-[var(--border-accent)] hover:text-[var(--accent-light)]"
+                  aria-label={href.startsWith('http') ? `${label} (${t.a11y.newTab})` : label}
+                  className="flex size-10 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] text-[var(--text-2)] no-underline [transition:color_0.2s,border-color_0.2s,background-color_0.2s,transform_0.2s] hover:-translate-y-[2px] hover:border-[rgba(139,92,246,0.5)] hover:bg-[rgba(139,92,246,0.12)] hover:text-[var(--accent-light)] focus-visible:border-[rgba(139,92,246,0.5)] focus-visible:text-[var(--accent-light)]"
                 >
                   <Icon size={16} aria-hidden="true" />
                 </a>
