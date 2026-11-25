@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Linkedin, Mail, ArrowUpRight, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import GithubIcon from './GithubIcon';
 import { useForm, ValidationError } from '@formspree/react';
 import { useLanguage } from '../context/useLanguage';
 
@@ -142,7 +143,7 @@ const Footer = () => {
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-col gap-3">
               {[
-                { href: 'https://github.com/Mosugar', label: 'GitHub', sub: 'github.com/Mosugar', icon: Github },
+                { href: 'https://github.com/Mosugar', label: 'GitHub', sub: 'github.com/Mosugar', icon: GithubIcon },
                 { href: 'https://www.linkedin.com/in/mohamedsekkar/', label: 'LinkedIn', sub: 'in/mohamedsekkar', icon: Linkedin },
                 { href: 'mailto:mohamedsekkar1110@gmail.com', label: 'Email', sub: 'mohamedsekkar1110@gmail.com', icon: Mail },
               ].map(({ href, label, sub, icon: Icon }) => (

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
+import GithubIcon from '../components/GithubIcon';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/useLanguage';
 import Link from '../router/Link';
@@ -161,7 +162,7 @@ const CaseStudyPage = ({ slug }) => {
               )}
               {project.repos.map((repo) => (
                 <ButtonLink key={repo.url} href={repo.url}>
-                  <Github size={15} aria-hidden="true" />
+                  <GithubIcon size={15} aria-hidden="true" />
                   {project.repos.length > 1 ? `${tp.code} · ${repo.label}` : tp.code}
                 </ButtonLink>
               ))}
