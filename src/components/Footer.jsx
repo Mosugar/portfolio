@@ -175,8 +175,13 @@ const Footer = () => {
         >
           {/* Top row: logo + copyright */}
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <a href="#" aria-label={t.a11y.backToTop} onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-              <MoSugarLogo className="cursor-pointer text-[var(--text-3)] [transition:color_0.2s] hover:text-[var(--text)]" />
+            <a
+              href="#"
+              aria-label={t.a11y.backToTop}
+              onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="cursor-pointer rounded-md text-[var(--text-3)] [transition:color_0.2s,transform_0.2s] hover:-translate-y-[1px] hover:text-[var(--accent-light)] focus-visible:text-[var(--accent-light)]"
+            >
+              <MoSugarLogo />
             </a>
             <p className="m-0 text-[0.8rem] text-[var(--text-3)]">
               © {new Date().getFullYear()} Mohamed Sekkar · {t.footer.copyright}
