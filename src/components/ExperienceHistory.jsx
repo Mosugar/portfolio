@@ -50,7 +50,7 @@ const ExperienceHistory = () => {
         </motion.div>
 
         {/* Two-column layout, stacked under 700px */}
-        <div className="grid grid-cols-[minmax(260px,2fr)_3fr] items-start gap-6 max-[700px]:grid-cols-[1fr]">
+        <div className="grid grid-cols-[minmax(260px,2fr)_3fr] items-start gap-6 max-[700px]:grid-cols-[minmax(0,1fr)]">
           {/* Left: job list */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
