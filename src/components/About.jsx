@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Mail, MapPin } from 'lucide-react';
+import GithubIcon from './GithubIcon';
 import { useLanguage } from '../context/useLanguage';
 import { projectCount, sectorCount } from '../data/stats';
 
@@ -69,7 +70,7 @@ const About = () => {
             {/* Social */}
             <div className="flex gap-3">
               {[
-                { href: 'https://github.com/Mosugar', icon: Github, label: 'GitHub' },
+                { href: 'https://github.com/Mosugar', icon: GithubIcon, label: 'GitHub' },
                 { href: 'https://www.linkedin.com/in/mohamedsekkar/', icon: Linkedin, label: 'LinkedIn' },
                 { href: 'mailto:mohamedsekkar1110@gmail.com', icon: Mail, label: 'Email' },
               ].map(({ href, icon: Icon, label }) => (
