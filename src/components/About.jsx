@@ -81,7 +81,7 @@ const About = () => {
                   rel="noopener noreferrer"
                   title={label}
                   aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-[10px] border border-[var(--border)] text-[var(--text-2)] no-underline [transition:all_0.2s] hover:border-[var(--border-accent)] hover:text-[var(--accent-light)]"
+                  className="flex size-10 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] text-[var(--text-2)] no-underline [transition:color_0.2s,border-color_0.2s,background-color_0.2s,transform_0.2s] hover:-translate-y-[2px] hover:border-[rgba(139,92,246,0.5)] hover:bg-[rgba(139,92,246,0.12)] hover:text-[var(--accent-light)] focus-visible:border-[rgba(139,92,246,0.5)] focus-visible:text-[var(--accent-light)]"
                 >
                   <Icon size={16} aria-hidden="true" />
                 </a>
