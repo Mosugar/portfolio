@@ -160,7 +160,7 @@ const Skills = () => {
       <div className="mb-4 px-8 text-center">
         <p className="section-label mb-4">{t.skills.label}</p>
         <h2 className="m-0 font-display text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.02em] text-[var(--text)]">
-          {t.skills.h2a}<span className="text-[var(--accent-light)]">{t.skills.h2b}</span>
+          {t.skills.h2a}{" "}<span className="text-[var(--accent-light)]">{t.skills.h2b}</span>
         </h2>
       </div>
 
