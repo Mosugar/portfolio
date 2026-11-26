@@ -1,0 +1,42 @@
+name: Bug
+description: Quelque chose ne s'affiche pas ou ne fonctionne pas comme prévu
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Ce qui ne va pas, en une ou deux phrases.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Étapes pour reproduire
+      placeholder: |
+        1. Ouvrir https://www.mohamedsekkar.com/…
+        2. Cliquer sur…
+        3. Constater…
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Résultat attendu
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page concernée
+      placeholder: "/, /projets/recur…"
+  - type: input
+    id: device
+    attributes:
+      label: Appareil, navigateur et largeur d'écran
+      placeholder: "iPhone 13, Safari, 375 px"
+  - type: dropdown
+    id: language
+    attributes:
+      label: Langue du site
+      options: [FR, EN, Les deux]
