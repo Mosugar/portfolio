@@ -58,6 +58,7 @@ const translations = {
       label: 'Stack technique',
       h2a: 'Mes outils',
       h2b: 'de travail.',
+      groups: { frontend: 'Frontend', mobile: 'Mobile', backend: 'Backend', data: 'Données', tools: 'Outils' },
     },
 
     experience: {
@@ -303,6 +304,7 @@ const translations = {
       label: 'Tech stack',
       h2a: 'Tools I work',
       h2b: 'with.',
+      groups: { frontend: 'Frontend', mobile: 'Mobile', backend: 'Backend', data: 'Data', tools: 'Tools' },
     },
 
     experience: {

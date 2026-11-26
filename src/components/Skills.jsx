@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, memo } from "react";
 import styles from "../styles/skills.module.css";
-import { skillsList } from "../data/skills";
+import { skillGroups } from "../data/skills";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/useLanguage";
@@ -78,8 +78,7 @@ const TiltComponent = memo(({ children, perspective = 110, scale = 1.06, classNa
 TiltComponent.displayName = "TiltComponent";
 
 const SkillBubble = memo(({ skill }) => {
-  const skillKey = Object.keys(skill)[0];
-  const { icon, name } = skill[skillKey];
+  const { icon, name } = skill;
   const isStyledComponents = name === "Styled-components";
   const playPop = useBubbleSound();
 
@@ -166,11 +165,16 @@ const Skills = () => {
       </div>
 
       <div className={styles.skillsContent} ref={skillRef}>
-        <div className={styles.bubblesContainer}>
-          {skillsList.map((skill, index) => (
-            <SkillBubble key={index} skill={skill} />
-          ))}
-        </div>
+        {skillGroups.map((group) => (
+          <div key={group.id} className={styles.skillGroup}>
+            <h3 className={styles.groupTitle}>{t.skills.groups[group.id]}</h3>
+            <div className={styles.bubblesContainer}>
+              {group.skills.map((skill) => (
+                <SkillBubble key={skill.name} skill={skill} />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className={styles.skillsBlob}>

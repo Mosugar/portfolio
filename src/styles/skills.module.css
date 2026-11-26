@@ -24,23 +24,55 @@
   margin-top: 80px;
 }
 
+.skillsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.skillGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.groupTitle {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+
 .bubblesContainer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 68px;
+  gap: 48px;
 }
 
 @media (max-width: 700px) {
+  .skillsContent {
+    gap: 52px;
+  }
   .bubblesContainer {
-    gap: 48px;
+    gap: 36px;
   }
 }
 
 @media (max-width: 500px) {
+  .skillsContent {
+    gap: 44px;
+  }
+  .skillGroup {
+    gap: 20px;
+  }
   .bubblesContainer {
-    gap: 29px;
+    gap: 24px;
   }
 }
 
