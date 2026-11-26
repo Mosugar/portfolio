@@ -10,6 +10,8 @@ const skills = [
   { name: 'TypeScript', icon: Images.typescript, group: 'frontend' },
   { name: 'JavaScript', icon: Images.js, group: 'frontend' },
   { name: 'Tailwind CSS', icon: Images.tailwind, group: 'frontend' },
+  { name: 'Sass', icon: Images.scss, group: 'frontend' },
+  { name: 'GSAP', icon: Images.gsap, group: 'frontend' },
 
   { name: 'React Native', icon: Images.react_native, group: 'mobile' },
   { name: 'Expo', icon: Images.expo, group: 'mobile' },
@@ -29,10 +31,8 @@ const skills = [
   { name: 'Vite', icon: Images.vite, group: 'tools' },
 
   // Outils masqués pour garder un profil spécialisé — à réactiver si besoin (retirer `hidden: true`)
-  { name: 'Sass', icon: Images.scss, group: 'frontend', hidden: true },
   { name: 'Styled-components', icon: Images.styled_components, group: 'frontend', hidden: true },
   { name: 'Bootstrap', icon: Images.bootstrap, group: 'frontend', hidden: true },
-  { name: 'GSAP', icon: Images.gsap, group: 'frontend', hidden: true },
   { name: 'Framer', icon: Images.framer, group: 'tools', hidden: true },
   { name: 'WordPress', icon: Images.wordpress, group: 'backend', hidden: true },
   { name: 'Python', icon: Images.python, group: 'backend', hidden: true },
