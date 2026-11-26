@@ -4,17 +4,14 @@
 
 **Full Stack Developer · Java / Spring Boot · React / React Native · Laravel**
 
-[![Live site](https://img.shields.io/badge/Live-mohamedsekkar.com-6366F1?style=for-the-badge)](https://www.mohamedsekkar.com)
+[![Live site](https://img.shields.io/badge/Live-mohamedsekkar.com-8B5CF6?style=for-the-badge)](https://www.mohamedsekkar.com)
+[![CI](https://img.shields.io/github/actions/workflow/status/Mosugar/portfolio/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/Mosugar/portfolio/actions/workflows/ci.yml)
 ![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite_7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-<!-- Add a screenshot of the site in /docs and uncomment the line below -->
-<!-- <img src="docs/preview.png" alt="Portfolio preview" width="100%" /> -->
+<img src="docs/preview-home.webp" alt="Portfolio home page" width="100%" />
 
 </div>
 
@@ -29,15 +26,17 @@ I'm currently studying for the **Concepteur Développeur d'Applications** profes
 
 ## Features
 
-- **Sections:** Home, About, Skills, Experience, Works, Contact
-- **Intro animation** — full-screen animated robot ("Sugar") with typewriter greeting, with opt-in voice narration via Web Speech API
-- **Interactive guided tour** — Sugar follows the visitor through each section with contextual commentary
-- **Sound effects** — procedural bubble sounds on skill hover via Web Audio API
-- **Animated components** — project carousel, profile card with holographic tilt, spotlight cards, physics-driven folder, WebGL distortion image, electric-border canvas effect
-- **FR / EN language toggle** — full content translated, no library
-- **Resume** available to download directly from the site
-- **Responsive** design for desktop, tablet and mobile
-- **SEO** meta tags (Open Graph, Twitter Card, JSON-LD structured data)
+- **Sections:** Home, About, Skills, Journey (education & experience), Resume, Projects, Contact
+- **Case studies** — one page per project (`/projets/:slug`): context, role, approach, UX choices, screenshots, links to the live site and the code
+- **Sugar, the guide** — a small robot that offers an optional guided tour of the page
+- **FR / EN** — full content translated, language remembered per visitor, no library
+- **Interactive details** — physics-driven folder (Matter.js), spotlight cards, holographic profile card, custom cursor, bubble sounds on skill hover (Web Audio API)
+- **Contact form** via Formspree, and the resume available to download
+- **SEO** — prerendered HTML per project with its own Open Graph image, sitemap, JSON-LD structured data
+- **Accessibility** — keyboard focus styles, skip link, `prefers-reduced-motion` respected, labelled icon links
+- **Responsive** — checked at 375 px and 1440 px
+
+<img src="docs/preview-case-study.webp" alt="Case study page for the Recur project" width="100%" />
 
 ## Tech stack
 
@@ -48,43 +47,55 @@ I'm currently studying for the **Concepteur Développeur d'Applications** profes
 | Language | JavaScript (JSX) |
 | Styling | Tailwind CSS 4, CSS Modules |
 | Animations | Framer Motion, GSAP + ScrollTrigger |
-| 3D / WebGL | Three.js, raw WebGL2 (custom GLSL shaders) |
 | Physics | Matter.js |
 | Icons | Lucide React |
-| Forms | Formspree (@formspree/react) |
+| Forms | Formspree (`@formspree/react`) |
+| Routing | Tiny custom router (History API) |
 | i18n | React Context — custom, FR / EN |
-| Browser APIs | Web Audio API, Web Speech API |
+| Tooling | ESLint, Playwright (screenshots), GitHub Actions, Dependabot |
+| Hosting | Vercel |
 
 ## Getting started
 
+Requirements: Node.js 22 or later.
+
 ```bash
-git clone https://github.com/Mosugar/porfolio.git
-cd porfolio
+git clone https://github.com/Mosugar/portfolio.git
+cd portfolio
 npm install
 npm run dev
 ```
 
 Then open [http://localhost:5173](http://localhost:5173).
 
-### Build for production
+### Scripts
 
-```bash
-npm run build
-npm run preview
-```
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server |
+| `npm run lint` | ESLint |
+| `npm run build` | Production build, then `scripts/prerender.mjs` writes one HTML page per project (with its meta tags) and updates the sitemap |
+| `npm run preview` | Serves the production build locally |
+| `node scripts/capture.mjs [slug…]` | Takes the project screenshots from the live sites (WebP, needs `cwebp`) |
+| `node scripts/og-images.mjs` | Builds each project's 1200×630 social preview image |
+
+Every pull request runs lint and build in GitHub Actions and gets a Vercel preview.
 
 ## Project structure
 
 ```
 src/
-  components/   # UI sections and reusable components
-  context/      # React context providers
+  components/   # Page sections and reusable components
+  context/      # Language context
+  data/         # Projects, skills and computed stats (single source of truth)
   hooks/        # Custom hooks
-  i18n/         # Translations
-  pages/        # Pages
+  i18n/         # FR / EN translations
+  pages/        # Case study page
+  router/       # Minimal client-side router
   styles/       # Global and component styles
-  utils/        # Helpers
-public/         # Static assets (images, resume)
+scripts/        # Prerender, screenshots and social images
+public/         # Static assets (fonts, images, resume)
+docs/           # README screenshots
 ```
 
 ## Contact
