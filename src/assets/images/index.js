@@ -27,6 +27,13 @@ const Images = {
     ubuntu: '/images/icons/icon-ubuntu.svg',
     virtualbox: '/images/icons/icon-virtualbox.svg',
     vagrantup: '/images/icons/icon-vagrantup.svg',
+    typescript: '/images/icons/icon-typescript.svg',
+    // React Native shares React's official logo
+    react_native: '/images/icons/icon-react.svg',
+    expo: '/images/icons/icon-expo.svg',
+    java: '/images/icons/icon-java.svg',
+    spring_boot: '/images/icons/icon-spring-boot.svg',
+    postgresql: '/images/icons/icon-postgresql.svg',
    
   };
   

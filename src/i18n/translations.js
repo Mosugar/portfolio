@@ -58,6 +58,7 @@ const translations = {
       label: 'Stack technique',
       h2a: 'Mes outils',
       h2b: 'de travail.',
+      groups: { frontend: 'Frontend', mobile: 'Mobile', backend: 'Backend', data: 'Données', tools: 'Outils' },
     },
 
     experience: {
@@ -223,7 +224,7 @@ const translations = {
         { title: "Salut, je suis Sugar ! 👋", text: "Le guide de Mohamed. Tu veux une visite guidée ?", isIntro: true },
         { title: "Accueil", text: "Développeur full-stack, Paris, disponible en alternance. Voilà le pitch." },
         { title: "À propos", text: "25 ans, 3+ ans à construire de vrais produits pour de vrais clients." },
-        { title: "Compétences", text: "{tools} outils — React, Laravel, React Native, Docker et plus encore." },
+        { title: "Compétences", text: "{tools} outils en 5 domaines — React, React Native, Laravel, Spring Boot, PostgreSQL…" },
         { title: "Parcours", text: "3 formations et 4 expériences, du stage au freelance." },
         { title: "CV", text: "CV complet à télécharger — alternance disponible dès 2026." },
         { title: "Projets", text: "{projects} projets réalisés. Clique sur un projet pour lire son étude de cas." },
@@ -303,6 +304,7 @@ const translations = {
       label: 'Tech stack',
       h2a: 'Tools I work',
       h2b: 'with.',
+      groups: { frontend: 'Frontend', mobile: 'Mobile', backend: 'Backend', data: 'Data', tools: 'Tools' },
     },
 
     experience: {
@@ -468,7 +470,7 @@ const translations = {
         { title: "Hey, I'm Sugar! 👋", text: "Mohamed's little guide. Want me to show you around?", isIntro: true },
         { title: "Welcome", text: "Full-stack dev, Paris-based, looking for alternance. That's the pitch." },
         { title: "About", text: "25 y/o, 3+ years building real products for real clients." },
-        { title: "Skills", text: "{tools} tools — React, Laravel, React Native, Docker and more." },
+        { title: "Skills", text: "{tools} tools across 5 areas — React, React Native, Laravel, Spring Boot, PostgreSQL…" },
         { title: "Career", text: "3 programs and 4 roles, from internship to freelance." },
         { title: "Resume", text: "Full CV ready to download — alternance starting 2026." },
         { title: "Projects", text: "{projects} projects built. Click one to read its case study." },

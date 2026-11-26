@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { visibleSkills } from '../data/skills';
 
 const SEO = ({
   title = "Mohamed Sekkar | Full-Stack Developer | Paris, France",
@@ -94,13 +95,7 @@ const addSectionStructuredData = (section, title, description, url) => {
         "name": "Technical Skills",
         "description": description,
         "url": url,
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "React.js" },
-          { "@type": "ListItem", "position": 2, "name": "Laravel" },
-          { "@type": "ListItem", "position": 3, "name": "JavaScript" },
-          { "@type": "ListItem", "position": 4, "name": "PHP" },
-          { "@type": "ListItem", "position": 5, "name": "MySQL" }
-        ]
+        "itemListElement": visibleSkills.map((skill, i) => ({ "@type": "ListItem", "position": i + 1, "name": skill.name }))
       };
       break;
 
