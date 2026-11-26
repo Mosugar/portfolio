@@ -103,7 +103,7 @@ docs/           # README screenshots
 - Portfolio: [mohamedsekkar.com](https://www.mohamedsekkar.com)
 - LinkedIn: [linkedin.com/in/mohamedsekkar](https://linkedin.com/in/mohamedsekkar)
 - Behance: [behance.net/mohamed_sekkar](https://www.behance.net/mohamed_sekkar)
-- Email: sekkarmohamedd@gmail.com
+- Email: mohamedsekkar1110@gmail.com
 
 ---
 
